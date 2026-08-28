@@ -58,7 +58,7 @@ public class TechUpgradeTreeManager : MonoBehaviour
                 // 추후 branch가 여러개일때 생각하기
                 DOVirtual.Float(0f, 1f, drawDuration, (t) =>
                 {
-                    masteredNode.branchImage.fillAmount = t;
+                    masteredNode.branchImage.ForEach((image)=> image.fillAmount = t);
                 }).OnComplete(() => UnlockNode(nextNodeUI));
             }
             else

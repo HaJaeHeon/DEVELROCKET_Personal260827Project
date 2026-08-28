@@ -25,7 +25,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public bool isRootNode = false; // 이 버튼이 시작점인가?
     public List<TechUpgradeUI> nextNodes; //다음 해금될 UI노드 버튼
     public Outline outLine;
-    public Image branchImage;
+    public List<Image> branchImage;
 
     private void Awake()
     {
@@ -192,9 +192,12 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         if (nodeData == null || !isUnlocked) return;
 
+        //rectTransform의 x, y 값과 height의 값을 같이 보냄
+        RectTransform rect = gameObject.GetComponent<RectTransform>();
+        Vector3 uiPosition = rect.position;
+        float height = rect.rect.height * 0.5f;
         // 글로벌 툴팁 창에 스킬 '이름'과 '설명'을 같이 전달
-        // 스크립트(클래스) 이름인 대문자 S로 시작하는 SkillTooltip을 적어야 합니다.
-        UpgradeTooltip.Instance.ShowTooltip(nodeData.nodeName, nodeData.description);
+        UpgradeTooltip.Instance.ShowTooltip(nodeData.nodeName, nodeData.description, uiPosition);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
