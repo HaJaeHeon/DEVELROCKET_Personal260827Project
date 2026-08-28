@@ -11,7 +11,7 @@ public class Account
 
 public class GameManager : MonoBehaviour
 {
-    public Dictionary<CurrencyType, int> myAccount = new Dictionary<CurrencyType, int>();
+    //public Dictionary<CurrencyType, int> myAccount = new Dictionary<CurrencyType, int>();
     public List<Account> myAccountList;
     private static GameManager instance;
     public static GameManager Instance => instance;

@@ -21,7 +21,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public int currentLevel = 0;
     public bool isUnlocked = false;
 
-    [Header("스킬 트리 구조 (여기서 직접 연결!)")]
+    [Header("스킬 트리 구조 (Inspector 직접 연결)")]
     public bool isRootNode = false; // 이 버튼이 시작점인가?
     public List<TechUpgradeUI> nextNodes; //다음 해금될 UI노드 버튼
     public Outline outLine;
@@ -34,6 +34,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         iconImage = GetComponent<Image>();
     }
 
+    //연결해야할 부분 초기화, ui refresh
     private void Start()
     {
         iconImage.sprite = nodeData.nodeIcon;
@@ -45,18 +46,6 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         RefreshUI();
     }
-
-    //private void OnEnable()
-    //{
-    //    iconImage.sprite = nodeData.nodeIcon;
-    //    nameText.text = nodeData.nodeName;
-    //    levelText.text = currentLevel.ToString();
-    //    costText.text = nodeData.requiredCosts[currentLevel].ToString();
-
-    //    nodeButton.onClick.AddListener(() => OnClickNode());
-
-    //    RefreshUI();
-    //}
 
     // 매니저(SkillTreeManager)가 게임 시작 시 한 번씩 호출해줄 초기화 함수
     public void SetupNode(bool startUnlocked)
@@ -121,7 +110,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             // 완성된 여러 줄의 텍스트를 UI에 적용
             costText.text = costString;
 
-            bool enoughCurrencies = CalcEnoughCurrency();
+            bool enoughCurrencies = BoolEnoughCurrency();
 
             // outline 색깔 변경으로 현재 구매 가능한지 불가한지 변경
             // OnClickNode 에서 MaxLevel과 currentLevel과 같으면 마스터 색깔로 변경
@@ -155,11 +144,11 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         double requiredCost = CalculateNextCost();
 
         // 1. 재화가 충분한지 확인 (PlayerStatusSO 등과 연동)
-        if (!CalcEnoughCurrency())
+        if (!BoolEnoughCurrency())
             return;
 
         // 2. 재화 차감
-        // PlayerManager.Instance.UseCurrency(nodeData.requiredCosts[0].currency, requiredCost);
+        CalcCurerncy();
 
         // 3. 레벨 증가 및 능력치 적용
         currentLevel++;
@@ -177,7 +166,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
     }
 
-    private bool CalcEnoughCurrency()
+    private bool BoolEnoughCurrency()
     {
         foreach (CostData costData in nodeData.requiredCosts)
         {
@@ -193,6 +182,24 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             }
         }
         return true;
+    }
+
+    //GameManager에 저장되어있는 재화만큼 감산
+    private void CalcCurerncy()
+    {
+        foreach (CostData costData in nodeData.requiredCosts)
+        {
+            double currentPrice = costData.baseCost * Mathf.Pow(costData.costMultiplier, currentLevel);
+
+            foreach (var item in GameManager.Instance.myAccountList)
+            {
+                if (item.currencyType == costData.currency)
+                {
+                    item.Amount -= (int)currentPrice;
+                    Debug.Log($"currencyType : {costData.currency} \ncurrentPrice : {currentPrice}\nremainCurrency : {item.Amount}");
+                }
+            }
+        }
     }
 
 
