@@ -15,7 +15,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public Image iconImage;
     public TMP_Text nameText;
     public TMP_Text levelText;
-    public TMP_Text costText;
+    public TMP_Text descriptionText;
 
     [Header("상태 저장")]
     public int currentLevel = 0;
@@ -40,8 +40,8 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         iconImage.sprite = nodeData.nodeIcon;
         nameText.text = nodeData.nodeName;
         levelText.text = currentLevel.ToString();
-        costText.text = nodeData.requiredCosts[currentLevel].ToString();
-
+        //costText.text = nodeData.requiredCosts[currentLevel].ToString();
+        descriptionText.text = nodeData.description;
         nodeButton.onClick.AddListener(() => OnClickNode());
 
         RefreshUI();
@@ -89,26 +89,26 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         if (currentLevel >= nodeData.maxLevel)
         {
-            costText.text = "MAX";
+            levelText.text = "MAX";
             nodeButton.interactable = false; // 마스터하면 클릭 불가
         }
         else
         {
-            // 여러 종류의 재화를 텍스트 하나로 묶어줄 임시 문자열
-            string costString = "";
+            //// 여러 종류의 재화를 텍스트 하나로 묶어줄 임시 문자열
+            //string costString = "";
 
-            // SO에 등록된 모든 요구 비용(List)을 하나씩 꺼내서 계산
-            foreach (CostData costData in nodeData.requiredCosts)
-            {
-                // 공식: 기본비용 * (배율 ^ 현재레벨)
-                double currentPrice = costData.baseCost * Mathf.Pow(costData.costMultiplier, currentLevel);
+            //// SO에 등록된 모든 요구 비용(List)을 하나씩 꺼내서 계산
+            //foreach (CostData costData in nodeData.requiredCosts)
+            //{
+            //    // 공식: 기본비용 * (배율 ^ 현재레벨)
+            //    double currentPrice = costData.baseCost * Mathf.Pow(costData.costMultiplier, currentLevel);
 
-                // 텍스트 누적 (예: "Food 100\nWood 50\n")
-                costString += $"{costData.currency} : {currentPrice:N0}\n";
-            }
+            //    // 텍스트 누적 (예: "Food 100\nWood 50\n")
+            //    costString += $"{costData.currency} : {currentPrice:N0}\n";
+            //}
 
-            // 완성된 여러 줄의 텍스트를 UI에 적용
-            costText.text = costString;
+            //// 완성된 여러 줄의 텍스트를 UI에 적용
+            //costText.text = costString;
 
             bool enoughCurrencies = BoolEnoughCurrency();
 
@@ -211,9 +211,9 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         //rectTransform의 x, y 값과 height의 값을 같이 보냄
         RectTransform rect = gameObject.GetComponent<RectTransform>();
         Vector3 uiPosition = rect.position;
-        float height = rect.rect.height * 0.5f;
+        float height = rect.rect.height * rect.lossyScale.y;
         // 글로벌 툴팁 창에 스킬 '이름'과 '설명'을 같이 전달
-        UpgradeTooltip.Instance.ShowTooltip(nodeData.nodeName, nodeData.description, uiPosition);
+        UpgradeTooltip.Instance.ShowTooltip(nodeData.nodeName, nodeData.requiredCosts, currentLevel, uiPosition, height, transform.parent);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
