@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 // 1. 재화 종류 (4라인 테마에 맞춤)
 public enum CurrencyType
@@ -37,7 +38,7 @@ public struct CostData
 }
 
 // 4. 스킬 가지(Branch) 핵심 설계도
-[CreateAssetMenu(fileName = "New Skill Node", menuName = "BoardGame/Skill Node")]
+[CreateAssetMenu(fileName = "New Upgrade Node", menuName = "BoardGame/Upgrade Node")]
 public class UpgradeBranchSO : ScriptableObject
 {
     [Header("노드 기본 정보")]

@@ -7,7 +7,6 @@
   <Project Path="UnityUIExtensions.csproj" />
   <Project Path="Unity.VisualScripting.Core.Editor.csproj" />
   <Project Path="Unity.PerformanceTesting.Editor.csproj" />
-  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Unity.Burst.csproj" />
   <Project Path="Unity.VisualScripting.Flow.Editor.csproj" />
   <Project Path="Unity.VisualStudio.Editor.csproj" />
@@ -21,6 +20,7 @@
   <Project Path="Unity.PerformanceTesting.csproj" />
   <Project Path="DamageNumbersPro.csproj" />
   <Project Path="Unity.Burst.Editor.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Unity.Rider.Editor.csproj" />
   <Project Path="Unity.VisualScripting.State.csproj" />
   <Project Path="Unity.AI.Navigation.Updater.csproj" />

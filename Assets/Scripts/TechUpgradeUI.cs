@@ -25,10 +25,13 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public bool isRootNode = false; // 이 버튼이 시작점인가?
     public List<TechUpgradeUI> nextNodes; //다음 해금될 UI노드 버튼
     public Outline outLine;
+    public Image branchImage;
 
     private void Awake()
     {
         outLine = GetComponent<Outline>();
+        nodeButton = GetComponent<Button>();
+        iconImage = GetComponent<Image>();
     }
 
     private void Start()
@@ -39,8 +42,21 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         costText.text = nodeData.requiredCosts[currentLevel].ToString();
 
         nodeButton.onClick.AddListener(() => OnClickNode());
+
+        RefreshUI();
     }
 
+    //private void OnEnable()
+    //{
+    //    iconImage.sprite = nodeData.nodeIcon;
+    //    nameText.text = nodeData.nodeName;
+    //    levelText.text = currentLevel.ToString();
+    //    costText.text = nodeData.requiredCosts[currentLevel].ToString();
+
+    //    nodeButton.onClick.AddListener(() => OnClickNode());
+
+    //    RefreshUI();
+    //}
 
     // 매니저(SkillTreeManager)가 게임 시작 시 한 번씩 호출해줄 초기화 함수
     public void SetupNode(bool startUnlocked)
@@ -82,7 +98,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         levelText.text = $"{currentLevel} / {nodeData.maxLevel}";
 
-        int notEnoughCurrenciesCount = 0;
+        bool notEnoughCurrencies = false;
 
         if (currentLevel >= nodeData.maxLevel)
         {
@@ -101,14 +117,15 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 double currentPrice = costData.baseCost * Mathf.Pow(costData.costMultiplier, currentLevel);
 
                 // 텍스트 누적 (예: "Food 100\nWood 50\n")
-                costString += $"{costData.currency} {currentPrice:N0}\n";
+                costString += $"{costData.currency} : {currentPrice:N0}\n";
 
                 foreach (var item in GameManager.Instance.myAccountList)
                 {
                     if (item.currencyType == costData.currency)
                     {
                         if (item.Amount < currentPrice)
-                            notEnoughCurrenciesCount++;
+                            notEnoughCurrencies = true;
+                        continue;
                     }
                 }
             }
@@ -118,11 +135,11 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
             // outline 색깔 변경으로 현재 구매 가능한지 불가한지 변경
             // OnClickNode 에서 MaxLevel과 currentLevel과 같으면 마스터 색깔로 변경
-            if (notEnoughCurrenciesCount > 0)
+            if (notEnoughCurrencies)
             {
                 outLine.effectColor = Color.red;
             }
-            else if (currentLevel < nodeData.maxLevel && notEnoughCurrenciesCount <= 0)
+            else if (currentLevel < nodeData.maxLevel && !notEnoughCurrencies)
             {
                 outLine.effectColor = Color.yellow;
             }
