@@ -55,7 +55,7 @@ public class TechUpgradeTreeManager : MonoBehaviour
             // 선 긋기 연출
             if (masteredNode.branchImage != null)
             {
-                // 추후 branch가 여러개일때 생각하기
+                // branch 여러개여도 동시에 가능하도록 foreach 돌림
                 DOVirtual.Float(0f, 1f, drawDuration, (t) =>
                 {
                     masteredNode.branchImage.ForEach((image)=> image.fillAmount = t);

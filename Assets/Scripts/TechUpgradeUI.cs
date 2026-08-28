@@ -98,8 +98,6 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         levelText.text = $"{currentLevel} / {nodeData.maxLevel}";
 
-        bool notEnoughCurrencies = false;
-
         if (currentLevel >= nodeData.maxLevel)
         {
             costText.text = "MAX";
@@ -118,28 +116,20 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
                 // 텍스트 누적 (예: "Food 100\nWood 50\n")
                 costString += $"{costData.currency} : {currentPrice:N0}\n";
-
-                foreach (var item in GameManager.Instance.myAccountList)
-                {
-                    if (item.currencyType == costData.currency)
-                    {
-                        if (item.Amount < currentPrice)
-                            notEnoughCurrencies = true;
-                        continue;
-                    }
-                }
             }
 
             // 완성된 여러 줄의 텍스트를 UI에 적용
             costText.text = costString;
 
+            bool enoughCurrencies = CalcEnoughCurrency();
+
             // outline 색깔 변경으로 현재 구매 가능한지 불가한지 변경
             // OnClickNode 에서 MaxLevel과 currentLevel과 같으면 마스터 색깔로 변경
-            if (notEnoughCurrencies)
+            if (!enoughCurrencies)
             {
                 outLine.effectColor = Color.red;
             }
-            else if (currentLevel < nodeData.maxLevel && !notEnoughCurrencies)
+            else if (currentLevel < nodeData.maxLevel && enoughCurrencies)
             {
                 outLine.effectColor = Color.yellow;
             }
@@ -165,7 +155,8 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         double requiredCost = CalculateNextCost();
 
         // 1. 재화가 충분한지 확인 (PlayerStatusSO 등과 연동)
-        // if (!PlayerManager.Instance.HasEnoughCurrency(nodeData.requiredCosts[0].currency, requiredCost)) return;
+        if (!CalcEnoughCurrency())
+            return;
 
         // 2. 재화 차감
         // PlayerManager.Instance.UseCurrency(nodeData.requiredCosts[0].currency, requiredCost);
@@ -184,6 +175,24 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             TechUpgradeTreeManager.Instance.OnNodeMastered(this);
             outLine.effectColor = Color.green;
         }
+    }
+
+    private bool CalcEnoughCurrency()
+    {
+        foreach (CostData costData in nodeData.requiredCosts)
+        {
+            double currentPrice = costData.baseCost * Mathf.Pow(costData.costMultiplier, currentLevel);
+
+            foreach (var item in GameManager.Instance.myAccountList)
+            {
+                if (item.currencyType == costData.currency)
+                {
+                    if (item.Amount < currentPrice)
+                        return false;
+                }
+            }
+        }
+        return true;
     }
 
 
