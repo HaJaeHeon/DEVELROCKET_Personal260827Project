@@ -27,7 +27,7 @@ public class UpgradeTooltip : MonoBehaviour
         gameObject.SetActive(false); // 시작할 땐 숨김
     }
 
-    // 마우스를 올렸을 때 호출할 함수 (이름과 설명을 같이 받습니다)
+    // 마우스를 올렸을 때 호출할 함수 (이름과 필요 재화량을 같이 받습니다)
     public void ShowTooltip(string name, List<CostData> costs, int currentLevel ,Vector3 uiPosition, float buttonHeight, Transform tr)
     {
         gameObject.SetActive(true);
@@ -48,7 +48,7 @@ public class UpgradeTooltip : MonoBehaviour
 
         gameObject.transform.SetParent(tr);
 
-        // [핵심 1] 텍스트가 바뀌었으니 실제 UI 높이를 즉시 다시 계산하라고 강제 명령!
+        // 텍스트가 바뀌었으니 실제 UI 높이를 즉시 다시 계산하라고 강제 명령
         // (이 코드가 없으면 이전 스킬의 작은 툴팁 크기로 계산해버려서 덜 내려옵니다)
         UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(requiredCosts.rectTransform);
         UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);

@@ -26,6 +26,9 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [field: SerializeField] public List<TechUpgradeUI> nextNodes { get; private set; } //다음 해금될 UI노드 버튼
     [field: SerializeField] public List<Image> branchImage { get; private set; }
 
+    private Vector3 uiPosition;
+    private float height;
+
     private void Awake()
     {
         outLine = GetComponent<Outline>();
@@ -42,6 +45,10 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         //costText.text = nodeData.requiredCosts[currentLevel].ToString();
         descriptionText.text = nodeData.description;
         nodeButton.onClick.AddListener(() => OnClickNode());
+
+        RectTransform rect = gameObject.GetComponent<RectTransform>();
+        uiPosition = rect.position;
+        height = rect.rect.height * rect.lossyScale.y;
 
         RefreshUI();
     }
@@ -145,6 +152,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             TechUpgradeTreeManager.Instance.OnNodeMastered(this);
             outLine.effectColor = Color.green;
         }
+        UpgradeTooltip.Instance.ShowTooltip(nodeData.nodeName, nodeData.requiredCosts, currentLevel, uiPosition, height, transform.parent);
     }
 
     private bool BoolEnoughCurrency()
@@ -191,9 +199,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (nodeData == null || !isUnlocked) return;
 
         //rectTransform의 x, y 값과 height의 값을 같이 보냄
-        RectTransform rect = gameObject.GetComponent<RectTransform>();
-        Vector3 uiPosition = rect.position;
-        float height = rect.rect.height * rect.lossyScale.y;
+        
         // 글로벌 툴팁 창에 스킬 '이름'과 '설명'을 같이 전달
         UpgradeTooltip.Instance.ShowTooltip(nodeData.nodeName, nodeData.requiredCosts, currentLevel, uiPosition, height, transform.parent);
     }
