@@ -33,6 +33,7 @@ public class DIceRoll : MonoBehaviour
    {
         rb = GetComponent<Rigidbody>();
         isRolling = false;
+        isAutoRoll = false;
    }
 
 
@@ -78,6 +79,9 @@ public class DIceRoll : MonoBehaviour
 
       int finalNumber = CalcDiceFace();
       Debug.Log($"주사위 결과값 : {finalNumber}");
+
+        // GameManager에 보내기
+        SendDiceNum(finalNumber);
       
       isRolling = false;
    }
@@ -121,8 +125,6 @@ public class DIceRoll : MonoBehaviour
         if(currentRoutine == null)
         {
             currentRoutine = StartCoroutine(RollCoroutine());
-
-            isRolling = false;
         }
     }
 
@@ -149,6 +151,10 @@ public class DIceRoll : MonoBehaviour
             DiceFacing(resultDiceNum);
         }).WaitForCompletion();
 
+        // GameManager에 보내기
+        SendDiceNum(resultDiceNum);
+
+        currentRoutine = null;
         isRolling = false;
     }
 
@@ -177,6 +183,11 @@ public class DIceRoll : MonoBehaviour
         }
     }
 
+    public void ChangeAuto()
+    {
+        isAutoRoll = !isAutoRoll;
+    }
+
     //==================================== Facing =========================================
     public void DiceFacing(int faceNum)
     {
@@ -200,5 +211,10 @@ public class DIceRoll : MonoBehaviour
                 return;
             }
         }
+    }
+
+    public void SendDiceNum(int diceNum)
+    {
+        GameManager.Instance.PlayerDice(diceNum);
     }
 }

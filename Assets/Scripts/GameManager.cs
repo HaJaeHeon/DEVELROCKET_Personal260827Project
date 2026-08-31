@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
     public static GameManager Instance => instance;
 
+    public PlayerMove move;
+
     private void Awake()
     {
         if (instance != null)
@@ -27,5 +29,10 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void PlayerDice(int diceNum)
+    {
+        move.MoveInInspector(diceNum);
     }
 }

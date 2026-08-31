@@ -4,10 +4,13 @@ using DG.Tweening;
 public class PlayerMove : MonoBehaviour
 {
     [Header("이동 관련")]
-    [SerializeField] private float moveSpeed;
+    //[SerializeField] private float moveSpeed;
     [SerializeField] private float jumpHeight;
+    //점프 시간을 줄여서 animation속도 짧게하기
     [SerializeField] private float jumpDuration;
+    //말 이동 대기 시간 짧게
     [SerializeField] private float waitForNextNode;
+    //말 위치를 타일 면과 닿게
     [SerializeField] private float heightOffset;
 
     [Space]
@@ -34,7 +37,7 @@ public class PlayerMove : MonoBehaviour
 
             TileNode targetNode = BoardManager.Instance.GetTile(currentNodeIndex);
             Vector3 endPosition = targetNode.transform.position + Vector3.up * heightOffset;
-            Debug.Log(endPosition);
+            //Debug.Log(endPosition);
 
             yield return transform.DOJump(endPosition, jumpHeight, 1, jumpDuration).WaitForCompletion();
 

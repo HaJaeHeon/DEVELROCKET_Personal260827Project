@@ -9,6 +9,8 @@ public enum TileType
     WoodLine,
     StoneLine,
     IndustryLine,
+    Festival,
+    Travel
 }
 
 
