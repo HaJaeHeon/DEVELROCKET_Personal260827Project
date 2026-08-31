@@ -1,7 +1,13 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using DG.Tweening;
+
+public enum RollType
+{
+    Classic,
+    Animate,
+    Auto
+}
 
 [RequireComponent(typeof(Rigidbody))]
 public class DIceRoll : MonoBehaviour
@@ -9,11 +15,14 @@ public class DIceRoll : MonoBehaviour
    private Rigidbody rb;
    [SerializeField] private bool isRolling;
 
+   [SerializeField] private float rollDuration;
    [SerializeField] private float rollPower;
    [SerializeField] private float torquePower;
-   [SerializeField] private Transform initDicePosition;
+   [SerializeField] private Transform initDiceTransform;
+    [SerializeField] private bool isAutoRoll;
 
-   // 
+    private Coroutine currentRoutine;
+
    /// <summary>
    /// 주사위 모델 위치에 맞게 조절
    /// 위, 아래, 오른쪽 , 왼쪽 , 앞, 뒤 순서
@@ -22,30 +31,40 @@ public class DIceRoll : MonoBehaviour
 
    private void Awake()
    {
-      rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
+        isRolling = false;
    }
 
-   /// <summary>
-   /// 위 방향으로 쏘아 올리는거는 Force로 주사위가 올라갔다가 내려오는 느낌 나게 만들고
-   /// 회전은 Vector3.one을 해 나름 잘 섞이게끔 만듦
-   /// </summary>
-   [ContextMenu("주사위 굴리기")]
-   public void Roll()
+    private void Update()
+    {
+        
+    }
+
+
+    //============Classic Roll====================================================================
+
+    /// <summary>
+    /// 위 방향으로 쏘아 올리는거는 Force로 주사위가 올라갔다가 내려오는 느낌 나게 만들고
+    /// 회전은 Vector3.one을 해 나름 잘 섞이게끔 만듦
+    /// </summary>
+    [ContextMenu("주사위 굴리기")]
+   public void ClassicRoll()
    {
       if (isRolling)
          return;
       
+      rb.useGravity = true;
       isRolling = true;
       
       //주사위 초기화
       rb.linearVelocity = Vector3.zero;
       rb.angularVelocity = Vector3.zero;
-      transform.position = initDicePosition.position;
+      transform.position = initDiceTransform.position;
       
       Vector3 randomSpin = new Vector3(
-         Random.Range(-1f, 1f),
-         Random.Range(-1f, 1f),
-         Random.Range(-1f, 1f)
+         Random.Range(-3f, 3f),
+         Random.Range(-3f, 3f),
+         Random.Range(-3f, 3f)
          );
       
       rb.AddForce(Vector3.forward * rollPower, ForceMode.Impulse);
@@ -95,4 +114,91 @@ public class DIceRoll : MonoBehaviour
       }
       return diceNumber;
    }
+
+    //=====================Animate Roll================================================
+
+    [ContextMenu("Animate Roll")]
+    public void AnimateRoll()
+    {
+        if (isRolling)
+            return;
+
+        if(currentRoutine == null)
+        {
+            currentRoutine = StartCoroutine(RollCoroutine());
+
+            isRolling = false;
+        }
+    }
+
+    private IEnumerator RollCoroutine()
+    {
+        if (isRolling)
+            yield return null;
+
+        isRolling = true;
+        rb.useGravity = false;
+        rb.isKinematic = true;
+        transform.DOKill();
+
+        transform.position = initDiceTransform.position;
+
+        int resultDiceNum = Random.Range(1, 7);
+        Debug.Log($"current randomResult = {resultDiceNum}");
+
+        Vector3 spinVector = Vector3.one * 720f;
+
+
+        yield return transform.DORotate(spinVector, rollDuration, RotateMode.FastBeyond360).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            DiceFacing(resultDiceNum);
+        }).WaitForCompletion();
+
+        isRolling = false;
+    }
+
+    //=======================Auto Roll======================================================
+    [ContextMenu("Auto Roll")]
+    public void AutoRoll()
+    {
+        if(isAutoRoll)
+        {
+            StartCoroutine(AutoRollCoroutine());
+        }
+    }
+
+    private IEnumerator AutoRollCoroutine()
+    {
+        while(isAutoRoll)
+        {
+            yield return StartCoroutine(RollCoroutine());
+
+            yield return new WaitForSeconds(rollDuration);
+        }
+    }
+
+    //==================================== Facing =========================================
+    public void DiceFacing(int faceNum)
+    {
+        Vector3[] directions = new Vector3[]
+        {
+         transform.up,
+         -transform.up,
+         transform.right,
+         -transform.right,
+         transform.forward,
+         -transform.forward
+        };
+
+        for(int i = 0; i < directions.Length; i++)
+        {
+            if(diceFace[i] == faceNum)
+            {
+                transform.rotation = Quaternion.FromToRotation(directions[i], -Camera.main.transform.forward);
+
+                Debug.Log($"i = {i} / faceNum = {faceNum}");
+                return;
+            }
+        }
+    }
 }

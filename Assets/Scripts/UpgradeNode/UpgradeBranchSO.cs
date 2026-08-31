@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.UI;
 
 // 1. 재화 종류 (4라인 테마에 맞춤)
 public enum CurrencyType
@@ -37,24 +36,25 @@ public struct CostData
     public float costMultiplier;    // 단계별 비용 증가 배율
 }
 
-// 4. 스킬 가지(Branch) 핵심 설계도
+// 4. Branch 내용
 [CreateAssetMenu(fileName = "New Upgrade Node", menuName = "BoardGame/Upgrade Node")]
 public class UpgradeBranchSO : ScriptableObject
 {
-    [Header("노드 기본 정보")]
-    public string nodeID;
-    public string nodeName;
-    [TextArea] public string description; // "주사위가 자동으로 굴러갑니다!"
-    public Sprite nodeIcon;
+    [field: SerializeField , Header("노드 기본 정보")]
+    public string nodeID { get; private set; }
+    [field: SerializeField] public string nodeName { get; private set; }
+    [field: SerializeField][TextArea] public string description { get; private set; }
+    [field: SerializeField] public Sprite nodeIcon { get; private set; }
 
-    [Header("트리 연결 구조")]
-    public int maxLevel = 5; // 이 노드의 최대 레벨
+    [field: SerializeField, Header("트리 연결 구조")]
+    public int maxLevel { get; private set; }
+    // 이 노드의 최대 레벨
     //public List<UpgradeBranchSO> nextNodesToUnlock; // 마스터 시 열릴 다음 노드들
     //public bool isRootNode;
 
-    [Header("비용 및 효과")]
-    public List<CostData> requiredCosts; // 여러 재화 동시 요구 가능
-    public StatType targetStat;
-    public float baseStatValue;
-    public float statMultiplierPerLevel;
+    [field: SerializeField, Header("비용 및 효과")]
+    public List<CostData> requiredCosts { get; private set; }
+    [field: SerializeField] public StatType targetStat { get; private set; }
+    [field: SerializeField] public float baseStatValue { get; private set; }
+    [field: SerializeField] public float statMultiplierPerLevel { get; private set; }
 }

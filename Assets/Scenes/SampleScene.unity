@@ -2492,7 +2492,7 @@ Camera:
   m_GameObject: {fileID: 330585543}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -3352,7 +3352,6 @@ MonoBehaviour:
   zoomSpeed: 0.1
   minZoom: 0.5
   maxZoom: 2
-  smoothSpeed: 10
   scrollRect: {fileID: 533582190}
   contentRect: {fileID: 1574104713}
 --- !u!1001 &477768436
@@ -3613,7 +3612,7 @@ GameObject:
   m_Component:
   - component: {fileID: 517151741}
   m_Layer: 0
-  m_Name: DIcePosition
+  m_Name: DIceTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7794,19 +7793,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481c93a56565c45489f6c396501e37d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TechUpgradeUI
-  nodeData: {fileID: 11400000, guid: ed75a4c9cd15af745b0c4fb2ad393d96, type: 2}
-  nodeButton: {fileID: 0}
+  nodeData: {fileID: 11400000, guid: 07776c0f3738b7f42ad839f10974b742, type: 2}
   iconImage: {fileID: 0}
   nameText: {fileID: 1641986085}
   levelText: {fileID: 1598460508}
   descriptionText: {fileID: 984012150}
+  <nodeButton>k__BackingField: {fileID: 1181039078}
   currentLevel: 0
   isUnlocked: 0
-  isRootNode: 0
-  nextNodes:
-  - {fileID: 1987816780}
   outLine: {fileID: 0}
-  branchImage:
+  <isRootNode>k__BackingField: 0
+  <nextNodes>k__BackingField:
+  - {fileID: 1987816780}
+  <branchImage>k__BackingField:
   - {fileID: 1248090289}
 --- !u!114 &1181039077
 MonoBehaviour:
@@ -7961,19 +7960,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481c93a56565c45489f6c396501e37d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TechUpgradeUI
-  nodeData: {fileID: 11400000, guid: 7185b84e098bf7a4fb16238e39ae432f, type: 2}
-  nodeButton: {fileID: 0}
+  nodeData: {fileID: 11400000, guid: 56e424dc306339a49a691a695ce9635e, type: 2}
   iconImage: {fileID: 0}
   nameText: {fileID: 1368955821}
   levelText: {fileID: 970001696}
   descriptionText: {fileID: 760919864}
+  <nodeButton>k__BackingField: {fileID: 1187439037}
   currentLevel: 0
   isUnlocked: 0
-  isRootNode: 0
-  nextNodes:
-  - {fileID: 1181039076}
   outLine: {fileID: 0}
-  branchImage:
+  <isRootNode>k__BackingField: 0
+  <nextNodes>k__BackingField:
+  - {fileID: 1181039076}
+  <branchImage>k__BackingField:
   - {fileID: 1054675541}
 --- !u!114 &1187439036
 MonoBehaviour:
@@ -8128,19 +8127,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481c93a56565c45489f6c396501e37d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TechUpgradeUI
-  nodeData: {fileID: 11400000, guid: 4e6e6748b0433024fb7bb3af7dffd507, type: 2}
-  nodeButton: {fileID: 1193119509}
+  nodeData: {fileID: 11400000, guid: ae86bf313269081448466f84c6c427f2, type: 2}
   iconImage: {fileID: 0}
   nameText: {fileID: 881327243}
   levelText: {fileID: 1654531333}
   descriptionText: {fileID: 2001644932}
+  <nodeButton>k__BackingField: {fileID: 1193119509}
   currentLevel: 0
   isUnlocked: 0
-  isRootNode: 0
-  nextNodes:
-  - {fileID: 1187439035}
   outLine: {fileID: 0}
-  branchImage:
+  <isRootNode>k__BackingField: 0
+  <nextNodes>k__BackingField:
+  - {fileID: 1187439035}
+  <branchImage>k__BackingField:
   - {fileID: 1161627787}
 --- !u!114 &1193119508
 MonoBehaviour:
@@ -8459,19 +8458,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TechUpgradeUI
   nodeData: {fileID: 11400000, guid: 4014581a1d94ae64592950510b8e29d8, type: 2}
-  nodeButton: {fileID: 1199405413}
   iconImage: {fileID: 0}
   nameText: {fileID: 1670176589}
   levelText: {fileID: 1599132008}
   descriptionText: {fileID: 1421352142}
+  <nodeButton>k__BackingField: {fileID: 1199405413}
   currentLevel: 0
   isUnlocked: 0
-  isRootNode: 1
-  nextNodes:
+  outLine: {fileID: 0}
+  <isRootNode>k__BackingField: 1
+  <nextNodes>k__BackingField:
   - {fileID: 1193119507}
   - {fileID: 1849699129}
-  outLine: {fileID: 0}
-  branchImage:
+  <branchImage>k__BackingField:
   - {fileID: 1635470105}
   - {fileID: 1951826243}
 --- !u!1001 &1206779801
@@ -12715,19 +12714,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481c93a56565c45489f6c396501e37d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TechUpgradeUI
-  nodeData: {fileID: 11400000, guid: 9e460cbcce9e1764f9ce1047fa0fb90a, type: 2}
-  nodeButton: {fileID: 0}
+  nodeData: {fileID: 11400000, guid: dcb6bcdd755540f46bed046d02dd0409, type: 2}
   iconImage: {fileID: 0}
   nameText: {fileID: 1072852538}
   levelText: {fileID: 257518438}
   descriptionText: {fileID: 1637398183}
+  <nodeButton>k__BackingField: {fileID: 1849699131}
   currentLevel: 0
   isUnlocked: 0
-  isRootNode: 0
-  nextNodes: []
   outLine: {fileID: 0}
-  branchImage:
-  - {fileID: 1246331207}
+  <isRootNode>k__BackingField: 0
+  <nextNodes>k__BackingField: []
+  <branchImage>k__BackingField: []
 --- !u!114 &1849699130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13730,20 +13728,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481c93a56565c45489f6c396501e37d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TechUpgradeUI
-  nodeData: {fileID: 11400000, guid: 4200326fa50c3af459d241af2ae014a2, type: 2}
-  nodeButton: {fileID: 0}
+  nodeData: {fileID: 11400000, guid: 658dd8a13acef014abb8cc43d774caa2, type: 2}
   iconImage: {fileID: 0}
   nameText: {fileID: 15514945}
   levelText: {fileID: 103372568}
   descriptionText: {fileID: 713457618}
+  <nodeButton>k__BackingField: {fileID: 1987816782}
   currentLevel: 0
   isUnlocked: 0
-  isRootNode: 0
-  nextNodes:
-  - {fileID: 1849699129}
   outLine: {fileID: 0}
-  branchImage:
-  - {fileID: 1863985032}
+  <isRootNode>k__BackingField: 0
+  <nextNodes>k__BackingField: []
+  <branchImage>k__BackingField: []
 --- !u!114 &1987816781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15102,7 +15098,7 @@ GameObject:
   - component: {fileID: 3469287837023452632}
   - component: {fileID: 3469287837023452633}
   m_Layer: 0
-  m_Name: SM_Dice_Small
+  m_Name: Dice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15227,9 +15223,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DIceRoll
   isRolling: 0
+  rollDuration: 1
   rollPower: 5
   torquePower: 5
-  initDicePosition: {fileID: 517151741}
+  initDiceTransform: {fileID: 517151741}
+  isAutoRoll: 0
   diceFace: 060000000100000002000000050000000300000004000000
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

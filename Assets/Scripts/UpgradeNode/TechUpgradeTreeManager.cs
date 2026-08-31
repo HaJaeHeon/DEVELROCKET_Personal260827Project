@@ -5,28 +5,26 @@ using DG.Tweening;
 
 public class TechUpgradeTreeManager : MonoBehaviour
 {
-    public static TechUpgradeTreeManager Instance;
-    //public SkillNodeUI nodeUI; 
+    private static TechUpgradeTreeManager instance;
+    public static TechUpgradeTreeManager Instance => instance;
 
     [Header("처음부터 열려있을 시작 노드 데이터들")]
-    public List<UpgradeBranchSO> startingNodes;
-    [Header("UILineRenderer 선 긋기 세팅")]
-    public float drawDuration = 0.5f;   // 선이 차오르는 시간
+    [SerializeField] private List<UpgradeBranchSO> startingNodes;
+    [Header("선 긋기 세팅")]
+    [SerializeField] private float drawDuration = 0.5f;   // 선이 차오르는 시간
 
     // 씬에 배치된 모든 노드 UI를 담아둘 딕셔너리 (SO를 키값으로 사용)
     private Dictionary<UpgradeBranchSO, TechUpgradeUI> nodeDictionary = new Dictionary<UpgradeBranchSO, TechUpgradeUI>();
 
     void Awake()
     {
-        Instance = this;
-
-        // Content 아래에 있는 모든 SkillNodeUI를 찾아서 딕셔너리에 등록
-        //SkillNodeUI[] allNodes = GetComponentsInChildren<SkillNodeUI>();
-        //foreach (var nodeUI in allNodes)
-        //{
-        //    nodeDictionary.Add(nodeUI.nodeData, nodeUI);
-        //}
-        //Debug.Log($"{gameObject.name}'s Dictionary Count : {nodeDictionary.Count}");
+        if(instance != null)
+        {
+            Destroy(this);
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()

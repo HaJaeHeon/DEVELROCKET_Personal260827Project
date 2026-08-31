@@ -1,17 +1,14 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class UIZoomIn : MonoBehaviour
 {
-    [Header("Zoom Settings")]
-    public float zoomSpeed = 0.1f;
-    public float minZoom = 0.5f;
-    public float maxZoom = 2.0f;
+    [Header("줌인 관련")]
+    [SerializeField] private float zoomSpeed = 0.1f;
+    [SerializeField] private float minZoom = 0.5f;
+    [SerializeField] private float maxZoom = 2.0f;
 
-    [Header("Smooth Settings")]
-    public float smoothSpeed = 10f; // 부드럽게 따라가는 속도 (숫자가 작을수록 꿀렁거림)
 
     [SerializeField] private ScrollRect scrollRect;
     [SerializeField] private RectTransform contentRect;
@@ -26,10 +23,10 @@ public class UIZoomIn : MonoBehaviour
 
     void Update()
     {
-        // 1. 매 프레임 마우스 휠 입력값을 직접 읽어옵니다.
+        // 매 프레임 마우스 휠 입력값을 직접 읽기
         float scrollInput = Mouse.current.scroll.ReadValue().y;
 
-        // 2. 휠 입력이 발생했을 때만 즉시 크기를 변경합니다.
+        // 휠 입력이 발생했을 때만 즉시 크기를 변경
         if (scrollInput != 0)
         {
             float currentScale = contentRect.localScale.x;
@@ -38,7 +35,6 @@ public class UIZoomIn : MonoBehaviour
             float newScale = currentScale + (scrollInput * zoomSpeed);
             newScale = Mathf.Clamp(newScale, minZoom, maxZoom);
 
-            // 즉시 적용!
             contentRect.localScale = new Vector3(newScale, newScale, 1f);
         }
     }

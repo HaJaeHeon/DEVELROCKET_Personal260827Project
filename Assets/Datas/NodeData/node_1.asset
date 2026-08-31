@@ -10,23 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 240bcb6b81aa39146a4b171132491c7a, type: 3}
-  m_Name: node_5
+  m_Name: node_1
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeBranchSO
-  nodeID: 1115
-  nodeName: "5.\uB178\uB4DC\uC774\uB984"
-  description: "5.\uC124\uBA85"
-  nodeIcon: {fileID: 21300000, guid: 7f0ee1268d05b204cbba1da816c1547f, type: 3}
-  maxLevel: 5
-  requiredCosts:
+  <nodeID>k__BackingField: 1111
+  <nodeName>k__BackingField: "1. \uB178\uB4DC"
+  <description>k__BackingField: "1\uBC88 \uB178\uB4DC"
+  <nodeIcon>k__BackingField: {fileID: 21300000, guid: 7f0ee1268d05b204cbba1da816c1547f, type: 3}
+  <maxLevel>k__BackingField: 5
+  <requiredCosts>k__BackingField:
   - currency: 0
     baseCost: 100
     costMultiplier: 1.5
-  - currency: 1
-    baseCost: 50
-    costMultiplier: 2
-  - currency: 2
-    baseCost: 10
-    costMultiplier: 3
-  targetStat: 0
-  baseStatValue: 10
-  statMultiplierPerLevel: 1.5
+  <targetStat>k__BackingField: 0
+  <baseStatValue>k__BackingField: 100
+  <statMultiplierPerLevel>k__BackingField: 1.5
