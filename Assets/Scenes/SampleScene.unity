@@ -16300,6 +16300,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599132006}
   m_CullTransparentMesh: 1
+--- !u!1 &1603157892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1603157893}
+  - component: {fileID: 1603157894}
+  m_Layer: 0
+  m_Name: MapData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1603157893
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603157892}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 448.55212, y: 0, z: 1647.3071}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1603157894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603157892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e1ef16993d20514fa8b0ef74b0faaac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MapToCSV
+  targetParent: {fileID: 1082274448}
+  fileName: MapData.csv
+  tilePrefabToSpawn: {fileID: 2722888820227764025, guid: e608782c7d9ab034e8fa697b5f889cf2, type: 3}
 --- !u!1 &1609989289
 GameObject:
   m_ObjectHideFlags: 0
@@ -22040,3 +22087,4 @@ SceneRoots:
   - {fileID: 5853832943821237773}
   - {fileID: 1487007349}
   - {fileID: 936368882}
+  - {fileID: 1603157893}
