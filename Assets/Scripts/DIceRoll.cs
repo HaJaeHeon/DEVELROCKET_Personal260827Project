@@ -35,11 +35,6 @@ public class DIceRoll : MonoBehaviour
         isRolling = false;
    }
 
-    private void Update()
-    {
-        
-    }
-
 
     //============Classic Roll====================================================================
 
@@ -134,7 +129,7 @@ public class DIceRoll : MonoBehaviour
     private IEnumerator RollCoroutine()
     {
         if (isRolling)
-            yield return null;
+            yield break;
 
         isRolling = true;
         rb.useGravity = false;
@@ -146,7 +141,7 @@ public class DIceRoll : MonoBehaviour
         int resultDiceNum = Random.Range(1, 7);
         Debug.Log($"current randomResult = {resultDiceNum}");
 
-        Vector3 spinVector = Vector3.one * 720f;
+        Vector3 spinVector = Vector3.one * 1080f;
 
 
         yield return transform.DORotate(spinVector, rollDuration, RotateMode.FastBeyond360).SetEase(Ease.Linear).OnComplete(() =>
@@ -161,19 +156,24 @@ public class DIceRoll : MonoBehaviour
     [ContextMenu("Auto Roll")]
     public void AutoRoll()
     {
-        if(isAutoRoll)
-        {
-            StartCoroutine(AutoRollCoroutine());
-        }
+        if (isRolling)
+            return;
+
+        StartCoroutine(AutoRollCoroutine());
     }
 
     private IEnumerator AutoRollCoroutine()
     {
         while(isAutoRoll)
         {
+            if(isRolling)
+            {
+                yield return null;
+            }
             yield return StartCoroutine(RollCoroutine());
 
-            yield return new WaitForSeconds(rollDuration);
+            // 임시로 * 3 해놓음
+            yield return new WaitForSeconds(rollDuration * 3f);
         }
     }
 

@@ -18,6 +18,5 @@ public class TileDataSO : ScriptableObject
 {
     [field: SerializeField] public TileType tileType {  get; private set; }
 
-    public int tileIndex;
-    public int tileReward;
+    [field: SerializeField] public int tileReward { get; private set; }
 }
