@@ -21,7 +21,7 @@ public class BoardManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-
+    //현재 Start 부분에서 맵 데이터를 초기화 하는데 추후에 바뀔 수 있음 CSV로 저장하여 불러오는 방식을 채택할 수도 있음
     private void Start()
     {
         InitNode();
