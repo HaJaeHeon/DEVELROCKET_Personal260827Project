@@ -28,23 +28,31 @@ public class UpgradeTooltip : MonoBehaviour
     }
 
     // 마우스를 올렸을 때 호출할 함수 (이름과 필요 재화량을 같이 받습니다)
-    public void ShowTooltip(string name, List<CostData> costs, int currentLevel ,Vector3 uiPosition, float buttonHeight, Transform tr)
+    public void ShowTooltip(string name, List<CostData> costs, int currentLevel, int maxLevel, Vector3 uiPosition, float buttonHeight, Transform tr)
     {
         gameObject.SetActive(true);
 
         nameText.text = name;
 
         string tempString = "";
-        foreach (CostData costData in costs)
-        {
-            // 공식: 기본비용 * (배율 ^ 현재레벨)
-            double currentPrice = costData.baseCost * Mathf.Pow(costData.costMultiplier, currentLevel);
 
-            // 텍스트 누적 (예: "Food 100\nWood 50\n")
-            tempString += $"\n{costData.currency} : {currentPrice:N0}";
+        if (currentLevel != maxLevel)
+        {
+            foreach (CostData costData in costs)
+            {
+                // 공식: 기본비용 * (배율 ^ 현재레벨)
+                double currentPrice = costData.baseCost * Mathf.Pow(costData.costMultiplier, currentLevel);
+
+                // 텍스트 누적 (예: "Food 100\nWood 50\n")
+                tempString += $"\n{costData.currency} : {currentPrice:N0}";
+            }
+            requiredCosts.text = tempString;
+            //requiredCosts.text = tempString.TrimEnd('\n');
         }
-        requiredCosts.text = tempString;
-        //requiredCosts.text = tempString.TrimEnd('\n');
+        else
+        {
+            requiredCosts.text = "MAX";
+        }
 
         gameObject.transform.SetParent(tr);
 

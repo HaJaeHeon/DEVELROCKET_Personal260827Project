@@ -18,6 +18,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     [Header("상태 저장")]
     [SerializeField] private int currentLevel = 0;
+    [SerializeField] private int maxLevel;
     [SerializeField] private bool isUnlocked = false;
 
     [Header("스킬 트리 구조 (Inspector 직접 연결)")]
@@ -45,6 +46,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         //costText.text = nodeData.requiredCosts[currentLevel].ToString();
         descriptionText.text = nodeData.description;
         nodeButton.onClick.AddListener(() => OnClickNode());
+        maxLevel = nodeData.maxLevel;
 
         RectTransform rect = gameObject.GetComponent<RectTransform>();
         uiPosition = rect.position;
@@ -152,7 +154,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             TechUpgradeTreeManager.Instance.OnNodeMastered(this);
             outLine.effectColor = Color.green;
         }
-        UpgradeTooltip.Instance.ShowTooltip(nodeData.nodeName, nodeData.requiredCosts, currentLevel, uiPosition, height, transform.parent);
+        UpgradeTooltip.Instance.ShowTooltip(nodeData.nodeName, nodeData.requiredCosts, currentLevel, maxLevel, uiPosition, height, transform.parent);
     }
 
     private bool BoolEnoughCurrency()
@@ -201,7 +203,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         //rectTransform의 x, y 값과 height의 값을 같이 보냄
         
         // 글로벌 툴팁 창에 스킬 '이름'과 '설명'을 같이 전달
-        UpgradeTooltip.Instance.ShowTooltip(nodeData.nodeName, nodeData.requiredCosts, currentLevel, uiPosition, height, transform.parent);
+        UpgradeTooltip.Instance.ShowTooltip(nodeData.nodeName, nodeData.requiredCosts, currentLevel, maxLevel, uiPosition, height, transform.parent);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
