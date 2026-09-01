@@ -19,7 +19,7 @@ public class DIceRoll : MonoBehaviour
     [SerializeField] private float rollPower;
     [SerializeField] private float torquePower;
     [SerializeField] private Transform initDiceTransform;
-    [SerializeField] private bool isAutoRoll;
+    [field:SerializeField] public bool isAutoRoll {  get; private set; }
     [field: SerializeField] public int finalDiceNum;
 
     private Coroutine currentRoutine;
@@ -168,22 +168,23 @@ public class DIceRoll : MonoBehaviour
         if (isRolling)
             return;
 
+        isAutoRoll = true;
         StartCoroutine(AutoRollCoroutine());
     }
 
     private IEnumerator AutoRollCoroutine()
     {
-        while (isAutoRoll)
-        {
-            if (isRolling)
-            {
-                yield return null;
-            }
+        //while (isAutoRoll)
+        //{
+            //if (isRolling)
+            //{
+            //    yield return null;
+            //}
             yield return StartCoroutine(RollCoroutine());
 
             // 임시로 * 3 해놓음
-            yield return new WaitForSeconds(rollDuration * 3f);
-        }
+            //yield return new WaitForSeconds(rollDuration * 3f);
+        //}
     }
 
     public void ChangeAuto()

@@ -18,7 +18,6 @@ public class DiceAutoState : StateBase
     // Update 역할
     public override void OnLogic()
     {
-        
     }
 
     // 이 상태를 빠져나갈 때 실행

@@ -31,7 +31,7 @@ public class HFSMManager : MonoBehaviour
 
         // Idle 관련 FSM
         fsm.AddState("Idle", new IdleState());
-
+        fsm.AddTransition("Idle", "diceFsm", t => roll.isAutoRoll == true);
 
         // Move 관련 FSM
         fsm.AddState("Move", new MoveState(move));
