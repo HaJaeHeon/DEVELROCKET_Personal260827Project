@@ -12,15 +12,15 @@ public class Account
 
 public class GameManager : MonoBehaviour
 {
-    //public Dictionary<CurrencyType, int> myAccount = new Dictionary<CurrencyType, int>();
-    public List<Account> myAccountList;
+    public  List<Account> myAccountList;
     private static GameManager instance;
     public static GameManager Instance => instance;
 
     public PlayerMove move;
-
     public int diceNum;
-    public bool isTodo;
+
+    public event Action OnRefreshUI;
+
 
     private void Awake()
     {
@@ -35,21 +35,26 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void PlayerDice(int diceNum)
+    public void UpdateAccount(Dictionary<CurrencyType, int> receipt)
     {
-        move.MoveInInspector(diceNum);
+        foreach (var bill in receipt)
+        {
+            CurrencyType type = bill.Key;
+            int amount = bill.Value;
+            //Debug.Log($"{bill.Key} / {bill.Value}");
+
+            foreach (var item in myAccountList)
+            {
+                if(item.currencyType == type)
+                    item.Amount -= amount;
+                //Debug.Log($"{item.currencyType} / {item.Amount}");
+            }
+        }
+        OnRefreshUI?.Invoke();
     }
 
-    public void TodoList()
-    {
-        StartCoroutine(TodoCoroutine());
-    }
-    public IEnumerator TodoCoroutine()
-    {
-        isTodo = true;
-        Debug.Log($"istodo : {isTodo}");
-        yield return new WaitForSeconds(1f);
-        isTodo = false;
-        Debug.Log($"istodo : {isTodo}");
-    }
+    //public void PlayerDice(int diceNum)
+    //{
+    //    move.MoveInInspector(diceNum);
+    //}
 }

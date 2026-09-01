@@ -217,8 +217,8 @@ public class DIceRoll : MonoBehaviour
         }
     }
 
-    public void SendDiceNum(int diceNum)
-    {
-        GameManager.Instance.PlayerDice(diceNum);
-    }
+    //public void SendDiceNum(int diceNum)
+    //{
+    //    GameManager.Instance.PlayerDice(diceNum);
+    //}
 }

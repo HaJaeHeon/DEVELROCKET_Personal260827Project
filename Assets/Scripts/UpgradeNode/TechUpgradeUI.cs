@@ -178,19 +178,24 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     //GameManager에 저장되어있는 재화만큼 감산
     private void CalcCurerncy()
     {
+        Dictionary<CurrencyType, int> receipt = new Dictionary<CurrencyType, int>();
+
         foreach (CostData costData in nodeData.requiredCosts)
         {
             double currentPrice = costData.baseCost * Mathf.Pow(costData.costMultiplier, currentLevel);
 
-            foreach (var item in GameManager.Instance.myAccountList)
-            {
-                if (item.currencyType == costData.currency)
-                {
-                    item.Amount -= (int)currentPrice;
-                    Debug.Log($"currencyType : {costData.currency} \ncurrentPrice : {currentPrice}\nremainCurrency : {item.Amount}");
-                }
-            }
+            receipt.Add(costData.currency, (int)currentPrice);
+            //foreach (var item in GameManager.Instance.myAccountList)
+            //{
+            //    if (item.currencyType == costData.currency)
+            //    {
+            //        item.Amount -= (int)currentPrice;
+            //        Debug.Log($"currencyType : {costData.currency} \ncurrentPrice : {currentPrice}\nremainCurrency : {item.Amount}");
+            //    }
+            //}
+            //Debug.Log($"{costData.currency} / {(int)currentPrice}");
         }
+        GameManager.Instance.UpdateAccount(receipt);
     }
 
 

@@ -18,6 +18,11 @@ public class PlayerMove : MonoBehaviour
     [field:SerializeField] public bool isRunning {  get; private set; }
 
     // gameManager나 여기서 init 으로 플레어이 위치 처음 타일로 초기화 필요
+    private void Start()
+    {
+        Vector3 initPosition = BoardManager.Instance.GetTile(0).transform.position;
+        transform.position = initPosition + Vector3.up * heightOffset;
+    }
 
     public void MoveInInspector(int diceNum)
     {
