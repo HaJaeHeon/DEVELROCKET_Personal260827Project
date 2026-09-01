@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     public PlayerMove move;
     public int diceNum;
+    public TileNode tile;
 
     public event Action OnRefreshUI;
 
@@ -46,7 +47,7 @@ public class GameManager : MonoBehaviour
             foreach (var item in myAccountList)
             {
                 if(item.currencyType == type)
-                    item.Amount -= amount;
+                    item.Amount += amount;
                 //Debug.Log($"{item.currencyType} / {item.Amount}");
             }
         }

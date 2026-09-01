@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: WoodTile
   m_EditorClassIdentifier: Assembly-CSharp::TileDataSO
   <tileType>k__BackingField: 4
-  tileIndex: 0
-  tileReward: 0
+  <tileReward>k__BackingField: 10

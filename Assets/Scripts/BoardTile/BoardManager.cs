@@ -36,6 +36,9 @@ public class BoardManager : MonoBehaviour
         for (int i = 0; i < tiles.Length; i++)
         {
             tiles[i].SetIndex(i);
+            tiles[i].SetReward();
+            tiles[i].SetTileType();
+
             nodes.Add(tiles[i]);
         }
     }

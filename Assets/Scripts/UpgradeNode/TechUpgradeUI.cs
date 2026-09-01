@@ -184,7 +184,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             double currentPrice = costData.baseCost * Mathf.Pow(costData.costMultiplier, currentLevel);
 
-            receipt.Add(costData.currency, (int)currentPrice);
+            receipt.Add(costData.currency, -(int)currentPrice);
             //foreach (var item in GameManager.Instance.myAccountList)
             //{
             //    if (item.currencyType == costData.currency)

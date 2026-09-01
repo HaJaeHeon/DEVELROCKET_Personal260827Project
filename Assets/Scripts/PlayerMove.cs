@@ -53,6 +53,7 @@ public class PlayerMove : MonoBehaviour
         }
 
         TileNode finalTile = BoardManager.Instance.GetTile(currentNodeIndex);
+        GameManager.Instance.tile = finalTile;
         Debug.Log($"마지막 타일 {finalTile.tileIndex}");
         isRunning = false;
     }
