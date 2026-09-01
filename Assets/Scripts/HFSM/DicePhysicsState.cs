@@ -11,6 +11,7 @@ public class DicePhysicsState : StateBase
     // 이 상태에 진입시 실행
     public override void OnEnter()
     {
+        Debug.Log("DicePhysicsState / OnEnter");
         roll.ClassicRoll();
     }
 
@@ -23,6 +24,7 @@ public class DicePhysicsState : StateBase
     // 이 상태를 빠져나갈 때 실행
     public override void OnExit()
     {
-        
+        Debug.Log("DicePhysicsState / OnExit");
+        //roll.SendDiceNum(roll.finalDiceNum);
     }
 }

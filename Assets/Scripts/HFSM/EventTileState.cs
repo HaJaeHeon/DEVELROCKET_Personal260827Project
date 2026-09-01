@@ -1,15 +1,19 @@
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityHFSM;
 
 public class EventTileState : StateBase
 {
-    public EventTileState(bool needsExitTime = false, bool isGhostState = false) : base(needsExitTime, isGhostState)
+    private TileEvents events;
+    public EventTileState(TileEvents events, bool needsExitTime = false, bool isGhostState = false) : base(needsExitTime, isGhostState)
     {
+        this.events = events;
     }
     // 이 상태에 진입시 실행
     public override void OnEnter()
     {
-        
+        Debug.Log("EventTileState / OnEnter");
+        events.EventProcess();
     }
 
     // Update 역할
@@ -21,6 +25,6 @@ public class EventTileState : StateBase
     // 이 상태를 빠져나갈 때 실행
     public override void OnExit()
     {
-        
+        Debug.Log("EventTileState / OnEOnExitnter");
     }
 }

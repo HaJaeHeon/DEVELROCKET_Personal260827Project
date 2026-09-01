@@ -15,7 +15,7 @@ public class PlayerMove : MonoBehaviour
 
     [Space]
     [SerializeField] private int currentNodeIndex;
-    [SerializeField] private bool isRunning;
+    [field:SerializeField] public bool isRunning {  get; private set; }
 
     // gameManager나 여기서 init 으로 플레어이 위치 처음 타일로 초기화 필요
 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +19,9 @@ public class GameManager : MonoBehaviour
 
     public PlayerMove move;
 
+    public int diceNum;
+    public bool isTodo;
+
     private void Awake()
     {
         if (instance != null)
@@ -34,5 +38,18 @@ public class GameManager : MonoBehaviour
     public void PlayerDice(int diceNum)
     {
         move.MoveInInspector(diceNum);
+    }
+
+    public void TodoList()
+    {
+        StartCoroutine(TodoCoroutine());
+    }
+    public IEnumerator TodoCoroutine()
+    {
+        isTodo = true;
+        Debug.Log($"istodo : {isTodo}");
+        yield return new WaitForSeconds(1f);
+        isTodo = false;
+        Debug.Log($"istodo : {isTodo}");
     }
 }
