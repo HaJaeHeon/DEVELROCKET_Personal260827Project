@@ -25,7 +25,6 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [SerializeField] private Outline outLine;
     [field: SerializeField] public bool isRootNode { get; private set; } // 이 버튼이 시작점인가?
     [field: SerializeField] public List<TechUpgradeUI> nextNodes { get; private set; } //다음 해금될 UI노드 버튼
-    [field: SerializeField] public List<Image> branchImage { get; private set; }
 
     private Vector3 uiPosition;
     private float height;

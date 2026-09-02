@@ -1,8 +1,6 @@
-using DG.Tweening;     // 팝업 애니메이션용
 using System.Collections.Generic;
 using TMPro;           // 텍스트는 무조건 TMP 사용
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 // 이 스크립트는 캔버스 최하단(가장 앞쪽)에 띄워둘 Tooltip Panel에 붙입니다.
 //[RequireComponent(typeof(CanvasGroup))]
@@ -16,13 +14,11 @@ public class UpgradeTooltip : MonoBehaviour
 
     private RectTransform rectTransform; // 나 자신의 rectTransform
     [SerializeField] private float tooltipYOffset = 10f;
-    private Transform currentTransform;
 
     void Awake()
     {
         Instance = this;
         rectTransform = GetComponent<RectTransform>();
-        currentTransform = transform.parent;
 
         gameObject.SetActive(false); // 시작할 땐 숨김
     }
@@ -64,24 +60,12 @@ public class UpgradeTooltip : MonoBehaviour
         float myHeight = rectTransform.rect.height * rectTransform.lossyScale.y;
 
         float yOffset = (buttonHeight * 0.5f) + (myHeight) + tooltipYOffset;
-        //float topY = uiPosition.y + myHeight + (Vector3.up * yOffset).y;
-
-        //Vector3 newPosition = uiPosition + (Vector3.up * yOffset);
-
-        //if (newPosition.y > topY)
-        //{
-        //    gameObject.transform.position = uiPosition + (Vector3.down * yOffset);
-        //}
-        //else
-        //{
-        //    gameObject.transform.position = uiPosition + (Vector3.up * yOffset);
-        //}
         float expectedTopY = uiPosition.y + yOffset;
 
-        // 3. 화면 밖으로 나가는지 검사
+        // 화면 밖으로 나가는지 검사
         if (expectedTopY > Screen.height)
         {
-            // ★ 4. 아래로 띄울 때 이동할 거리: 버튼 절반 + 여백 (내 높이는 뺌!)
+            // 아래로 띄울 때 이동할 거리
             float downOffset = (buttonHeight * 0.5f) + tooltipYOffset;
             gameObject.transform.position = uiPosition + (Vector3.down * downOffset);
         }
@@ -96,7 +80,5 @@ public class UpgradeTooltip : MonoBehaviour
     public void HideTooltip()
     {
         gameObject.SetActive(false);
-
-        gameObject.transform.SetParent(currentTransform);
     }
 }

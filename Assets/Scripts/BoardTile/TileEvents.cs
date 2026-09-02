@@ -17,6 +17,7 @@ public class TileEvents : MonoBehaviour
             case TileType.StoneLine:
             case TileType.IndustryLine:
                 IncomeBuild();
+                Build(tile);
                 break;
 
             case TileType.StartZone:
@@ -41,6 +42,14 @@ public class TileEvents : MonoBehaviour
         receipt.Add(type, tile.reward);
 
         GameManager.Instance.UpdateAccount(receipt);
+    }
+
+    public void Build(TileNode tile)
+    {
+        if(tile.buildingCount < GameManager.Instance.maxBuildingCount)
+        {
+            tile.BuildBuiling();
+        }
     }
 
 

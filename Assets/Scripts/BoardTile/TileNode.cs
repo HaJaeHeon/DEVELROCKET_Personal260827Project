@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class TileNode : MonoBehaviour
 {
@@ -6,6 +8,15 @@ public class TileNode : MonoBehaviour
     [field:SerializeField] public int tileIndex { get; private set; }
     [field: SerializeField] public int reward { get; private set; }
     [field: SerializeField] public TileType tileType { get; private set; }
+    [field: SerializeField] public int buildingCount { get; private set; }
+    [SerializeField] GameObject buildPrefab;
+
+    private Vector3[] buildTransforms = { new Vector3(0.75f, 1f, 0.75f), new Vector3(0.75f, 1f, 0f), new Vector3(0.75f, 1f, -0.75f) };
+
+    private void Start()
+    {
+        buildingCount = 0;
+    }
 
 
     public void SetIndex(int num)
@@ -23,5 +34,17 @@ public class TileNode : MonoBehaviour
     public void SetTileType()
     {
         tileType = data.tileType;
+    }
+
+    public void BuildBuiling()
+    {
+        GameObject obj = GameObject.Instantiate(buildPrefab);
+        obj.transform.SetParent(gameObject.transform);
+
+        obj.transform.localPosition = buildTransforms[buildingCount] + Vector3.up * 2f;
+
+        obj.transform.DOLocalMove(buildTransforms[buildingCount], 2f);
+
+        buildingCount++;
     }
 }

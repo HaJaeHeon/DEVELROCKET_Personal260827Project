@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public TileNode tile;
 
     public event Action OnRefreshUI;
+    public int maxBuildingCount = 3;
 
 
     private void Awake()
