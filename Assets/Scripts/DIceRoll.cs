@@ -211,7 +211,7 @@ public class DIceRoll : MonoBehaviour
             {
                 transform.rotation = Quaternion.FromToRotation(directions[i], -Camera.main.transform.forward);
 
-                Debug.Log($"i = {i} / faceNum = {faceNum}");
+                //Debug.Log($"i = {i} / faceNum = {faceNum}");
                 return;
             }
         }

@@ -8,7 +8,7 @@ public class TileEvents : MonoBehaviour
 
     [field:SerializeField] public bool isProcess {  get; private set; }
 
-    public void SwitchEvents(TileNode tile)
+    public IEnumerator SwitchEvents(TileNode tile)
     {
         switch(tile.tileType)
         {
@@ -17,7 +17,7 @@ public class TileEvents : MonoBehaviour
             case TileType.StoneLine:
             case TileType.IndustryLine:
                 IncomeBuild();
-                Build(tile);
+                yield return StartCoroutine(Build(tile));
                 break;
 
             case TileType.StartZone:
@@ -44,11 +44,11 @@ public class TileEvents : MonoBehaviour
         GameManager.Instance.UpdateAccount(receipt);
     }
 
-    public void Build(TileNode tile)
+    public IEnumerator Build(TileNode tile)
     {
         if(tile.buildingCount < GameManager.Instance.maxBuildingCount)
         {
-            tile.BuildBuiling();
+            yield return StartCoroutine(tile.BuildBuiling());
         }
     }
 
@@ -61,17 +61,9 @@ public class TileEvents : MonoBehaviour
 
     public IEnumerator ProcessingEvent()
     {
-        Sequence seq = DOTween.Sequence();
-
         Debug.Log($"isProcess : {isProcess}");
-        //yield return new WaitForSeconds(1f);
 
-        seq.AppendCallback(() =>
-        {
-            SwitchEvents(GameManager.Instance.tile);
-        }).WaitForCompletion();
-
-        yield return transform.DOComplete();
+        yield return StartCoroutine(SwitchEvents(GameManager.Instance.tile));
 
         isProcess = false;
         Debug.Log($"isProcess : {isProcess}");
