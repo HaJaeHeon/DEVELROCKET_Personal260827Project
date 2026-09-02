@@ -22,6 +22,6 @@ public class IdleState : StateBase
     // 이 상태를 빠져나갈 때 실행
     public override void OnExit()
     {
-        Debug.Log("IdleState / OnEnter");
+        Debug.Log("IdleState / OnExit");
     }
 }

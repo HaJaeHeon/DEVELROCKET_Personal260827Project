@@ -3,13 +3,16 @@ using UnityHFSM;
 
 public class BuildTileState : StateBase
 {
-    public BuildTileState(bool needsExitTime = false, bool isGhostState = false) : base(needsExitTime, isGhostState)
+    private TileBuilds builds;
+    public BuildTileState(TileBuilds builds, bool needsExitTime = false, bool isGhostState = false) : base(needsExitTime, isGhostState)
     {
+        this.builds = builds;
     }
     // 이 상태에 진입시 실행
     public override void OnEnter()
     {
         Debug.Log("BuildTileState / OnEnter");
+        builds.BuildProcess();
     }
 
     // Update 역할

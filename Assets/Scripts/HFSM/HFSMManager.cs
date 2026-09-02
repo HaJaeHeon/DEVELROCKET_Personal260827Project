@@ -3,24 +3,14 @@ using UnityHFSM;
 
 public class HFSMManager : MonoBehaviour
 {
-    public enum DiceMode
-    {
-        Physics,
-        Animated,
-        Auto
-    };
-    public enum TileType
-    {
-        Event,
-        Build
-    }
     public DiceMode currentMode;
-    public TileType currentTileType;
+    public TileMode currentTileType;
 
 
     [SerializeField] private DIceRoll roll;
     [SerializeField] private PlayerMove move;
     [SerializeField] private TileEvents tileEvent;
+    [SerializeField] private TileBuilds tileBuild;
     
     private StateMachine fsm;
 
@@ -62,25 +52,17 @@ public class HFSMManager : MonoBehaviour
         // arrivedTile 관련 FSM 등록
         StateMachine arrivedFsm = new StateMachine();
         arrivedFsm.AddState("EventTile", new EventTileState(tileEvent));
-        arrivedFsm.AddState("BuildTile", new BuildTileState());
+        arrivedFsm.AddState("BuildTile", new BuildTileState(tileBuild));
         
         arrivedFsm.AddState("Entry", new StateBase(false, true));
         arrivedFsm.SetStartState("Entry");
         
         fsm.AddState("arrivedFsm", arrivedFsm);
 
-        arrivedFsm.AddTransition("Entry", "EventTile", t => currentTileType == TileType.Event);
-        arrivedFsm.AddTransition("Entry", "EventTile", t => currentTileType == TileType.Build);
+        arrivedFsm.AddTransition("Entry", "EventTile", t => GameManager.Instance.CalcTileType() == TileMode.Event);
+        arrivedFsm.AddTransition("Entry", "BuildTile", t => GameManager.Instance.CalcTileType() == TileMode.Build);
         
-        fsm.AddTransition("arrivedFsm", "Idle", t => tileEvent.isProcess == false);
-        // arrivedTile 관련 Transition
-        //arrivedFsm.AddTransition("Entry", "EventTile",  => );
-        //arrivedFsm.AddTransition("Entry", "BuildTile",  => );
-        
-        //fsm.AddTransition("Idle", "DiceRoll", t => /* 상태 전환 조건 */);
-        //fsm.AddTransition("DiceRoll", "Move", t => /* 상태 전환 조건 */);
-        //fsm.AddTransition("Move", "ArrivedTile", t => /* 상태 전환 조건 */);
-        //fsm.AddTransition("ArrivedTile", "Idle", t => /* 상태 전환 조건 */);
+        fsm.AddTransition("arrivedFsm", "Idle", t => tileEvent.isProcess == false && tileBuild.isProcess == false);
         
         fsm.AddTriggerTransition("Button_DiceRoll", "Idle", "diceFsm");
 

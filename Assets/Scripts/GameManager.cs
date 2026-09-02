@@ -2,6 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public enum DiceMode
+{
+    Physics,
+    Animated,
+    Auto
+};
+public enum TileMode
+{
+    Event,
+    Build
+}
 
 [Serializable]
 public class Account
@@ -12,7 +23,7 @@ public class Account
 
 public class GameManager : MonoBehaviour
 {
-    public  List<Account> myAccountList;
+    public List<Account> myAccountList;
     private static GameManager instance;
     public static GameManager Instance => instance;
 
@@ -20,6 +31,7 @@ public class GameManager : MonoBehaviour
     public int diceNum;
     public TileNode tile;
 
+    [field: SerializeField] public float buildSpeed { get; private set; }
     public event Action OnRefreshUI;
     public int maxBuildingCount = 3;
 
@@ -47,7 +59,7 @@ public class GameManager : MonoBehaviour
 
             foreach (var item in myAccountList)
             {
-                if(item.currencyType == type)
+                if (item.currencyType == type)
                     item.Amount += amount;
                 //Debug.Log($"{item.currencyType} / {item.Amount}");
             }
@@ -55,8 +67,24 @@ public class GameManager : MonoBehaviour
         OnRefreshUI?.Invoke();
     }
 
-    //public void PlayerDice(int diceNum)
-    //{
-    //    move.MoveInInspector(diceNum);
-    //}
+    public TileMode CalcTileType()
+    {
+        switch (tile.tileType)
+        {
+            case TileType.FoodLine:
+            case TileType.WoodLine:
+            case TileType.StoneLine:
+            case TileType.IndustryLine:
+                return TileMode.Build;
+
+            case TileType.StartZone:
+            case TileType.Island:
+            case TileType.Festival:
+            case TileType.Travel:
+            case TileType.Tax:
+            default:
+                Debug.Log("아직 안만듦");
+                return TileMode.Event;
+        }
+    }
 }

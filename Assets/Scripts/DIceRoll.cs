@@ -143,7 +143,7 @@ public class DIceRoll : MonoBehaviour
         transform.position = initDiceTransform.position;
 
         finalDiceNum = Random.Range(1, 7);
-        Debug.Log($"current randomResult = {finalDiceNum}");
+        //Debug.Log($"current randomResult = {finalDiceNum}");
 
         Vector3 spinVector = Vector3.one * 1080f;
 

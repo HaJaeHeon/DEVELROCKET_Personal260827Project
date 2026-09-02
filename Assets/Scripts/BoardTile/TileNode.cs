@@ -10,7 +10,6 @@ public class TileNode : MonoBehaviour
     [field: SerializeField] public int reward { get; private set; }
     [field: SerializeField] public TileType tileType { get; private set; }
     [field: SerializeField] public int buildingCount { get; private set; }
-    [field:SerializeField] public float buildSpeed { get; private set; }
     
     [SerializeField] GameObject buildPrefab;
 
@@ -45,7 +44,7 @@ public class TileNode : MonoBehaviour
         GameObject obj = GameObject.Instantiate(buildPrefab);
         obj.transform.SetParent(gameObject.transform);
 
-        obj.transform.localPosition = buildTransforms[buildingCount] + Vector3.up * 2f;
+        obj.transform.localPosition = buildTransforms[buildingCount] + Vector3.up * GameManager.Instance.buildSpeed;
 
         yield return obj.transform.DOLocalMove(buildTransforms[buildingCount], 2f).SetEase(Ease.InOutCubic).OnComplete(() =>
         {

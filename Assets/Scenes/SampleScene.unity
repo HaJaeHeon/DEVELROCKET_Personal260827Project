@@ -1758,6 +1758,7 @@ MonoBehaviour:
   move: {fileID: 1836440141}
   diceNum: 0
   tile: {fileID: 0}
+  <buildSpeed>k__BackingField: 1
   maxBuildingCount: 3
 --- !u!4 &314674148
 Transform:
@@ -5268,14 +5269,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919601692}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 6.5, y: 0, z: 11.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 396584370}
   m_Father: {fileID: 513314150}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &919601694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5914,6 +5915,51 @@ MonoBehaviour:
   <tileType>k__BackingField: 0
   <buildingCount>k__BackingField: 0
   buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+--- !u!1 &1028025757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1028025759}
+  - component: {fileID: 1028025758}
+  m_Layer: 0
+  m_Name: TileBuilds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1028025758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028025757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f23061685e86cab4b89503c9e41bf352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileBuilds
+  <isProcess>k__BackingField: 0
+--- !u!4 &1028025759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028025757}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.33911, y: 10.5, z: -2.43564}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1029088020
 GameObject:
   m_ObjectHideFlags: 0
@@ -12510,6 +12556,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1988013698}
   - component: {fileID: 1988013697}
+  - component: {fileID: 1988013699}
   m_Layer: 0
   m_Name: HFSMManager
   m_TagString: Untagged
@@ -12529,11 +12576,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f9c68864549c9041b144d1f3e06fe85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HFSMManager
-  currentMode: 0
+  currentMode: 2
   currentTileType: 1
   roll: {fileID: 3469287837023452633}
   move: {fileID: 1836440141}
   tileEvent: {fileID: 1443143949}
+  tileBuild: {fileID: 1028025758}
 --- !u!4 &1988013698
 Transform:
   m_ObjectHideFlags: 0
@@ -12549,6 +12597,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1988013699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988013696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f23061685e86cab4b89503c9e41bf352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileBuilds
+  <isProcess>k__BackingField: 0
 --- !u!1 &1996317970
 GameObject:
   m_ObjectHideFlags: 0
@@ -14397,3 +14458,4 @@ SceneRoots:
   - {fileID: 1443143950}
   - {fileID: 483254418}
   - {fileID: 936368882}
+  - {fileID: 1028025759}
