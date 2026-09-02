@@ -153,7 +153,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             TechUpgradeTreeManager.Instance.OnNodeMastered(this);
             outLine.effectColor = Color.green;
         }
-        UpgradeTooltip.Instance.ShowTooltip(nodeData.nodeName, nodeData.requiredCosts, currentLevel, maxLevel, uiPosition, height, transform.parent);
+        UpgradeTooltip.Instance.ShowTooltip(nodeData.nodeName, nodeData.requiredCosts, currentLevel, maxLevel, uiPosition, height, transform);
     }
 
     private bool BoolEnoughCurrency()
@@ -207,7 +207,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         //rectTransform의 x, y 값과 height의 값을 같이 보냄
         
         // 글로벌 툴팁 창에 스킬 '이름'과 '설명'을 같이 전달
-        UpgradeTooltip.Instance.ShowTooltip(nodeData.nodeName, nodeData.requiredCosts, currentLevel, maxLevel, uiPosition, height, transform.parent);
+        UpgradeTooltip.Instance.ShowTooltip(nodeData.nodeName, nodeData.requiredCosts, currentLevel, maxLevel, uiPosition, height, transform);
     }
     public void OnPointerExit(PointerEventData eventData)
     {

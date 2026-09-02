@@ -421,10 +421,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 691773110}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 93.385, y: -24.71}
-  m_SizeDelta: {x: 166.77, y: 39.42}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &48652202
 CanvasRenderer:
@@ -1758,7 +1758,7 @@ MonoBehaviour:
   move: {fileID: 1836440141}
   diceNum: 0
   tile: {fileID: 0}
-  <buildSpeed>k__BackingField: 1
+  <buildSpeed>k__BackingField: 0.5
   maxBuildingCount: 3
 --- !u!4 &314674148
 Transform:
@@ -2319,10 +2319,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 691773110}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 93.385, y: -64.13}
-  m_SizeDelta: {x: 166.77, y: 39.42}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &396584369
 GameObject:
@@ -3087,14 +3087,13 @@ GameObject:
   - component: {fileID: 450242505}
   - component: {fileID: 450242509}
   - component: {fileID: 450242510}
-  - component: {fileID: 450242511}
   m_Layer: 5
   m_Name: UpgradeNodeCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &450242505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3171,6 +3170,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 533582189}
+  - {fileID: 691773110}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3202,7 +3202,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 450242504}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d87d8f2ea4d5b5943885bb4356f23cca, type: 3}
   m_Name: 
@@ -3212,18 +3212,6 @@ MonoBehaviour:
   maxZoom: 2
   scrollRect: {fileID: 533582190}
   contentRect: {fileID: 1574104713}
---- !u!225 &450242511
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 450242504}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &458431538
 GameObject:
   m_ObjectHideFlags: 0
@@ -4155,13 +4143,13 @@ RectTransform:
   m_Children:
   - {fileID: 48652201}
   - {fileID: 375328287}
-  m_Father: {fileID: 1574104713}
+  m_Father: {fileID: 450242508}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 186.77, y: 88.84}
-  m_Pivot: {x: 0.5, y: 1}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &691773111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4214,7 +4202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeTooltip
   nameText: {fileID: 48652203}
   requiredCosts: {fileID: 375328285}
-  tooltipYOffset: 10
+  tooltipYOffset: 20
 --- !u!114 &691773114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5915,51 +5903,6 @@ MonoBehaviour:
   <tileType>k__BackingField: 0
   <buildingCount>k__BackingField: 0
   buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
---- !u!1 &1028025757
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1028025759}
-  - component: {fileID: 1028025758}
-  m_Layer: 0
-  m_Name: TileBuilds
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1028025758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1028025757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f23061685e86cab4b89503c9e41bf352, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TileBuilds
-  <isProcess>k__BackingField: 0
---- !u!4 &1028025759
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1028025757}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.33911, y: 10.5, z: -2.43564}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1029088020
 GameObject:
   m_ObjectHideFlags: 0
@@ -9229,51 +9172,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441711174}
   m_CullTransparentMesh: 1
---- !u!1 &1443143948
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1443143950}
-  - component: {fileID: 1443143949}
-  m_Layer: 0
-  m_Name: TileEvents
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1443143949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1443143948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0cae1432824c404a84d6f1e985a5739, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TileEvents
-  <isProcess>k__BackingField: 0
---- !u!4 &1443143950
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1443143948}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 175.1905, y: 861.30707, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1464624572
 GameObject:
   m_ObjectHideFlags: 0
@@ -9690,7 +9588,6 @@ RectTransform:
   - {fileID: 1181039075}
   - {fileID: 1987816779}
   - {fileID: 1849699128}
-  - {fileID: 691773110}
   m_Father: {fileID: 533582189}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -12556,6 +12453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1988013698}
   - component: {fileID: 1988013697}
+  - component: {fileID: 1988013700}
   - component: {fileID: 1988013699}
   m_Layer: 0
   m_Name: HFSMManager
@@ -12580,8 +12478,8 @@ MonoBehaviour:
   currentTileType: 1
   roll: {fileID: 3469287837023452633}
   move: {fileID: 1836440141}
-  tileEvent: {fileID: 1443143949}
-  tileBuild: {fileID: 1028025758}
+  tileEvent: {fileID: 1988013700}
+  tileBuild: {fileID: 1988013699}
 --- !u!4 &1988013698
 Transform:
   m_ObjectHideFlags: 0
@@ -12609,6 +12507,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23061685e86cab4b89503c9e41bf352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TileBuilds
+  <isProcess>k__BackingField: 0
+--- !u!114 &1988013700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988013696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cae1432824c404a84d6f1e985a5739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileEvents
   <isProcess>k__BackingField: 0
 --- !u!1 &1996317970
 GameObject:
@@ -14455,7 +14366,5 @@ SceneRoots:
   - {fileID: 1487007349}
   - {fileID: 1603157893}
   - {fileID: 1988013698}
-  - {fileID: 1443143950}
   - {fileID: 483254418}
   - {fileID: 936368882}
-  - {fileID: 1028025759}

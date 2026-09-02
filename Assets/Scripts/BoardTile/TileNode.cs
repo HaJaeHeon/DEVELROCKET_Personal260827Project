@@ -44,9 +44,9 @@ public class TileNode : MonoBehaviour
         GameObject obj = GameObject.Instantiate(buildPrefab);
         obj.transform.SetParent(gameObject.transform);
 
-        obj.transform.localPosition = buildTransforms[buildingCount] + Vector3.up * GameManager.Instance.buildSpeed;
+        obj.transform.localPosition = buildTransforms[buildingCount] + Vector3.up;
 
-        yield return obj.transform.DOLocalMove(buildTransforms[buildingCount], 2f).SetEase(Ease.InOutCubic).OnComplete(() =>
+        yield return obj.transform.DOLocalMove(buildTransforms[buildingCount], GameManager.Instance.buildSpeed).SetEase(Ease.InOutCubic).OnComplete(() =>
         {
             buildingCount++;
         }).WaitForCompletion();
