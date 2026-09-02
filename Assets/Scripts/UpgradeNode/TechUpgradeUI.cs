@@ -116,14 +116,14 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     }
 
     // 다음 레벨업 비용을 계산하는 로직
-    private double CalculateNextCost()
+    private int CalculateNextCost()
     {
         if (nodeData.requiredCosts.Count == 0)
             return 0;
 
         CostData data = nodeData.requiredCosts[0];
         // 반올림 ( 기본비용 * (배율 ^ 현재레벨))
-        return Mathf.Round(data.baseCost * Mathf.Pow(data.costMultiplier, currentLevel));
+        return Mathf.RoundToInt(data.baseCost * Mathf.Pow(data.costMultiplier, currentLevel));
     }
 
     // 버튼을 클릭했을 때 (인스펙터의 OnClick에 연결할 함수)
@@ -131,7 +131,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         if (currentLevel >= nodeData.maxLevel) return;
 
-        double requiredCost = CalculateNextCost();
+        int requiredCost = CalculateNextCost();
 
         // 재화가 충분한지 확인
         if (!BoolEnoughCurrency())
@@ -161,7 +161,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         foreach (CostData costData in nodeData.requiredCosts)
         {
-            double currentPrice = costData.baseCost * Mathf.Pow(costData.costMultiplier, currentLevel);
+            int currentPrice = (int)(costData.baseCost * Mathf.Pow(costData.costMultiplier, currentLevel));
 
             foreach (var item in GameManager.Instance.myAccountList)
             {
@@ -182,9 +182,9 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         foreach (CostData costData in nodeData.requiredCosts)
         {
-            double currentPrice = costData.baseCost * Mathf.Pow(costData.costMultiplier, currentLevel);
+            int currentPrice = (int)(costData.baseCost * Mathf.Pow(costData.costMultiplier, currentLevel));
 
-            receipt.Add(costData.currency, -(int)currentPrice);
+            receipt.Add(costData.currency, -currentPrice);
             //foreach (var item in GameManager.Instance.myAccountList)
             //{
             //    if (item.currencyType == costData.currency)

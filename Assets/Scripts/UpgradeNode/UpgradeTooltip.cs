@@ -40,8 +40,8 @@ public class UpgradeTooltip : MonoBehaviour
         {
             foreach (CostData costData in costs)
             {
-                // 공식: 기본비용 * (배율 ^ 현재레벨)
-                double currentPrice = costData.baseCost * Mathf.Pow(costData.costMultiplier, currentLevel);
+                // 기본비용 * (배율 ^ 현재레벨)
+                int currentPrice = (int)(costData.baseCost * Mathf.Pow(costData.costMultiplier, currentLevel));
 
                 // 텍스트 누적 (예: "Food 100\nWood 50\n")
                 tempString += $"\n{costData.currency} : {currentPrice:N0}";
