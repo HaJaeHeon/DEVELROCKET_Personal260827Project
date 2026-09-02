@@ -43,7 +43,7 @@ public class TileNode : MonoBehaviour
 
         obj.transform.localPosition = buildTransforms[buildingCount] + Vector3.up * 2f;
 
-        obj.transform.DOLocalMove(buildTransforms[buildingCount], 2f);
+        obj.transform.DOLocalMove(buildTransforms[buildingCount], 2f).SetEase(Ease.InOutCubic).onComplete();
 
         buildingCount++;
     }
