@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeBranchSO
   <nodeID>k__BackingField: 1113
   <nodeName>k__BackingField: "3. \uB178\uB4DC"
-  <description>k__BackingField: "3\uBC88 \uB178\uB4DC"
+  <description>k__BackingField: "Income \uBC30\uC728 \uC99D\uAC00 (level per value
+    : 1.2)"
   <nodeIcon>k__BackingField: {fileID: 21300000, guid: 7f0ee1268d05b204cbba1da816c1547f, type: 3}
   <maxLevel>k__BackingField: 5
   <requiredCosts>k__BackingField:
@@ -26,4 +27,5 @@ MonoBehaviour:
     costMultiplier: 1.5
   <targetStat>k__BackingField: 0
   <baseStatValue>k__BackingField: 100
-  <statMultiplierPerLevel>k__BackingField: 2
+  <statMultiplierPerLevel>k__BackingField: 1.2
+  <targetUnlock>k__BackingField: 7

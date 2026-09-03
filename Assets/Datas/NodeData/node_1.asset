@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: node_1
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeBranchSO
   <nodeID>k__BackingField: 1111
-  <nodeName>k__BackingField: "1. \uB178\uB4DC"
-  <description>k__BackingField: "1\uBC88 \uB178\uB4DC"
+  <nodeName>k__BackingField: "1. \uB178\uB4DC "
+  <description>k__BackingField: "\uC8FC\uC0AC\uC704 Animation \uBC29\uC2DD \uD574\uC81C"
   <nodeIcon>k__BackingField: {fileID: 21300000, guid: 7f0ee1268d05b204cbba1da816c1547f, type: 3}
-  <maxLevel>k__BackingField: 5
+  <maxLevel>k__BackingField: 1
   <requiredCosts>k__BackingField:
   - currency: 0
     baseCost: 100
     costMultiplier: 1.5
-  <targetStat>k__BackingField: 0
+  <targetStat>k__BackingField: 3
   <baseStatValue>k__BackingField: 100
   <statMultiplierPerLevel>k__BackingField: 1.5
+  <targetUnlock>k__BackingField: 1

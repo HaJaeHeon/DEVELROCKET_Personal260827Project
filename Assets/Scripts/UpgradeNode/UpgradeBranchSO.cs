@@ -27,6 +27,8 @@ public enum UnlockType
     UnlockAnimatedRoll,     // 애니메이션 주사위 해금
     UnlockAutoRoll,          // 자동 주사위 해금
     UnlockAutoBuild,         // 자동 건설 해금
+    UnlockBuildCount1,      // 건물 제한 해금+
+    UnlockBuildCount2,      // 건물 제한 해금++
 
     // 최종 엔딩
     GameClear,                // 최종 노드 전용 (스토리 엔딩 트리거)
@@ -64,4 +66,5 @@ public class UpgradeBranchSO : ScriptableObject
     [field: SerializeField] public StatType targetStat { get; private set; }
     [field: SerializeField] public float baseStatValue { get; private set; }
     [field: SerializeField] public float statMultiplierPerLevel { get; private set; }
+    [field:SerializeField, Space] public UnlockType targetUnlock {  get; private set; } 
 }

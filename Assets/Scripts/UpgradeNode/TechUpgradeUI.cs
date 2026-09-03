@@ -145,6 +145,9 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         // Manager에게 능력치 적용하라고 지시 (예: 주사위 속도 증가 등)
         // SkillTreeManager.Instance.ApplyStat(nodeData.targetStat, nodeData.baseStatValue);
+        SetStats(nodeData.targetStat);
+        SetUnlocks(nodeData.targetUnlock);
+
 
         // 방금 클릭으로 마스터?
         if (currentLevel >= nodeData.maxLevel)
@@ -152,8 +155,51 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             // 다음 노드들의 숨김을 풀고 직선 긋기
             TechUpgradeTreeManager.Instance.OnNodeMastered(this);
             outLine.effectColor = Color.green;
+
+
         }
         UpgradeTooltip.Instance.ShowTooltip(nodeData.nodeName, nodeData.requiredCosts, currentLevel, maxLevel, uiPosition, height, transform);
+    }
+
+    public void SetStats(StatType type)
+    {
+        switch(type)
+        {
+            case StatType.None:
+                break;
+            case StatType.IncomeMultiplier:
+                //GameManager.Instance.tile.??
+                break;
+            case StatType.BuildCostDiscount: 
+                break;
+            case StatType.DiceCooldownReduction:
+                break;
+        }
+    }
+
+    public void SetUnlocks(UnlockType type)
+    {
+        switch(type)
+        {
+            case UnlockType.None:
+                break;
+            case UnlockType.UnlockAnimatedRoll:
+                GameManager.Instance.diceUpgrade_1 = true;
+                break;
+            case UnlockType.UnlockAutoRoll:
+                GameManager.Instance.diceUpgrade_2 = true;
+                break;
+            case UnlockType.UnlockBuildCount1:
+                GameManager.Instance.buildUpgrade_1 = true;
+                break;
+            case UnlockType.UnlockBuildCount2:
+                GameManager.Instance.buildUpgrade_2 = true;
+                break;
+
+
+            case UnlockType.UnlockGlobalBuild:
+                break;
+        }
     }
 
     private bool BoolEnoughCurrency()

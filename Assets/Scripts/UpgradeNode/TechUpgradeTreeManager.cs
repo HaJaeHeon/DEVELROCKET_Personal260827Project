@@ -79,18 +79,18 @@ public class TechUpgradeTreeManager : MonoBehaviour
     }
 
     // 노드가 해금되었을 때 이 함수를 호출
-    private void DrawLineExtension(Image branchImage)
-    {
-        //branchImage.DOFillAmount(1f, drawDuration).SetEase(Ease.OutQuad);
+    //private void DrawLineExtension(Image branchImage)
+    //{
+    //    //branchImage.DOFillAmount(1f, drawDuration).SetEase(Ease.OutQuad);
 
-        DOVirtual.Float(0f, 1f, drawDuration, (t) =>
-        {
-            branchImage.fillAmount = t;
-        }).SetEase(Ease.OutQuad);
-    }
+    //    DOVirtual.Float(0f, 1f, drawDuration, (t) =>
+    //    {
+    //        branchImage.fillAmount = t;
+    //    }).SetEase(Ease.OutQuad);
+    //}
 
-    private void DrawLine()
-    {
+    //private void DrawLine()
+    //{
 
-    }
+    //}
 }
