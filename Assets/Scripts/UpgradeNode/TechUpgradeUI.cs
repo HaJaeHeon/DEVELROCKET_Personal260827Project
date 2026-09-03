@@ -7,8 +7,10 @@ using UnityEngine.UI;
 public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("데이터 연결")]
+    [SerializeField] private TechUpgradeTreeManager manager;
     [SerializeField] private UpgradeBranchSO nodeData;
 
+    
     [Header("UI 컴포넌트")]
     [SerializeField] private Image iconImage;
     [SerializeField] private TMP_Text nameText;
@@ -159,7 +161,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (currentLevel >= nodeData.maxLevel)
         {
             // 다음 노드들의 숨김을 풀고 직선 긋기
-            TechUpgradeTreeManager.Instance.OnNodeMastered(this);
+            manager.OnNodeMastered(this);
             outLine.effectColor = Color.green;
 
 
@@ -198,10 +200,10 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 GameManager.Instance.diceUpgrade_2 = true;
                 break;
             case UnlockType.UnlockBuildCount1:
-                GameManager.Instance.buildUpgrade_1 = true;
+                GameManager.Instance.buildingCountUpgrade_1 = true;
                 break;
             case UnlockType.UnlockBuildCount2:
-                GameManager.Instance.buildUpgrade_2 = true;
+                GameManager.Instance.buildingCountUpgrade_2 = true;
                 break;
 
 

@@ -24,7 +24,7 @@ public class PlayerMove : MonoBehaviour
         transform.position = initPosition + Vector3.up * heightOffset;
     }
 
-    public void MoveInInspector(int diceNum)
+    public void StartMove(int diceNum)
     {
         if (isRunning)
             return;
@@ -55,6 +55,7 @@ public class PlayerMove : MonoBehaviour
         TileNode finalTile = BoardManager.Instance.GetTile(currentNodeIndex);
         GameManager.Instance.tile = finalTile;
         //Debug.Log($"마지막 타일 {finalTile.tileIndex}");
+        finalTile.SetReward();
         isRunning = false;
     }
 }

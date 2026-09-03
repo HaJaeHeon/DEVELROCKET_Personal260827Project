@@ -57,7 +57,7 @@ public class TileBuilds : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"{tile.buildingCount} is same or over the {GameManager.Instance.maxBuildingCount}");
+            Debug.LogWarning($"{tile.buildingCount}(빌딩수) 가 {GameManager.Instance.maxBuildingCount} (맥스 빌딩 수) 보다 크거나 같다");
         }
     }
 

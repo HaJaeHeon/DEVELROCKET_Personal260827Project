@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System.Collections;
+using System.Linq;
 
 public class TileNode : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class TileNode : MonoBehaviour
     [field: SerializeField] public int reward { get; private set; }
     [field: SerializeField] public TileType tileType { get; private set; }
     [field: SerializeField] public int buildingCount { get; private set; }
-    
+
     [SerializeField] GameObject buildPrefab;
 
 
@@ -27,12 +28,49 @@ public class TileNode : MonoBehaviour
         tileIndex = num;
     }
 
-    // 각 줄의 타일 위치에 따라 타일의 보상 값 다르게 함
-    // 한 줄 내 일반 타일의 크기를 일단 9로 잡음 (일반 타일 8칸 + 특수타일 1칸)
+    
     public void SetReward()
     {
-        reward = (int)((tileIndex % 9 * 0.1f + 1f) * data.tileReward);
+        reward = TileReward() + BuildingReward();
     }
+
+    // 각 줄의 타일 위치에 따라 타일의 보상 값 다르게 함
+    // 한 줄 내 일반 타일의 크기를 일단 9로 잡음 (일반 타일 8칸 + 특수타일 1칸)
+    // 이걸 어떻게 나눠야할지 감 안잡힘
+
+    // 각 줄에서의
+    // [[n번째 타일의 가치(n번째이면 1.n) * 현재 줄의 기초 재화량]] = 현재 타일의 기초 재화량
+    //최종 획득량 = (기본값 + 고정수치 합) × (1 + 일반 업그레이드 퍼센트 합)
+    //              × (특수 업그레이드 1 배율) × (특수 업그레이드 2 배율) ...
+    public int TileReward()
+    {
+        int baseTileReward = (int)((tileIndex % 9 * 0.1f + 1f) * data.tileReward);
+        int flatValues = GameManager.Instance.myUpgrades.flat_tileValueUpgrade.Sum
+                            (value => value.upgradeValue * value.currentUpgradeCount);
+        float multiValues = 1f;
+        foreach(var upgrade in GameManager.Instance.myUpgrades.mult_tileValueUpgrade)
+        {
+            //multValues *= upgrade^;// 업그레이드 수치에  업그레이드 갯수만큼 ^ 하기
+            multiValues *= upgrade.upgradeValue ^ upgrade.currentUpgradeCount;
+        }
+
+        return (int)((baseTileReward + flatValues) * multiValues);
+    }
+
+    public int BuildingReward()
+    {
+        int baseBuildingReward = 0;
+        int flatValues = GameManager.Instance.myUpgrades.flat_buildingValueUpgrade.Sum
+                            (value => value.upgradeValue * value.currentUpgradeCount);
+        float multiValues = 1f;
+        foreach (var upgrade in GameManager.Instance.myUpgrades.mult_buildingValueUpgrade)
+        {
+            multiValues *= upgrade.upgradeValue ^ upgrade.currentUpgradeCount;
+        }
+
+        return (int)((baseBuildingReward + flatValues) * multiValues);
+    }
+
 
     public void SetTileType()
     {

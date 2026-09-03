@@ -12,7 +12,7 @@ public class MoveState : StateBase
     public override void OnEnter()
     {
         Debug.Log("MoveState / OnEnter");
-        move.MoveInInspector(GameManager.Instance.diceNum);
+        move.StartMove(GameManager.Instance.diceNum);
     }
 
     // Update 역할

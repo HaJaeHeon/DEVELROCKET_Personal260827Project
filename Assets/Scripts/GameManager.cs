@@ -21,15 +21,33 @@ public class Account
     public int Amount;
 }
 
+public class UpgradeInfo
+{
+    public int upgradeValue;
+    public int currentUpgradeCount;
+}
+
+[Serializable]
+public class TileUpgrade
+{
+    public List<UpgradeInfo> flat_tileValueUpgrade = new();
+    public List<UpgradeInfo> mult_tileValueUpgrade = new();
+    public List<UpgradeInfo> flat_buildingValueUpgrade = new();
+    public List<UpgradeInfo> mult_buildingValueUpgrade = new();
+}
+
 public class GameManager : MonoBehaviour
 {
-    public List<Account> myAccountList;
+    public List<Account> myAccountList = new();
+    public TileUpgrade myUpgrades = new();
+
     private static GameManager instance;
     public static GameManager Instance => instance;
 
     public PlayerMove move;
     public int diceNum;
     public TileNode tile;
+    public TechUpgradeUI techUpgradeUI;
 
     [field: SerializeField] public float buildSpeed { get; private set; }
     public event Action OnRefreshUI;
@@ -45,11 +63,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public bool buildUpgrade_1 = false;
-    public bool buildUpgrade_2 = false;
+    public bool buildingCountUpgrade_1 = false;
+    public bool buildingCountUpgrade_2 = false;
     public int maxBuildingCount {  get
         {
-            return !buildUpgrade_1 ? 3 : !buildUpgrade_2 ? 6 : 9;
+            return !buildingCountUpgrade_1 ? 3 : !buildingCountUpgrade_2 ? 6 : 9;
         }
     }
 

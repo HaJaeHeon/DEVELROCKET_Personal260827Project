@@ -1758,11 +1758,12 @@ MonoBehaviour:
   move: {fileID: 1836440141}
   diceNum: 0
   tile: {fileID: 0}
+  techUpgradeUI: {fileID: 0}
   <buildSpeed>k__BackingField: 0.5
   diceUpgrade_1: 0
   diceUpgrade_2: 0
-  buildUpgrade_1: 0
-  buildUpgrade_2: 0
+  buildingCountUpgrade_1: 0
+  buildingCountUpgrade_2: 0
 --- !u!4 &314674148
 Transform:
   m_ObjectHideFlags: 0
@@ -3195,7 +3196,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TechUpgradeTreeManager
   startingNodes:
   - {fileID: 11400000, guid: 4014581a1d94ae64592950510b8e29d8, type: 2}
-  drawDuration: 1
   lineFolder: {fileID: 1582840188}
   linePrefab: {fileID: 894295238442254711, guid: f17283758fea933459e7a1abfdc8aecd, type: 3}
 --- !u!114 &450242510
@@ -7085,6 +7085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481c93a56565c45489f6c396501e37d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TechUpgradeUI
+  manager: {fileID: 0}
   nodeData: {fileID: 11400000, guid: 07776c0f3738b7f42ad839f10974b742, type: 2}
   iconImage: {fileID: 0}
   nameText: {fileID: 1641986085}
@@ -7251,6 +7252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481c93a56565c45489f6c396501e37d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TechUpgradeUI
+  manager: {fileID: 0}
   nodeData: {fileID: 11400000, guid: 56e424dc306339a49a691a695ce9635e, type: 2}
   iconImage: {fileID: 0}
   nameText: {fileID: 1368955821}
@@ -7417,6 +7419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481c93a56565c45489f6c396501e37d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TechUpgradeUI
+  manager: {fileID: 0}
   nodeData: {fileID: 11400000, guid: ae86bf313269081448466f84c6c427f2, type: 2}
   iconImage: {fileID: 0}
   nameText: {fileID: 881327243}
@@ -7771,6 +7774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481c93a56565c45489f6c396501e37d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TechUpgradeUI
+  manager: {fileID: 0}
   nodeData: {fileID: 11400000, guid: 4014581a1d94ae64592950510b8e29d8, type: 2}
   iconImage: {fileID: 0}
   nameText: {fileID: 1670176589}
@@ -11751,6 +11755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481c93a56565c45489f6c396501e37d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TechUpgradeUI
+  manager: {fileID: 0}
   nodeData: {fileID: 11400000, guid: dcb6bcdd755540f46bed046d02dd0409, type: 2}
   iconImage: {fileID: 0}
   nameText: {fileID: 1072852538}
@@ -12337,6 +12342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481c93a56565c45489f6c396501e37d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TechUpgradeUI
+  manager: {fileID: 0}
   nodeData: {fileID: 11400000, guid: 658dd8a13acef014abb8cc43d774caa2, type: 2}
   iconImage: {fileID: 0}
   nameText: {fileID: 15514945}
