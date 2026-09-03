@@ -1,7 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public enum DiceMode
 {
     Physics,
@@ -24,23 +24,35 @@ public class Account
 [Serializable]
 public class UpgradeInfo
 {
-    public int upgradeValue;
+    public int nodeId;
+    public float upgradeValue;
     public int currentUpgradeCount;
 }
 
+/// <summary>
+/// TechUpgradeUI 에서 넣고
+/// 이 부분에 스탯 부분이 올라야 하는 애들 등록 
+/// 아래에 또 Action부분 넣어야함
+/// gameManager에도 넣어야함
+/// </summary>
 [Serializable]
-public class TileUpgrade
+public class Upgrades
 {
+    public List<UpgradeInfo> flat_lineValueUpgrade = new();
+    public List<UpgradeInfo> mult_lineValueUpgrade = new();
     public List<UpgradeInfo> flat_tileValueUpgrade = new();
     public List<UpgradeInfo> mult_tileValueUpgrade = new();
     public List<UpgradeInfo> flat_buildingValueUpgrade = new();
     public List<UpgradeInfo> mult_buildingValueUpgrade = new();
+    public List<UpgradeInfo> flat_IncomeValueUpgrade = new();
+    public List<UpgradeInfo> mult_IncomeValueUpgrade = new();
+    public List<UpgradeInfo> diceUpgrade;
 }
 
 public class GameManager : MonoBehaviour
 {
     public List<Account> myAccountList = new();
-    public TileUpgrade myUpgrades = new();
+    public Upgrades myUpgrades = new();
 
     private static GameManager instance;
     public static GameManager Instance => instance;

@@ -11,7 +11,7 @@ public class EventTileState : StateBase
     // 이 상태에 진입시 실행
     public override void OnEnter()
     {
-        Debug.Log("EventTileState / OnEnter");
+        //Debug.Log("EventTileState / OnEnter");
         events.EventProcess();
     }
 
@@ -24,6 +24,6 @@ public class EventTileState : StateBase
     // 이 상태를 빠져나갈 때 실행
     public override void OnExit()
     {
-        Debug.Log("EventTileState / OnEOnExitnter");
+        //Debug.Log("EventTileState / OnExitr");
     }
 }

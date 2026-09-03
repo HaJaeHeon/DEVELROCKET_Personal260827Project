@@ -14,8 +14,14 @@ public enum CurrencyType
 public enum StatType
 {
     // 수동 스탯 강화
-    IncomeMultiplier,        // 월급/수익 증가
-    BuildCostDiscount,       // 건물 건설 비용 감소
+    LineFlat,               // 랑인별 고정값+
+    LineMultiplier,         // 라인별 배율+
+    TileFlat,               // 타일 고정값+
+    TileMultiplier,         // 타일 배율+
+    BuildingFlat,           // 건물 고정값+
+    BuildingMultiplier,     // 건물 배율+
+    IncomeFlat,              // 월급/수익 고정값+
+    IncomeMultiplier,        // 월급/수익 배율+
     DiceCooldownReduction,   // 주사위 쿨타임 감소
 
     None,                   // 테스트용 // Stat 반영 없음
@@ -50,7 +56,7 @@ public struct CostData
 public class UpgradeBranchSO : ScriptableObject
 {
     [field: SerializeField , Header("노드 기본 정보")]
-    public string nodeID { get; private set; }
+    public int nodeID { get; private set; }
     [field: SerializeField] public string nodeName { get; private set; }
     [field: SerializeField][TextArea] public string description { get; private set; }
     [field: SerializeField] public Sprite nodeIcon { get; private set; }
@@ -63,8 +69,9 @@ public class UpgradeBranchSO : ScriptableObject
 
     [field: SerializeField, Header("비용 및 효과")]
     public List<CostData> requiredCosts { get; private set; }
-    [field: SerializeField] public StatType targetStat { get; private set; }
     [field: SerializeField] public float baseStatValue { get; private set; }
     [field: SerializeField] public float statMultiplierPerLevel { get; private set; }
+
+    [field: SerializeField] public StatType targetStat { get; private set; }
     [field:SerializeField, Space] public UnlockType targetUnlock {  get; private set; } 
 }

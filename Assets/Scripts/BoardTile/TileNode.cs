@@ -46,13 +46,13 @@ public class TileNode : MonoBehaviour
     public int TileReward()
     {
         int baseTileReward = (int)((tileIndex % 9 * 0.1f + 1f) * data.tileReward);
-        int flatValues = GameManager.Instance.myUpgrades.flat_tileValueUpgrade.Sum
+        float flatValues = GameManager.Instance.myUpgrades.flat_tileValueUpgrade.Sum
                             (value => value.upgradeValue * value.currentUpgradeCount);
         float multiValues = 1f;
         foreach(var upgrade in GameManager.Instance.myUpgrades.mult_tileValueUpgrade)
         {
-            //multValues *= upgrade^;// 업그레이드 수치에  업그레이드 갯수만큼 ^ 하기
-            multiValues *= upgrade.upgradeValue ^ upgrade.currentUpgradeCount;
+            //multValues *= upgrade pow;// 업그레이드 수치에  업그레이드 갯수만큼 pow 하기
+            multiValues *= Mathf.Pow(upgrade.upgradeValue, upgrade.currentUpgradeCount);
         }
 
         return (int)((baseTileReward + flatValues) * multiValues);
@@ -61,12 +61,12 @@ public class TileNode : MonoBehaviour
     public int BuildingReward()
     {
         int baseBuildingReward = data.buildingReward * buildingCount;
-        int flatValues = GameManager.Instance.myUpgrades.flat_buildingValueUpgrade.Sum
+        float flatValues = GameManager.Instance.myUpgrades.flat_buildingValueUpgrade.Sum
                             (value => value.upgradeValue * value.currentUpgradeCount);
         float multiValues = 1f;
         foreach (var upgrade in GameManager.Instance.myUpgrades.mult_buildingValueUpgrade)
         {
-            multiValues *= upgrade.upgradeValue ^ upgrade.currentUpgradeCount;
+            multiValues *= Mathf.Pow(upgrade.upgradeValue, upgrade.currentUpgradeCount);
         }
 
         return (int)((baseBuildingReward + flatValues) * multiValues);

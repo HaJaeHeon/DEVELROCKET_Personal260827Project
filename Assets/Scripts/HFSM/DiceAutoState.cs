@@ -11,7 +11,7 @@ public class DiceAutoState : StateBase
     // 이 상태에 진입시 실행
     public override void OnEnter()
     {
-        Debug.Log("DiceAutoState / OnEnter");
+        //Debug.Log("DiceAutoState / OnEnter");
         roll.AutoRoll();
     }
 
@@ -23,6 +23,6 @@ public class DiceAutoState : StateBase
     // 이 상태를 빠져나갈 때 실행
     public override void OnExit()
     {
-        Debug.Log("DiceAutoState / OnExit");
+        //Debug.Log("DiceAutoState / OnExit");
     }
 }

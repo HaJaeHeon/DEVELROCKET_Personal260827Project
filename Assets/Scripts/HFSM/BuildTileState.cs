@@ -11,7 +11,7 @@ public class BuildTileState : StateBase
     // 이 상태에 진입시 실행
     public override void OnEnter()
     {
-        Debug.Log("BuildTileState / OnEnter");
+        //Debug.Log("BuildTileState / OnEnter");
         builds.BuildProcess();
     }
 
@@ -24,6 +24,6 @@ public class BuildTileState : StateBase
     // 이 상태를 빠져나갈 때 실행
     public override void OnExit()
     {
-        Debug.Log("BuildTileState / OnExit");
+        //Debug.Log("BuildTileState / OnExit");
     }
 }

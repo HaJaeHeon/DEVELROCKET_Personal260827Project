@@ -22,11 +22,11 @@ public class TileEvents : MonoBehaviour
 
     public IEnumerator ProcessingEvent()
     {
-        Debug.Log($"isProcess : {isProcess}");
+        //Debug.Log($"isProcess : {isProcess}");
 
         yield return StartCoroutine(ExcuteEvents(GameManager.Instance.tile));
 
         isProcess = false;
-        Debug.Log($"isProcess : {isProcess}");
+        //Debug.Log($"isProcess : {isProcess}");
     }
 }

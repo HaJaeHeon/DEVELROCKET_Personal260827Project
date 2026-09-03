@@ -1748,20 +1748,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   myAccountList:
   - currencyType: 0
-    Amount: 100000
+    Amount: 0
   - currencyType: 1
-    Amount: 100000
+    Amount: 0
   - currencyType: 2
-    Amount: 100000
+    Amount: 0
   - currencyType: 3
-    Amount: 100000
+    Amount: 0
   myUpgrades:
-    flat_tileValueUpgrade:
-    - upgradeValue: 0
-      currentUpgradeCount: 0
+    flat_lineValueUpgrade: []
+    mult_lineValueUpgrade: []
+    flat_tileValueUpgrade: []
     mult_tileValueUpgrade: []
     flat_buildingValueUpgrade: []
     mult_buildingValueUpgrade: []
+    flat_IncomeValueUpgrade: []
+    mult_IncomeValueUpgrade: []
+    diceUpgrade: []
   move: {fileID: 1836440141}
   diceNum: 0
   tile: {fileID: 0}

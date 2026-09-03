@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -31,6 +32,10 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private Vector3 uiPosition;
     private float height;
 
+    private Dictionary<StatType, Action> statUpgradeAction;
+
+    private GameManager gameManager;
+
     // 컴포넌트 널 체크하기
     private void Awake()
     {
@@ -45,6 +50,10 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         if (manager == null)
             manager = transform.root.GetComponent<TechUpgradeTreeManager>();
+        if (gameManager == null)
+            gameManager = GameManager.Instance;
+
+        InitStatUpgrade();
     }
 
     //연결해야할 부분 초기화, ui refresh
@@ -63,6 +72,27 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         height = rect.rect.height * rect.lossyScale.y;
 
         RefreshUI();
+    }
+
+    /// <summary>
+    /// 이 부분에 스탯 부분이 올라야 하는 애들 등록 
+    /// 아래에 또 Action부분 넣어야함
+    /// </summary>
+    public void InitStatUpgrade()
+    {
+        statUpgradeAction = new Dictionary<StatType, Action>
+        {
+            { StatType.LineFlat, ApplyLineFlat },
+            { StatType.LineMultiplier, ApplyLineMulti},
+            { StatType.TileFlat, ApplyTileFlat },
+            {StatType.TileMultiplier, ApplyTileMulti },
+            { StatType.BuildingFlat, ApplyBuildingFlat  },
+            {StatType.BuildingMultiplier,ApplyBuildingMulti },
+            {StatType.IncomeFlat, ApplyIncomeFlat  },
+            {StatType.IncomeMultiplier, ApplyIncomeMulti },
+            {StatType.DiceCooldownReduction, ApplyDiceCooldownReduction  },
+            {StatType.None, () => {Debug.Log("Stat 없음"); } }
+        };
     }
 
     // 매니저가 게임 시작 시 한 번씩 호출해줄 초기화 함수
@@ -176,17 +206,21 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     // gameManager에서 값 변경 필요
     public void SetStats(StatType type)
     {
-        switch(type)
+        if(statUpgradeAction.TryGetValue(type, out Action value))
         {
-            case StatType.None:
-                break;
-            case StatType.IncomeMultiplier:
-                //GameManager.Instance.tile.??
-                break;
-            case StatType.BuildCostDiscount: 
-                break;
-            case StatType.DiceCooldownReduction:
-                break;
+            if (type == StatType.None)
+            {
+                Debug.Log("None");
+                return;
+            }
+            else
+            {
+                value.Invoke();
+            }
+        }
+        else
+        {
+            Debug.LogError($"{type}에 등록되지 않음");
         }
     }
 
@@ -247,6 +281,71 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         GameManager.Instance.UpdateAccount(receipt);
     }
 
+
+    //=====================업그레이드 로직===================================
+    private void ConfirmData(List<UpgradeInfo> info)
+    {
+        UpgradeInfo newUpgradeInfo = new UpgradeInfo
+        {
+            nodeId = nodeData.nodeID,
+            upgradeValue = nodeData.baseStatValue,
+            currentUpgradeCount = currentLevel
+        };
+        if (info.Count == 0)
+        {
+            info.Add(newUpgradeInfo);
+            return;
+        }
+        else
+        {
+            foreach (var value in info)
+            {
+                if (value.nodeId == nodeData.nodeID)
+                {
+                    value.currentUpgradeCount = currentLevel;
+                    return;
+                }
+            }
+            info.Add(newUpgradeInfo);
+        }
+    }
+    
+    private void ApplyLineFlat()
+    {
+        ConfirmData(gameManager.myUpgrades.flat_lineValueUpgrade);
+    }
+    private void ApplyLineMulti()
+    {
+        ConfirmData(gameManager.myUpgrades.mult_lineValueUpgrade);
+    }
+    private void ApplyTileFlat()
+    {
+        ConfirmData(gameManager.myUpgrades.flat_tileValueUpgrade);
+    }
+    private void ApplyTileMulti()
+    {
+        ConfirmData(gameManager.myUpgrades.mult_tileValueUpgrade);
+    }
+    private void ApplyBuildingFlat()
+    {
+        ConfirmData(gameManager.myUpgrades.flat_buildingValueUpgrade);
+    }
+    private void ApplyBuildingMulti()
+    {
+        ConfirmData(gameManager.myUpgrades.mult_buildingValueUpgrade);
+    }
+    private void ApplyIncomeFlat()
+    {
+        ConfirmData(gameManager.myUpgrades.flat_IncomeValueUpgrade);
+    }
+    private void ApplyIncomeMulti()
+    {
+        ConfirmData(gameManager.myUpgrades.mult_IncomeValueUpgrade);
+    }
+    private void ApplyDiceCooldownReduction()
+    {
+        ConfirmData(gameManager.myUpgrades.diceUpgrade);
+    }
 
     //===========================================================
     // 마우스 포인터 이벤트
