@@ -18,13 +18,20 @@ public enum StatType
     BuildCostDiscount,       // 건물 건설 비용 감소
     DiceCooldownReduction,   // 주사위 쿨타임 감소
 
+    None,                   // 테스트용 // Stat 반영 없음
+}
+public enum UnlockType
+{ 
     // 시스템 해금 (특수 기능)
     UnlockGlobalBuild,       // 글로벌 원격 건설 창 해금 (운빨 극복)
+    UnlockAnimatedRoll,     // 애니메이션 주사위 해금
     UnlockAutoRoll,          // 자동 주사위 해금
     UnlockAutoBuild,         // 자동 건설 해금
 
     // 최종 엔딩
-    GameClear                // 최종 노드 전용 (스토리 엔딩 트리거)
+    GameClear,                // 최종 노드 전용 (스토리 엔딩 트리거)
+
+    None,                   // 테스트용 // unlock 내용없음
 }
 
 // 3. 비용 데이터 구조체

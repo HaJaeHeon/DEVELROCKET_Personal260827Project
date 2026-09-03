@@ -33,7 +33,26 @@ public class GameManager : MonoBehaviour
 
     [field: SerializeField] public float buildSpeed { get; private set; }
     public event Action OnRefreshUI;
-    public int maxBuildingCount = 3;
+
+    public bool diceUpgrade_1 = false;
+    public bool diceUpgrade_2 = false;
+
+    public DiceMode currentDiceMode
+    {
+        get
+        {
+            return !diceUpgrade_1 ? DiceMode.Physics : !diceUpgrade_2 ? DiceMode.Animated : DiceMode.Auto;
+        }
+    }
+
+    public bool buildUpgrade_1 = false;
+    public bool buildUpgrade_2 = false;
+    public int maxBuildingCount {  get
+        {
+            return !buildUpgrade_1 ? 3 : !buildUpgrade_2 ? 6 : 9;
+        }
+    }
+
 
 
     private void Awake()

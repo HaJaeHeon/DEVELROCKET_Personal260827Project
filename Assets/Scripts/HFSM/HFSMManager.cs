@@ -3,10 +3,6 @@ using UnityHFSM;
 
 public class HFSMManager : MonoBehaviour
 {
-    public DiceMode currentMode;
-    public TileMode currentTileType;
-
-
     [SerializeField] private DIceRoll roll;
     [SerializeField] private PlayerMove move;
     [SerializeField] private TileEvents tileEvent;
@@ -41,9 +37,9 @@ public class HFSMManager : MonoBehaviour
 
         // 주사위 관련 Transition
         
-        diceFsm.AddTransition("Entry", "DicePhysics", t => currentMode == DiceMode.Physics);
-        diceFsm.AddTransition("Entry", "DiceAnimated", t => currentMode == DiceMode.Animated);
-        diceFsm.AddTransition("Entry", "DiceAuto", t => currentMode == DiceMode.Auto);
+        diceFsm.AddTransition("Entry", "DicePhysics", t => GameManager.Instance.currentDiceMode == DiceMode.Physics);
+        diceFsm.AddTransition("Entry", "DiceAnimated", t => GameManager.Instance.currentDiceMode == DiceMode.Animated);
+        diceFsm.AddTransition("Entry", "DiceAuto", t => GameManager.Instance.currentDiceMode == DiceMode.Auto);
 
         fsm.AddTransition("diceFsm", "Move", t => roll.isRolling == false);
 
