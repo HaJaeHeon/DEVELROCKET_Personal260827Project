@@ -10,7 +10,7 @@ public enum RollType
 }
 
 [RequireComponent(typeof(Rigidbody))]
-public class DIceRoll : MonoBehaviour
+public class DiceRoll : MonoBehaviour
 {
     private Rigidbody rb;
     [field:SerializeField] public bool isRolling { get; private set;  }
@@ -29,6 +29,8 @@ public class DIceRoll : MonoBehaviour
     /// 위, 아래, 오른쪽 , 왼쪽 , 앞, 뒤 순서
     /// </summary>
     public int[] diceFace = { 1, 2, 3, 4, 5, 6 };
+
+    private Coroutine autoRollRoutine;
 
     private void Awake()
     {
@@ -82,7 +84,6 @@ public class DIceRoll : MonoBehaviour
         Debug.Log($"주사위 결과값 : {finalDiceNum}");
 
         // GameManager에 보내기
-        //SendDiceNum(finalDiceNum);
         GameManager.Instance.diceNum = finalDiceNum;
 
         isRolling = false;
@@ -147,49 +148,48 @@ public class DIceRoll : MonoBehaviour
 
         Vector3 spinVector = Vector3.one * 1080f;
 
-
         yield return transform.DORotate(spinVector, rollDuration, RotateMode.FastBeyond360).SetEase(Ease.Linear).OnComplete(() =>
         {
             DiceFacing(finalDiceNum);
         }).WaitForCompletion();
 
-        // GameManager에 보내기
-        //SendDiceNum(resultDiceNum);
         GameManager.Instance.diceNum = finalDiceNum;
 
         currentRoutine = null;
+        autoRollRoutine = null;
+
         isRolling = false;
     }
 
     //=======================Auto Roll======================================================
+
     [ContextMenu("Auto Roll")]
     public void AutoRoll()
     {
         if (isRolling)
             return;
 
-        isAutoRoll = true;
-        StartCoroutine(AutoRollCoroutine());
+        if(autoRollRoutine == null)
+        {
+            autoRollRoutine = StartCoroutine(AutoRollCoroutine());
+        }
     }
 
     private IEnumerator AutoRollCoroutine()
     {
-        //while (isAutoRoll)
-        //{
-            //if (isRolling)
-            //{
-            //    yield return null;
-            //}
-            yield return StartCoroutine(RollCoroutine());
-
-            // 임시로 * 3 해놓음
-            //yield return new WaitForSeconds(rollDuration * 3f);
-        //}
+        yield return StartCoroutine(RollCoroutine());
     }
 
+    // 추후 오토가 필요 없을 때 사용하도록
     public void ChangeAuto()
     {
         isAutoRoll = !isAutoRoll;
+
+        if (!isAutoRoll && autoRollRoutine != null)
+        {
+            StopCoroutine(autoRollRoutine);
+            autoRollRoutine = null;
+        }
     }
 
     //==================================== Facing =========================================
@@ -216,9 +216,4 @@ public class DIceRoll : MonoBehaviour
             }
         }
     }
-
-    //public void SendDiceNum(int diceNum)
-    //{
-    //    GameManager.Instance.PlayerDice(diceNum);
-    //}
 }

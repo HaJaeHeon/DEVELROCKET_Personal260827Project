@@ -3,8 +3,8 @@ using UnityHFSM;
 
 public class DicePhysicsState : StateBase
 {
-    private DIceRoll roll;
-    public DicePhysicsState(DIceRoll roll, bool needsExitTime = false, bool isGhostState = false) : base(needsExitTime, isGhostState)
+    private DiceRoll roll;
+    public DicePhysicsState(DiceRoll roll, bool needsExitTime = false, bool isGhostState = false) : base(needsExitTime, isGhostState)
     {
         this.roll = roll;
     }

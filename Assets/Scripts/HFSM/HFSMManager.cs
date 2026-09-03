@@ -3,7 +3,7 @@ using UnityHFSM;
 
 public class HFSMManager : MonoBehaviour
 {
-    [SerializeField] private DIceRoll roll;
+    [SerializeField] private DiceRoll roll;
     [SerializeField] private PlayerMove move;
     [SerializeField] private TileEvents tileEvent;
     [SerializeField] private TileBuilds tileBuild;
@@ -17,7 +17,7 @@ public class HFSMManager : MonoBehaviour
 
         // Idle 관련 FSM
         fsm.AddState("Idle", new IdleState());
-        fsm.AddTransition("Idle", "diceFsm", t => roll.isAutoRoll == true);
+        fsm.AddTransition("Idle", "diceFsm", t => GameManager.Instance.currentDiceMode == DiceMode.Auto);
 
         // Move 관련 FSM
         fsm.AddState("Move", new MoveState(move));

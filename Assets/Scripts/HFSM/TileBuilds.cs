@@ -26,14 +26,27 @@ public class TileBuilds : MonoBehaviour
     {
         TileNode tile = GameManager.Instance.tile;
 
-        // 한 줄의 묶음을 9로 판단하여 나눌 때 9로 나눔
-        // 현재 예외는 따로 생기지 않았으나 추후 문제 생길 수 있음
-        CurrencyType type = (CurrencyType)(int)(tile.tileIndex / 9);
+        if (!TryGetCurrencyType(tile.tileType, out CurrencyType type))
+        {
+            Debug.LogWarning($"IncomeBuild: {tile.tileType}에 대응하는 CurrencyType이 없습니다.");
+            return;
+        }
 
-        Dictionary<CurrencyType, int> receipt = new Dictionary<CurrencyType, int>();
-        receipt.Add(type, tile.reward);
+        Dictionary<CurrencyType, int> receipt = new Dictionary<CurrencyType, int> { { type, tile.reward } };
 
         GameManager.Instance.UpdateAccount(receipt);
+    }
+
+    private static bool TryGetCurrencyType(TileType tileType, out CurrencyType currency)
+    {
+        switch (tileType)
+        {
+            case TileType.FoodLine: currency = CurrencyType.Food; return true;
+            case TileType.WoodLine: currency = CurrencyType.Wood; return true;
+            case TileType.StoneLine: currency = CurrencyType.Stone; return true;
+            case TileType.IndustryLine: currency = CurrencyType.Industry; return true;
+            default: currency = default; return false;
+        }
     }
 
     public IEnumerator Build(TileNode tile)

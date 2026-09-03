@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeBranchSO
   <nodeID>k__BackingField: 1115
   <nodeName>k__BackingField: "5. \uB178\uB4DC "
-  <description>k__BackingField: none
+  <description>k__BackingField: "\uAD6C\uB9E4\uBD88\uAC00 \uD655\uC778\uC6A9"
   <nodeIcon>k__BackingField: {fileID: 21300000, guid: 7f0ee1268d05b204cbba1da816c1547f, type: 3}
   <maxLevel>k__BackingField: 1
   <requiredCosts>k__BackingField:
   - currency: 3
-    baseCost: 100
+    baseCost: 100000000
     costMultiplier: 1.5
   <targetStat>k__BackingField: 3
   <baseStatValue>k__BackingField: 100

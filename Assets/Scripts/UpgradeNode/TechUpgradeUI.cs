@@ -29,11 +29,17 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private Vector3 uiPosition;
     private float height;
 
+    // 컴포넌트 널 체크하기
     private void Awake()
     {
-        outLine = GetComponent<Outline>();
-        nodeButton = GetComponent<Button>();
-        iconImage = GetComponent<Image>();
+        if(outLine == null)    
+            outLine = GetComponent<Outline>();
+
+        if(nodeButton == null)   
+            nodeButton = GetComponent<Button>();
+
+        if(iconImage == null)
+            iconImage = GetComponent<Image>();
     }
 
     //연결해야할 부분 초기화, ui refresh
@@ -137,7 +143,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             return;
 
         // 재화 차감
-        CalcCurerncy();
+        SpendCurrencies();
 
         // 레벨 증가 및 능력치 적용
         currentLevel++;
@@ -161,6 +167,8 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         UpgradeTooltip.Instance.ShowTooltip(nodeData.nodeName, nodeData.requiredCosts, currentLevel, maxLevel, uiPosition, height, transform);
     }
 
+
+    // gameManager에서 값 변경 필요
     public void SetStats(StatType type)
     {
         switch(type)
@@ -221,7 +229,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     }
 
     //GameManager에 저장되어있는 재화만큼 감산
-    private void CalcCurerncy()
+    private void SpendCurrencies()
     {
         Dictionary<CurrencyType, int> receipt = new Dictionary<CurrencyType, int>();
 
@@ -230,15 +238,6 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             int currentPrice = (int)(costData.baseCost * Mathf.Pow(costData.costMultiplier, currentLevel));
 
             receipt.Add(costData.currency, -currentPrice);
-            //foreach (var item in GameManager.Instance.myAccountList)
-            //{
-            //    if (item.currencyType == costData.currency)
-            //    {
-            //        item.Amount -= (int)currentPrice;
-            //        Debug.Log($"currencyType : {costData.currency} \ncurrentPrice : {currentPrice}\nremainCurrency : {item.Amount}");
-            //    }
-            //}
-            //Debug.Log($"{costData.currency} / {(int)currentPrice}");
         }
         GameManager.Instance.UpdateAccount(receipt);
     }
