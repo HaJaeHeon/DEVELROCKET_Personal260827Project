@@ -42,6 +42,9 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         if(iconImage == null)
             iconImage = GetComponent<Image>();
+
+        if (manager == null)
+            manager = transform.root.GetComponent<TechUpgradeTreeManager>();
     }
 
     //연결해야할 부분 초기화, ui refresh

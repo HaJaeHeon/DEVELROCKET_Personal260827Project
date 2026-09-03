@@ -1755,10 +1755,16 @@ MonoBehaviour:
     Amount: 100000
   - currencyType: 3
     Amount: 100000
+  myUpgrades:
+    flat_tileValueUpgrade:
+    - upgradeValue: 0
+      currentUpgradeCount: 0
+    mult_tileValueUpgrade: []
+    flat_buildingValueUpgrade: []
+    mult_buildingValueUpgrade: []
   move: {fileID: 1836440141}
   diceNum: 0
   tile: {fileID: 0}
-  techUpgradeUI: {fileID: 0}
   <buildSpeed>k__BackingField: 0.5
   diceUpgrade_1: 0
   diceUpgrade_2: 0

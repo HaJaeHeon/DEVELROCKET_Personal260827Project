@@ -14,12 +14,12 @@ public class TileBuilds : MonoBehaviour
 
     public IEnumerator ProcessingBuild()
     {
-        Debug.Log($"isProcess : {isProcess}");
+        //Debug.Log($"isProcess : {isProcess}");
         IncomeBuilding();
         yield return StartCoroutine(Build(GameManager.Instance.tile));
 
         isProcess = false;
-        Debug.Log($"isProcess : {isProcess}");
+        //Debug.Log($"isProcess : {isProcess}");
     }
 
     public void IncomeBuilding()

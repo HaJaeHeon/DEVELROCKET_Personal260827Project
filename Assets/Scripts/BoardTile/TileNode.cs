@@ -32,6 +32,7 @@ public class TileNode : MonoBehaviour
     public void SetReward()
     {
         reward = TileReward() + BuildingReward();
+        Debug.Log($"reward : {reward} / tileReward : {TileReward()} / buildingReward : {BuildingReward()}");
     }
 
     // 각 줄의 타일 위치에 따라 타일의 보상 값 다르게 함
@@ -59,7 +60,7 @@ public class TileNode : MonoBehaviour
 
     public int BuildingReward()
     {
-        int baseBuildingReward = 0;
+        int baseBuildingReward = data.buildingReward * buildingCount;
         int flatValues = GameManager.Instance.myUpgrades.flat_buildingValueUpgrade.Sum
                             (value => value.upgradeValue * value.currentUpgradeCount);
         float multiValues = 1f;

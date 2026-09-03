@@ -21,6 +21,7 @@ public class Account
     public int Amount;
 }
 
+[Serializable]
 public class UpgradeInfo
 {
     public int upgradeValue;
@@ -47,7 +48,6 @@ public class GameManager : MonoBehaviour
     public PlayerMove move;
     public int diceNum;
     public TileNode tile;
-    public TechUpgradeUI techUpgradeUI;
 
     [field: SerializeField] public float buildSpeed { get; private set; }
     public event Action OnRefreshUI;
