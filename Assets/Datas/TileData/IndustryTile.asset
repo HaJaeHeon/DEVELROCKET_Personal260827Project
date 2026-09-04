@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: IndustryTile
   m_EditorClassIdentifier: Assembly-CSharp::TileDataSO
   <tileType>k__BackingField: 6
-  <tileReward>k__BackingField: 10
-  <buildingReward>k__BackingField: 20
+  <tileReward>k__BackingField:
+    stringValue: 10

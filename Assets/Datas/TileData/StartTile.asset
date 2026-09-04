@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: StartTile
   m_EditorClassIdentifier: Assembly-CSharp::TileDataSO
   <tileType>k__BackingField: 0
-  tileIndex: 0
-  tileReward: 0
+  <tileReward>k__BackingField:
+    stringValue: 

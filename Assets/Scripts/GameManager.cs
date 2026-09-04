@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 
 public enum DiceMode
@@ -18,14 +19,14 @@ public enum TileMode
 public class Account
 {
     public CurrencyType currencyType;
-    public int Amount;
+    public UBigInt Amount;
 }
 
 [Serializable]
 public class UpgradeInfo
 {
     public int nodeId;
-    public float upgradeValue;
+    public long upgradeValue;
     public int currentUpgradeCount;
 }
 
@@ -98,12 +99,12 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void UpdateAccount(Dictionary<CurrencyType, int> receipt)
+    public void UpdateAccount(Dictionary<CurrencyType, BigInteger> receipt)
     {
         foreach (var bill in receipt)
         {
             CurrencyType type = bill.Key;
-            int amount = bill.Value;
+            BigInteger amount = bill.Value;
             //Debug.Log($"{bill.Key} / {bill.Value}");
 
             foreach (var item in myAccountList)

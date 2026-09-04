@@ -80,10 +80,10 @@ public class BoardManager : MonoBehaviour
                     break;
             }
         }
-        Debug.Log($"foodTileCount : {foodTileCount}\n" +
-            $"woodTileCount : {woodTileCount}\n" +
-            $"stoneTileCount : {stoneTileCount}\n" +
-            $"industryTileCount : {industryTileCount}");
+        //Debug.Log($"foodTileCount : {foodTileCount}\n" +
+        //    $"woodTileCount : {woodTileCount}\n" +
+        //    $"stoneTileCount : {stoneTileCount}\n" +
+        //    $"industryTileCount : {industryTileCount}");
     }
 
     // 노드 갯수로 나눈 나머지가 현재 노드

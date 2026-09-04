@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -29,7 +30,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [field: SerializeField] public bool isRootNode { get; private set; } // 이 버튼이 시작점인가?
     [field: SerializeField] public List<TechUpgradeUI> nextNodes { get; private set; } //다음 해금될 UI노드 버튼
 
-    private Vector3 uiPosition;
+    private UnityEngine.Vector3 uiPosition;
     private float height;
 
     private Dictionary<StatType, Action> statUpgradeAction;
@@ -77,6 +78,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     /// <summary>
     /// 이 부분에 스탯 부분이 올라야 하는 애들 등록 
     /// 아래에 또 Action부분 넣어야함
+    /// gameManager에도 넣어야함
     /// </summary>
     public void InitStatUpgrade()
     {
@@ -156,14 +158,14 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     }
 
     // 다음 레벨업 비용을 계산하는 로직
-    private int CalculateNextCost()
+    private BigInteger CalculateNextCost()
     {
         if (nodeData.requiredCosts.Count == 0)
             return 0;
 
         CostData data = nodeData.requiredCosts[0];
         // 반올림 ( 기본비용 * (배율 ^ 현재레벨))
-        return Mathf.RoundToInt(data.baseCost * Mathf.Pow(data.costMultiplier, currentLevel));
+        return (BigInteger)(data.baseCost * Mathf.Pow(data.costMultiplier, currentLevel));
     }
 
     // 버튼을 클릭했을 때 (인스펙터의 OnClick에 연결할 함수)
@@ -171,7 +173,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         if (currentLevel >= nodeData.maxLevel) return;
 
-        int requiredCost = CalculateNextCost();
+        BigInteger requiredCost = CalculateNextCost();
 
         // 재화가 충분한지 확인
         if (!BoolEnoughCurrency())
@@ -253,7 +255,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         foreach (CostData costData in nodeData.requiredCosts)
         {
-            int currentPrice = (int)(costData.baseCost * Mathf.Pow(costData.costMultiplier, currentLevel));
+            BigInteger currentPrice = (BigInteger)(costData.baseCost * BigInteger.Pow(costData.costMultiplier, currentLevel));
 
             foreach (var item in GameManager.Instance.myAccountList)
             {
@@ -270,11 +272,11 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     //GameManager에 저장되어있는 재화만큼 감산
     private void SpendCurrencies()
     {
-        Dictionary<CurrencyType, int> receipt = new Dictionary<CurrencyType, int>();
+        Dictionary<CurrencyType, BigInteger> receipt = new Dictionary<CurrencyType, BigInteger>();
 
         foreach (CostData costData in nodeData.requiredCosts)
         {
-            int currentPrice = (int)(costData.baseCost * Mathf.Pow(costData.costMultiplier, currentLevel));
+            BigInteger currentPrice = (BigInteger)(costData.baseCost * BigInteger.Pow(costData.costMultiplier, currentLevel));
 
             receipt.Add(costData.currency, -currentPrice);
         }

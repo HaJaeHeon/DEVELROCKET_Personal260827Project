@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 
 public class TileBuilds : MonoBehaviour
@@ -32,7 +33,7 @@ public class TileBuilds : MonoBehaviour
             return;
         }
 
-        Dictionary<CurrencyType, int> receipt = new Dictionary<CurrencyType, int> { { type, tile.reward } };
+        Dictionary<CurrencyType, BigInteger> receipt = new Dictionary<CurrencyType, BigInteger> { { type, tile.reward } };
 
         GameManager.Instance.UpdateAccount(receipt);
     }

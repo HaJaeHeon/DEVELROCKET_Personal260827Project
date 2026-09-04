@@ -48,7 +48,7 @@ public struct CostData
 {
     public CurrencyType currency;
     public int baseCost;         // 1단계 요구량
-    public float costMultiplier;    // 단계별 비용 증가 배율
+    public long costMultiplier;    // 단계별 비용 증가 배율
 }
 
 // 4. Branch 내용
@@ -69,7 +69,7 @@ public class UpgradeBranchSO : ScriptableObject
 
     [field: SerializeField, Header("비용 및 효과")]
     public List<CostData> requiredCosts { get; private set; }
-    [field: SerializeField] public float baseStatValue { get; private set; }
+    [field: SerializeField] public long baseStatValue { get; private set; }
     [field: SerializeField] public float statMultiplierPerLevel { get; private set; }
 
     [field: SerializeField] public StatType targetStat { get; private set; }

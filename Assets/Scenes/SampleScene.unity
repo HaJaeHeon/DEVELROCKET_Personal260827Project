@@ -1748,13 +1748,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   myAccountList:
   - currencyType: 0
-    Amount: 0
+    Amount: 1111111
   - currencyType: 1
-    Amount: 0
+    Amount: 1111111
   - currencyType: 2
-    Amount: 0
+    Amount: 1111111
   - currencyType: 3
-    Amount: 0
+    Amount: 1111111
   myUpgrades:
     flat_lineValueUpgrade: []
     mult_lineValueUpgrade: []
