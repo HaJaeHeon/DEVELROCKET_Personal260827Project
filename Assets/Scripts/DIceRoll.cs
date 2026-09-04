@@ -15,13 +15,15 @@ public class DiceRoll : MonoBehaviour
     private Rigidbody rb;
     [field:SerializeField] public bool isRolling { get; private set;  }
 
-    [SerializeField] private float rollDuration;
     [SerializeField] private float rollPower;
     [SerializeField] private float torquePower;
     [SerializeField] private Transform initDiceTransform;
     [field:SerializeField] public bool isAutoRoll {  get; private set; }
     [field: SerializeField] public int finalDiceNum;
 
+    // GameManager 에서 관리
+    private float rollDuration;
+    
     private Coroutine currentRoutine;
 
     /// <summary>
@@ -37,6 +39,8 @@ public class DiceRoll : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         isRolling = false;
         isAutoRoll = false;
+
+        rollDuration = GameManager.Instance.rollDuration;
     }
 
 

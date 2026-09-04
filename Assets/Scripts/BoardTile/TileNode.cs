@@ -13,10 +13,14 @@ public class TileNode : MonoBehaviour
     [field: SerializeField] public TileType tileType { get; private set; }
     [field: SerializeField] public int buildingCount { get; private set; }
 
-    [SerializeField] GameObject buildPrefab;
+    [SerializeField] GameObject buildPrefab_1;
+    [SerializeField] GameObject buildPrefab_2;
+    [SerializeField] GameObject buildPrefab_3;
+    [SerializeField] GameObject buildPrefab_4;
 
 
     private UnityEngine.Vector3[] buildTransforms = { new UnityEngine.Vector3(0.75f, 1f, 0.75f), new UnityEngine.Vector3(0.75f, 1f, 0f), new UnityEngine.Vector3(0.75f, 1f, -0.75f) };
+    private List<GameObject> buildingList = new();
 
     private void Start()
     {
@@ -33,7 +37,7 @@ public class TileNode : MonoBehaviour
     public void SetReward()
     {
         reward = TileReward() + BuildingReward();
-        Debug.Log($"reward : {reward} / tileReward : {TileReward()} / buildingReward : {BuildingReward()}");
+        //Debug.Log($"reward : {reward} / tileReward : {TileReward()} / buildingReward : {BuildingReward()}");
     }
 
     // 각 줄의 타일 위치에 따라 타일의 보상 값 다르게 함
@@ -62,7 +66,7 @@ public class TileNode : MonoBehaviour
             //multValues *= upgrade pow;// 업그레이드 수치에  업그레이드 갯수만큼 pow 하기
             multiValues *= BigInteger.Pow(upgrade.upgradeValue, upgrade.currentUpgradeCount);
         }
-        Debug.Log($"[보상 추적] 기본값: {baseTileReward} / 고정업글: {flatValues} / 배율업글: {multiValues}");
+        //Debug.Log($"[보상 추적] 기본값: {baseTileReward} / 고정업글: {flatValues} / 배율업글: {multiValues}");
 
         return (baseTileReward + flatValues) * multiValues;
     }
@@ -89,20 +93,40 @@ public class TileNode : MonoBehaviour
 
     public IEnumerator BuildBuiling()
     {
-        if(buildingCount >= buildTransforms.Length)
+        if(buildingCount >= GameManager.Instance.maxBuildingCount)
         {
-            Debug.LogWarning($"{name}: buildTransforms 슬롯({buildTransforms.Length}개)을 초과하는 건설 요청입니다. maxBuildingCount 설정을 확인하세요.");
-            yield return null;
+            Debug.LogWarning($"{buildingCount} 빌딩수가 {GameManager.Instance.maxBuildingCount}맥스빌딩수보다 크다.");
+            yield break;
+        }
+        if (buildingCount != 0 && buildingCount % buildTransforms.Length == 0)
+        {
+            buildingList.ForEach((value) => Destroy(value));
+            buildingList.Clear();
         }
 
-        GameObject obj = GameObject.Instantiate(buildPrefab);
+        if (buildingList.Count >= buildTransforms.Length)
+        {
+            Debug.LogWarning($"{name}: buildTransforms 슬롯({buildTransforms.Length}개)을 초과하는 건설 요청입니다. maxBuildingCount 설정을 확인하세요.");
+            yield break;
+        }
+        
+
+        GameObject obj = GameObject.Instantiate(SelectBuilding());
         obj.transform.SetParent(gameObject.transform);
 
-        obj.transform.localPosition = buildTransforms[buildingCount] + UnityEngine.Vector3.up;
+        obj.transform.localPosition = buildTransforms[buildingCount % buildTransforms.Length] + UnityEngine.Vector3.up;
+        buildingList.Add(obj);
 
-        yield return obj.transform.DOLocalMove(buildTransforms[buildingCount], GameManager.Instance.buildSpeed).SetEase(Ease.InOutCubic).OnComplete(() =>
+        yield return obj.transform.DOLocalMove(buildTransforms[buildingCount % buildTransforms.Length], GameManager.Instance.buildSpeed).SetEase(Ease.InOutCubic).OnComplete(() =>
         {
             buildingCount++;
         }).WaitForCompletion();
+    }
+
+    public GameObject SelectBuilding()
+    {
+        return !GameManager.Instance.buildingCountUpgrade_1 ? 
+            buildPrefab_1 : !GameManager.Instance.buildingCountUpgrade_2 ? 
+            buildPrefab_2 : !GameManager.Instance.buildingCountUpgrade_3 ? buildPrefab_3 : buildPrefab_4;
     }
 }

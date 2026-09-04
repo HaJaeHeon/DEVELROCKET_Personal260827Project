@@ -710,10 +710,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: da8bd97345769764ba20305816eb7e83, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 3
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &103372566
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,10 +1039,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: dd68230ea3570904b8141f0ab0172c9c, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 6
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &156823069
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,10 +1094,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: da8bd97345769764ba20305816eb7e83, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 3
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &159672953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1137,10 +1149,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: 2c80bed7a9e3d6246ab1187b1f376218, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 4
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &198785037
 GameObject:
   m_ObjectHideFlags: 0
@@ -1384,10 +1400,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: 2c80bed7a9e3d6246ab1187b1f376218, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 4
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &227778361
 GameObject:
   m_ObjectHideFlags: 0
@@ -1435,10 +1455,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: da8bd97345769764ba20305816eb7e83, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 3
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &257518436
 GameObject:
   m_ObjectHideFlags: 0
@@ -1713,10 +1737,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: 2c80bed7a9e3d6246ab1187b1f376218, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 4
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &314674146
 GameObject:
   m_ObjectHideFlags: 0
@@ -1748,13 +1776,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   myAccountList:
   - currencyType: 0
-    Amount: 1111111
+    Amount:
+      stringValue: 
   - currencyType: 1
-    Amount: 1111111
+    Amount:
+      stringValue: 
   - currencyType: 2
-    Amount: 1111111
+    Amount:
+      stringValue: 
   - currencyType: 3
-    Amount: 1111111
+    Amount:
+      stringValue: 
   myUpgrades:
     flat_lineValueUpgrade: []
     mult_lineValueUpgrade: []
@@ -1771,8 +1803,10 @@ MonoBehaviour:
   <buildSpeed>k__BackingField: 0.5
   diceUpgrade_1: 0
   diceUpgrade_2: 0
+  listMaxBuildCount: 0300000006000000090000000a000000
   buildingCountUpgrade_1: 0
   buildingCountUpgrade_2: 0
+  buildingCountUpgrade_3: 0
 --- !u!4 &314674148
 Transform:
   m_ObjectHideFlags: 0
@@ -2804,10 +2838,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: dd68230ea3570904b8141f0ab0172c9c, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 6
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &437756005
 GameObject:
   m_ObjectHideFlags: 0
@@ -3082,10 +3120,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: 2c80bed7a9e3d6246ab1187b1f376218, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 4
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &450242504
 GameObject:
   m_ObjectHideFlags: 0
@@ -3271,10 +3313,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: 172556c46a85e594293b453dd8b71475, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 5
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &465604189
 GameObject:
   m_ObjectHideFlags: 0
@@ -3793,10 +3839,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: 19532d4712783ed4e9a33165603943a9, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
   <tileType>k__BackingField: 0
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 0}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &533582188
 GameObject:
   m_ObjectHideFlags: 0
@@ -3951,10 +4001,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: dd68230ea3570904b8141f0ab0172c9c, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 6
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &576474699
 GameObject:
   m_ObjectHideFlags: 0
@@ -4952,10 +5006,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: 501ff03b470c2ef47969480dc2f7f36f, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
   <tileType>k__BackingField: 0
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 0}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &816787928
 GameObject:
   m_ObjectHideFlags: 0
@@ -5003,10 +5061,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: dd68230ea3570904b8141f0ab0172c9c, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 6
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &831025081
 GameObject:
   m_ObjectHideFlags: 0
@@ -5054,10 +5116,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: 2c80bed7a9e3d6246ab1187b1f376218, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 4
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -5291,10 +5357,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: 2c80bed7a9e3d6246ab1187b1f376218, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 4
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &936368878
 GameObject:
   m_ObjectHideFlags: 0
@@ -5494,10 +5564,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: 2c80bed7a9e3d6246ab1187b1f376218, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 4
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &970001694
 GameObject:
   m_ObjectHideFlags: 0
@@ -5911,10 +5985,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: 172556c46a85e594293b453dd8b71475, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 5
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &1029088020
 GameObject:
   m_ObjectHideFlags: 0
@@ -5962,10 +6040,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: 172556c46a85e594293b453dd8b71475, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 5
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &1042469080
 GameObject:
   m_ObjectHideFlags: 0
@@ -6682,10 +6764,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: ef65238268efeac45ae1f2f519c24182, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
   <tileType>k__BackingField: 0
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 0}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &1157509819
 GameObject:
   m_ObjectHideFlags: 0
@@ -7845,10 +7931,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: 172556c46a85e594293b453dd8b71475, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 5
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &1246331205
 GameObject:
   m_ObjectHideFlags: 0
@@ -8121,10 +8211,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: 591be2ef946c2bd4098a9e10e13979a7, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
   <tileType>k__BackingField: 0
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 0}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &1294877668
 GameObject:
   m_ObjectHideFlags: 0
@@ -8172,10 +8266,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: da8bd97345769764ba20305816eb7e83, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 3
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &1325996651
 GameObject:
   m_ObjectHideFlags: 0
@@ -8403,10 +8501,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: 172556c46a85e594293b453dd8b71475, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 5
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &1348525905
 GameObject:
   m_ObjectHideFlags: 0
@@ -8454,10 +8556,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: dd68230ea3570904b8141f0ab0172c9c, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 6
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &1360281415
 GameObject:
   m_ObjectHideFlags: 0
@@ -9235,10 +9341,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: da8bd97345769764ba20305816eb7e83, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
   <tileType>k__BackingField: 0
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &1487007347
 GameObject:
   m_ObjectHideFlags: 0
@@ -9422,10 +9532,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: dd68230ea3570904b8141f0ab0172c9c, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 6
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &1552260698
 GameObject:
   m_ObjectHideFlags: 0
@@ -9563,10 +9677,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: da8bd97345769764ba20305816eb7e83, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 3
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &1574104712
 GameObject:
   m_ObjectHideFlags: 0
@@ -11037,10 +11155,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: dd68230ea3570904b8141f0ab0172c9c, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 6
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &1717472631
 GameObject:
   m_ObjectHideFlags: 0
@@ -11088,10 +11210,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: da8bd97345769764ba20305816eb7e83, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 3
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &1718819070
 GameObject:
   m_ObjectHideFlags: 0
@@ -11611,10 +11737,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: dd68230ea3570904b8141f0ab0172c9c, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 6
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!114 &1836440141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12075,10 +12205,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: da8bd97345769764ba20305816eb7e83, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 3
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &1923745474
 GameObject:
   m_ObjectHideFlags: 0
@@ -12126,10 +12260,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: 172556c46a85e594293b453dd8b71475, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 5
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &1951826241
 GameObject:
   m_ObjectHideFlags: 0
@@ -12584,10 +12722,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: 172556c46a85e594293b453dd8b71475, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 5
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &2001644930
 GameObject:
   m_ObjectHideFlags: 0
@@ -12911,10 +13053,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: 172556c46a85e594293b453dd8b71475, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 5
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &2030538518
 GameObject:
   m_ObjectHideFlags: 0
@@ -12962,10 +13108,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileNode
   data: {fileID: 11400000, guid: 2c80bed7a9e3d6246ab1187b1f376218, type: 2}
   <tileIndex>k__BackingField: 0
-  <reward>k__BackingField: 0
-  <tileType>k__BackingField: 0
+  <reward>k__BackingField:
+    stringValue: 
+  <tileType>k__BackingField: 4
   <buildingCount>k__BackingField: 0
-  buildPrefab: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_1: {fileID: 6344409586936799458, guid: b090e0446e7d3c84891edea87741acfb, type: 3}
+  buildPrefab_2: {fileID: 7567287954334764768, guid: 1f38bc9f493bc5244b20cb2eb09489a1, type: 3}
+  buildPrefab_3: {fileID: 380877605550423677, guid: d97fcdb2238418d4893223eab14da7c5, type: 3}
+  buildPrefab_4: {fileID: 5674732913496915047, guid: 30ff7ebca4333d44f80f4d6b112895e7, type: 3}
 --- !u!1 &2044156683
 GameObject:
   m_ObjectHideFlags: 0

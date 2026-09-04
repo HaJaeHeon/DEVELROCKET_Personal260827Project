@@ -25,7 +25,7 @@ MonoBehaviour:
   - currency: 2
     baseCost: 5
     costMultiplier: 0
-  <baseStatValue>k__BackingField: 0
+  <baseStatValue>k__BackingField: 100
   <statMultiplierPerLevel>k__BackingField: 1.2
   <targetStat>k__BackingField: 3
   <targetUnlock>k__BackingField: 7

@@ -52,14 +52,14 @@ public class TileBuilds : MonoBehaviour
 
     public IEnumerator Build(TileNode tile)
     {
-        if (tile.buildingCount < GameManager.Instance.maxBuildingCount)
-        {
-            yield return StartCoroutine(tile.BuildBuiling());
-        }
-        else
-        {
-            Debug.LogWarning($"{tile.buildingCount}(빌딩수) 가 {GameManager.Instance.maxBuildingCount} (맥스 빌딩 수) 보다 크거나 같다");
-        }
+        //if (tile.buildingCount < GameManager.Instance.maxBuildingCount)
+        //{
+        //    yield return StartCoroutine(tile.BuildBuiling());
+        //}
+        //else
+        //{
+        //    Debug.LogWarning($"{tile.buildingCount}(빌딩수) 가 {GameManager.Instance.maxBuildingCount} (맥스 빌딩 수) 보다 크거나 같다");
+        //}
+        yield return StartCoroutine(tile.BuildBuiling());
     }
-
 }

@@ -6,12 +6,12 @@ public class PlayerMove : MonoBehaviour
     [Header("이동 관련")]
     //[SerializeField] private float moveSpeed;
     [SerializeField] private float jumpHeight;
-    //점프 시간을 줄여서 animation속도 짧게하기
-    [SerializeField] private float jumpDuration;
-    //말 이동 대기 시간 짧게
-    [SerializeField] private float waitForNextNode;
     //말 위치를 타일 면과 닿게
     [SerializeField] private float heightOffset;
+
+    // GameManager에서 컨트롤
+    private float waitForNextNode;
+    private float jumpDuration;
 
     [Space]
     [SerializeField] private int currentNodeIndex;
@@ -22,6 +22,8 @@ public class PlayerMove : MonoBehaviour
     {
         Vector3 initPosition = BoardManager.Instance.GetTile(0).transform.position;
         transform.position = initPosition + Vector3.up * heightOffset;
+        jumpDuration = GameManager.Instance.jumpDuration;
+        waitForNextNode = GameManager.Instance.waitForNextNode;
     }
 
     public void StartMove(int diceNum)
@@ -32,7 +34,6 @@ public class PlayerMove : MonoBehaviour
         StartCoroutine(PieceMove(diceNum));
     }
 
-    [ContextMenu("플레어이 말 이동")]
     public IEnumerator PieceMove(int diceNum)
     {
         isRunning = true;

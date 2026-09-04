@@ -62,11 +62,19 @@ public class GameManager : MonoBehaviour
     public int diceNum;
     public TileNode tile;
 
-    [field: SerializeField] public float buildSpeed { get; private set; }
     public event Action OnRefreshUI;
 
     public bool diceUpgrade_1 = false;
     public bool diceUpgrade_2 = false;
+
+    //점프 시간을 줄여서 animation속도 짧게하기
+    [field:SerializeField] public float jumpDuration { get; private set;  }
+    //말 이동 대기 시간 짧게
+    [field:SerializeField] public float waitForNextNode { get; private set; }
+    // 주사위 돌아가는 시간
+    [field:SerializeField] public float rollDuration { get; private set; }
+    // 건물 내려오는 속도
+    [field: SerializeField] public float buildSpeed { get; private set; }
 
     public DiceMode currentDiceMode
     {
@@ -75,12 +83,15 @@ public class GameManager : MonoBehaviour
             return !diceUpgrade_1 ? DiceMode.Physics : !diceUpgrade_2 ? DiceMode.Animated : DiceMode.Auto;
         }
     }
-
+    public List<int> listMaxBuildCount = new List<int>{ { 3 }, { 6 },{ 9 }, { 10 } };
     public bool buildingCountUpgrade_1 = false;
     public bool buildingCountUpgrade_2 = false;
+    public bool buildingCountUpgrade_3 = false;
     public int maxBuildingCount {  get
         {
-            return !buildingCountUpgrade_1 ? 3 : !buildingCountUpgrade_2 ? 6 : 9;
+            return !buildingCountUpgrade_1 ? listMaxBuildCount[0] : 
+                !buildingCountUpgrade_2 ? listMaxBuildCount[1] : 
+                !buildingCountUpgrade_3 ? listMaxBuildCount[2] : listMaxBuildCount[3];
         }
     }
 
