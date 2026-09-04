@@ -9,10 +9,6 @@ public class PlayerMove : MonoBehaviour
     //말 위치를 타일 면과 닿게
     [SerializeField] private float heightOffset;
 
-    // GameManager에서 컨트롤
-    private float waitForNextNode;
-    private float jumpDuration;
-
     [Space]
     [SerializeField] private int currentNodeIndex;
     [field:SerializeField] public bool isRunning {  get; private set; }
@@ -22,8 +18,6 @@ public class PlayerMove : MonoBehaviour
     {
         Vector3 initPosition = BoardManager.Instance.GetTile(0).transform.position;
         transform.position = initPosition + Vector3.up * heightOffset;
-        jumpDuration = GameManager.Instance.jumpDuration;
-        waitForNextNode = GameManager.Instance.waitForNextNode;
     }
 
     public void StartMove(int diceNum)
@@ -36,6 +30,7 @@ public class PlayerMove : MonoBehaviour
 
     public IEnumerator PieceMove(int diceNum)
     {
+        GameManager gameManager = GameManager.Instance;
         isRunning = true;
         for (int i = 0; i < diceNum; i++)
         {
@@ -45,16 +40,16 @@ public class PlayerMove : MonoBehaviour
             Vector3 endPosition = targetNode.transform.position + Vector3.up * heightOffset;
             //Debug.Log(endPosition);
 
-            yield return transform.DOJump(endPosition, jumpHeight, 1, jumpDuration).WaitForCompletion();
+            yield return transform.DOJump(endPosition, jumpHeight, 1, gameManager.jumpDuration).WaitForCompletion();
 
-            if(waitForNextNode > 0)
+            if(gameManager.waitForNextNode > 0)
             {
-                yield return new WaitForSeconds(waitForNextNode);
+                yield return new WaitForSeconds(gameManager.waitForNextNode);
             }
         }
 
         TileNode finalTile = BoardManager.Instance.GetTile(currentNodeIndex);
-        GameManager.Instance.tile = finalTile;
+        gameManager.tile = finalTile;
         //Debug.Log($"마지막 타일 {finalTile.tileIndex}");
         finalTile.SetReward();
         isRunning = false;

@@ -21,9 +21,6 @@ public class DiceRoll : MonoBehaviour
     [field:SerializeField] public bool isAutoRoll {  get; private set; }
     [field: SerializeField] public int finalDiceNum;
 
-    // GameManager 에서 관리
-    private float rollDuration;
-    
     private Coroutine currentRoutine;
 
     /// <summary>
@@ -39,8 +36,6 @@ public class DiceRoll : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         isRolling = false;
         isAutoRoll = false;
-
-        rollDuration = GameManager.Instance.rollDuration;
     }
 
 
@@ -152,7 +147,7 @@ public class DiceRoll : MonoBehaviour
 
         Vector3 spinVector = Vector3.one * 1080f;
 
-        yield return transform.DORotate(spinVector, rollDuration, RotateMode.FastBeyond360).SetEase(Ease.Linear).OnComplete(() =>
+        yield return transform.DORotate(spinVector, GameManager.Instance.rollDuration, RotateMode.FastBeyond360).SetEase(Ease.Linear).OnComplete(() =>
         {
             DiceFacing(finalDiceNum);
         }).WaitForCompletion();

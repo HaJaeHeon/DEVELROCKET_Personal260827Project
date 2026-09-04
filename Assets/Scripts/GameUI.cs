@@ -59,8 +59,11 @@ public class GameUI : MonoBehaviour
         if (exp >= units.Length)
             exp = units.Length - 1;
 
-        BigInteger value = num / BigInteger.Pow(1000, exp);
+        BigInteger value = BigInteger.Pow(1000, exp);
+        BigInteger newValue = (num * 100) / value;
 
-        return value.ToString("0.00") + units[exp];
+        double finalValue = (double)newValue / 100d;
+
+        return finalValue.ToString("0.00") + units[exp];
     }
 }

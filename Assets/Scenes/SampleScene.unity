@@ -1800,9 +1800,12 @@ MonoBehaviour:
   move: {fileID: 1836440141}
   diceNum: 0
   tile: {fileID: 0}
-  <buildSpeed>k__BackingField: 0.5
   diceUpgrade_1: 0
   diceUpgrade_2: 0
+  <jumpDuration>k__BackingField: 0.1
+  <waitForNextNode>k__BackingField: 0.1
+  <rollDuration>k__BackingField: 0.1
+  <buildSpeed>k__BackingField: 0.1
   listMaxBuildCount: 0300000006000000090000000a000000
   buildingCountUpgrade_1: 0
   buildingCountUpgrade_2: 0
@@ -11758,8 +11761,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
   jumpHeight: 3
-  jumpDuration: 0.5
-  waitForNextNode: 0.2
   heightOffset: 1
   currentNodeIndex: 0
   <isRunning>k__BackingField: 0
@@ -14061,7 +14062,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DIceRoll
   <isRolling>k__BackingField: 0
-  rollDuration: 1
   rollPower: 5
   torquePower: 5
   initDiceTransform: {fileID: 517151741}

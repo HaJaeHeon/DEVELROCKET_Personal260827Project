@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileDataSO
   <tileType>k__BackingField: 6
   <tileReward>k__BackingField:
-    stringValue: 10
+    stringValue: 100
