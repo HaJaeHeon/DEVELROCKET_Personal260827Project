@@ -19,7 +19,7 @@ MonoBehaviour:
   <maxLevel>k__BackingField: 1
   <requiredCosts>k__BackingField:
   - currency: 0
-    baseCost: 1
+    baseCost: 11111
     costMultiplier: 0
   <baseStatValue>k__BackingField: 0
   <statMultiplierPerLevel>k__BackingField: 1.5

@@ -248,6 +248,8 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
             case UnlockType.UnlockGlobalBuild:
                 break;
+            default:
+                break;
         }
     }
 
