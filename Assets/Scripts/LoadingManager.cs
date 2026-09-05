@@ -25,6 +25,17 @@ public class LoadingManager : MonoBehaviour
     public void LoadSceneWithLoading(string sceneName)
     {
         targetSceneName = sceneName;
+        Debug.Log($"{sceneName} Loading");
         SceneManager.LoadScene("LoadingScene");
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("게임 종료");
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }
