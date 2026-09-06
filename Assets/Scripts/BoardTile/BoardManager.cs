@@ -11,12 +11,12 @@ public class BoardManager : MonoBehaviour
     [SerializeField] private GameObject boardObject;
 
     // 줄 수(임의적으로 제작)
-    private int lineCount = 4;
-
-    private int foodTileCount;
-    private int woodTileCount;
-    private int stoneTileCount;
-    private int industryTileCount;
+    //private int lineCount = 4;
+    //
+    // private int foodTileCount;
+    // private int woodTileCount;
+    // private int stoneTileCount;
+    // private int industryTileCount;
 
     private void Awake()
     {
@@ -32,10 +32,10 @@ public class BoardManager : MonoBehaviour
     }
 
     //현재 Start 부분에서 맵 데이터를 초기화 하는데 추후에 바뀔 수 있음 CSV로 저장하여 불러오는 방식을 채택할 수도 있음
-    private void Start()
-    {
-        InItCalculateTileCount();
-    }
+    // private void Start()
+    // {
+    //     InItCalculateTileCount();
+    // }
 
     private void InitNode()
     {
@@ -53,38 +53,38 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-    public void InItCalculateTileCount()
-    {
-        foodTileCount = 0;
-        woodTileCount = 0;
-        stoneTileCount = 0;
-        industryTileCount = 0;
-
-        foreach (TileNode tile in nodes)
-        {
-            switch(tile.tileType)
-            {
-                case TileType.FoodLine:
-                    foodTileCount++;
-                    break;
-                case TileType.WoodLine:
-                    woodTileCount++;
-                    break;
-                case TileType.StoneLine:
-                    stoneTileCount++;
-                    break;
-                case TileType.IndustryLine:
-                    industryTileCount++;
-                    break;
-                default: 
-                    break;
-            }
-        }
+    // public void InItCalculateTileCount()
+    // {
+    //     foodTileCount = 0;
+    //     woodTileCount = 0;
+    //     stoneTileCount = 0;
+    //     industryTileCount = 0;
+    //
+    //     foreach (TileNode tile in nodes)
+    //     {
+    //         switch(tile.tileType)
+    //         {
+    //             case TileType.FoodLine:
+    //                 foodTileCount++;
+    //                 break;
+    //             case TileType.WoodLine:
+    //                 woodTileCount++;
+    //                 break;
+    //             case TileType.StoneLine:
+    //                 stoneTileCount++;
+    //                 break;
+    //             case TileType.IndustryLine:
+    //                 industryTileCount++;
+    //                 break;
+    //             default: 
+    //                 break;
+    //         }
+    //     }
         //Debug.Log($"foodTileCount : {foodTileCount}\n" +
         //    $"woodTileCount : {woodTileCount}\n" +
         //    $"stoneTileCount : {stoneTileCount}\n" +
         //    $"industryTileCount : {industryTileCount}");
-    }
+    //}
 
     // 노드 갯수로 나눈 나머지가 현재 노드
     public TileNode GetTile(int num)

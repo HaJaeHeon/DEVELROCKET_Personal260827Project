@@ -23,6 +23,8 @@ public enum StatType
     IncomeFlat,              // 월급/수익 고정값+
     IncomeMultiplier,        // 월급/수익 배율+
     DiceCooldownReduction,   // 주사위 쿨타임 감소
+    PlayerJumpReduction,    // 플레이어 점프 시간 감소
+    BuildSpeedReduction,    // 빌딩 건설 시간 감소
 
     None,                   // 테스트용 // Stat 반영 없음
 }
@@ -57,8 +59,8 @@ public class UpgradeBranchSO : ScriptableObject
 {
     [field: SerializeField , Header("노드 기본 정보")]
     public int nodeID { get; private set; }
-    [field: SerializeField] public string nodeName { get; private set; }
-    [field: SerializeField][TextArea] public string description { get; private set; }
+    [field: SerializeField,TextArea] public string nodeName { get; private set; }
+    [field: SerializeField,TextArea] public string description { get; private set; }
     [field: SerializeField] public Sprite nodeIcon { get; private set; }
 
     [field: SerializeField, Header("트리 연결 구조")]
@@ -68,10 +70,15 @@ public class UpgradeBranchSO : ScriptableObject
     //public bool isRootNode;
 
     [field: SerializeField, Header("비용 및 효과")]
+    // 필요 비용들
     public List<CostData> requiredCosts { get; private set; }
+    // 적용할 스탯 위치
+    [field: SerializeField] public StatType targetStat { get; private set; }
+    // 적용할 스탯 기본값
     [field: SerializeField] public long baseStatValue { get; private set; }
+    // 적용할 스탯의 스킬 Level당 증가 비율
     [field: SerializeField] public float statMultiplierPerLevel { get; private set; }
 
-    [field: SerializeField] public StatType targetStat { get; private set; }
+    // unlock할 기능 
     [field:SerializeField, Space] public UnlockType targetUnlock {  get; private set; } 
 }

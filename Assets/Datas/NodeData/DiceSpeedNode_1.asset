@@ -10,18 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 240bcb6b81aa39146a4b171132491c7a, type: 3}
-  m_Name: node_5
+  m_Name: DiceSpeedNode_1
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeBranchSO
-  <nodeID>k__BackingField: 1115
-  <nodeName>k__BackingField: "5. \uB178\uB4DC "
-  <description>k__BackingField: "\uAD6C\uB9E4\uBD88\uAC00 \uD655\uC778\uC6A9"
+  <nodeID>k__BackingField: 1117
+  <nodeName>k__BackingField: "\uC8FC\uC0AC\uC704 \uC18D\uB3C4 \uC99D\uAC00"
+  <description>k__BackingField: "\uC8FC\uC0AC\uC704 \uACB0\uACFC \uCD9C\uB825 \uC18D\uB3C4
+    \uC99D\uAC00"
   <nodeIcon>k__BackingField: {fileID: 21300000, guid: 7f0ee1268d05b204cbba1da816c1547f, type: 3}
-  <maxLevel>k__BackingField: 1
+  <maxLevel>k__BackingField: 5
   <requiredCosts>k__BackingField:
-  - currency: 3
-    baseCost: 100000000
-    costMultiplier: 1.5
-  <targetStat>k__BackingField: 3
-  <baseStatValue>k__BackingField: 100
-  <statMultiplierPerLevel>k__BackingField: 1.5
+  - currency: 0
+    baseCost: 2
+    costMultiplier: 0
+  - currency: 1
+    baseCost: 3
+    costMultiplier: 0
+  <targetStat>k__BackingField: 8
+  <baseStatValue>k__BackingField: 0
+  <statMultiplierPerLevel>k__BackingField: 2
   <targetUnlock>k__BackingField: 7

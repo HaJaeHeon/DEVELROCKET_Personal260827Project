@@ -10,18 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 240bcb6b81aa39146a4b171132491c7a, type: 3}
-  m_Name: node_1
+  m_Name: BuildFlatNode_1
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeBranchSO
-  <nodeID>k__BackingField: 1111
-  <nodeName>k__BackingField: "1. \uB178\uB4DC "
-  <description>k__BackingField: "\uC8FC\uC0AC\uC704 Animation \uBC29\uC2DD \uD574\uC81C"
+  <nodeID>k__BackingField: 1114
+  <nodeName>k__BackingField: "4. \uB178\uB4DC"
+  <description>k__BackingField: "\uAC74\uBB3C \uBC30\uC728 1.5"
   <nodeIcon>k__BackingField: {fileID: 21300000, guid: 7f0ee1268d05b204cbba1da816c1547f, type: 3}
-  <maxLevel>k__BackingField: 1
+  <maxLevel>k__BackingField: 5
   <requiredCosts>k__BackingField:
   - currency: 0
-    baseCost: 11111
-    costMultiplier: 0
-  <baseStatValue>k__BackingField: 0
+    baseCost: 1000
+    costMultiplier: 1
+  - currency: 1
+    baseCost: 300
+    costMultiplier: 1
+  - currency: 2
+    baseCost: 30
+    costMultiplier: 2
+  <targetStat>k__BackingField: 4
+  <baseStatValue>k__BackingField: 100
   <statMultiplierPerLevel>k__BackingField: 1.5
-  <targetStat>k__BackingField: 9
-  <targetUnlock>k__BackingField: 1
+  <targetUnlock>k__BackingField: 7

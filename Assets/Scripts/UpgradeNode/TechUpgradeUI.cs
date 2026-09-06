@@ -61,13 +61,13 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private void Start()
     {
         iconImage.sprite = nodeData.nodeIcon;
-        nameText.text = nodeData.nodeName;
+        nameText.text = string.Format(nodeData.nodeName, nodeData.baseStatValue);
         levelText.text = currentLevel.ToString();
         //costText.text = nodeData.requiredCosts[currentLevel].ToString();
-        descriptionText.text = nodeData.description;
+        descriptionText.text = string.Format(nodeData.description, nodeData.baseStatValue, nodeData.statMultiplierPerLevel);
         nodeButton.onClick.AddListener(() => OnClickNode());
         maxLevel = nodeData.maxLevel;
-
+        
         RectTransform rect = gameObject.GetComponent<RectTransform>();
         uiPosition = rect.position;
         height = rect.rect.height * rect.lossyScale.y;
@@ -87,13 +87,15 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             { StatType.LineFlat, ApplyLineFlat },
             { StatType.LineMultiplier, ApplyLineMulti},
             { StatType.TileFlat, ApplyTileFlat },
-            {StatType.TileMultiplier, ApplyTileMulti },
+            { StatType.TileMultiplier, ApplyTileMulti },
             { StatType.BuildingFlat, ApplyBuildingFlat  },
-            {StatType.BuildingMultiplier,ApplyBuildingMulti },
-            {StatType.IncomeFlat, ApplyIncomeFlat  },
-            {StatType.IncomeMultiplier, ApplyIncomeMulti },
-            {StatType.DiceCooldownReduction, ApplyDiceCooldownReduction  },
-            {StatType.None, () => {Debug.Log("Stat 없음"); } }
+            { StatType.BuildingMultiplier,ApplyBuildingMulti },
+            { StatType.IncomeFlat, ApplyIncomeFlat  },
+            { StatType.IncomeMultiplier, ApplyIncomeMulti },
+            { StatType.DiceCooldownReduction, ApplyDiceRollDurationReduction  },
+            { StatType.PlayerJumpReduction, ApplyPlayerJumpDurationReduction  },
+            { StatType.BuildSpeedReduction, ApplyBuildSpeedDurationReduction  },
+            { StatType.None, () => {Debug.Log("Stat 없음"); } }
         };
     }
 
@@ -201,7 +203,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
 
         }
-        UpgradeTooltip.Instance.ShowTooltip(nodeData.nodeName, nodeData.requiredCosts, currentLevel, maxLevel, uiPosition, height, transform);
+        UpgradeTooltip.Instance.ShowTooltip(nodeData.nodeName, nodeData.requiredCosts, currentLevel, maxLevel, uiPosition, height, transform, nodeData.baseStatValue);
     }
 
 
@@ -244,7 +246,6 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             case UnlockType.UnlockBuildCount2:
                 GameManager.Instance.buildingCountUpgrade_2 = true;
                 break;
-
 
             case UnlockType.UnlockGlobalBuild:
                 break;
@@ -346,9 +347,17 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         ConfirmData(gameManager.myUpgrades.mult_IncomeValueUpgrade);
     }
-    private void ApplyDiceCooldownReduction()
+    private void ApplyDiceRollDurationReduction()
     {
-        ConfirmData(gameManager.myUpgrades.diceUpgrade);
+        ConfirmData(gameManager.myUpgrades.diceRollDurationUpgrade);
+    }
+    private void ApplyPlayerJumpDurationReduction()
+    {
+        ConfirmData(gameManager.myUpgrades.playerjumpDurationUpgrade);
+    }
+    private void ApplyBuildSpeedDurationReduction()
+    {
+        ConfirmData(gameManager.myUpgrades.buildSpeedUpgrade);
     }
 
     //===========================================================
@@ -360,7 +369,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         //rectTransform의 x, y 값과 height의 값을 같이 보냄
         
         // 글로벌 툴팁 창에 스킬 '이름'과 '설명'을 같이 전달
-        UpgradeTooltip.Instance.ShowTooltip(nodeData.nodeName, nodeData.requiredCosts, currentLevel, maxLevel, uiPosition, height, transform);
+        UpgradeTooltip.Instance.ShowTooltip(nodeData.nodeName, nodeData.requiredCosts, currentLevel, maxLevel, uiPosition, height, transform, nodeData.baseStatValue);
     }
     public void OnPointerExit(PointerEventData eventData)
     {

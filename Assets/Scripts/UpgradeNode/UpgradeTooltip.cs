@@ -36,11 +36,11 @@ public class UpgradeTooltip : MonoBehaviour
     }
 
     // 마우스를 올렸을 때 호출할 함수 (이름과 필요 재화량을 같이 받습니다)
-    public void ShowTooltip(string name, List<CostData> costs, int currentLevel, int maxLevel, Vector3 uiPosition, float buttonHeight, Transform tr)
+    public void ShowTooltip(string name, List<CostData> costs, int currentLevel, int maxLevel, Vector3 uiPosition, float buttonHeight, Transform tr, long baseStatValue)
     {
         gameObject.SetActive(true);
 
-        nameText.text = name;
+        nameText.text = string.Format(name, baseStatValue);
 
         string tempString = "";
 

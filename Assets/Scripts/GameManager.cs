@@ -47,7 +47,9 @@ public class Upgrades
     public List<UpgradeInfo> mult_buildingValueUpgrade = new();
     public List<UpgradeInfo> flat_IncomeValueUpgrade = new();
     public List<UpgradeInfo> mult_IncomeValueUpgrade = new();
-    public List<UpgradeInfo> diceUpgrade;
+    public List<UpgradeInfo> diceRollDurationUpgrade;
+    public List<UpgradeInfo> playerjumpDurationUpgrade;
+    public List<UpgradeInfo> buildSpeedUpgrade;
 }
 
 public class GameManager : MonoBehaviour
@@ -66,6 +68,7 @@ public class GameManager : MonoBehaviour
 
     public bool diceUpgrade_1 = false;
     public bool diceUpgrade_2 = false;
+    public bool gameClear = false;
 
     //점프 시간을 줄여서 animation속도 짧게하기
     [field:SerializeField] public float jumpDuration { get; private set;  }
