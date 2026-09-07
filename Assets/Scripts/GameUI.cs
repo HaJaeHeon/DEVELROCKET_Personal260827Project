@@ -45,7 +45,7 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    private string TransInt(BigInteger num)
+    public string TransInt(BigInteger num)
     {
         if (num < 1000)
         {

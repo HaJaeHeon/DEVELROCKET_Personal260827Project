@@ -69,7 +69,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eeeed28b08128f14b88e149ad8005096, type: 2}
   m_sharedMaterial: {fileID: -8287005674658150277, guid: eeeed28b08128f14b88e149ad8005096, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: -8287005674658150277, guid: eeeed28b08128f14b88e149ad8005096, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -87,7 +88,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -225,7 +226,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -326,7 +327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: DamageNumbersPro::DamageNumbersPro.DamageNumberGUI
   permanent: 0
-  lifetime: 2
+  lifetime: 1
   unscaledTime: 0
   enable3DGame: 0
   faceCameraView: 1
@@ -393,10 +394,10 @@ MonoBehaviour:
     vertical: 0
     characterSpacing: 0
     size: 0
-  enableRightText: 0
+  enableRightText: 1
   rightText: 
   rightTextSettings:
-    bold: 0
+    bold: 1
     italic: 0
     underline: 0
     strike: 0
@@ -476,9 +477,9 @@ MonoBehaviour:
     fromNumber: 10
     toNumber: 100
   durationFadeIn: 0.2
-  enableOffsetFadeIn: 1
+  enableOffsetFadeIn: 0
   offsetFadeIn: {x: 0.5, y: 0}
-  enableScaleFadeIn: 1
+  enableScaleFadeIn: 0
   scaleFadeIn: {x: 2, y: 2}
   enableCrossScaleFadeIn: 0
   crossScaleFadeIn: {x: 1, y: 1.5}
@@ -488,20 +489,20 @@ MonoBehaviour:
   durationFadeOut: 0.2
   enableOffsetFadeOut: 0
   offsetFadeOut: {x: 0.5, y: 0}
-  enableScaleFadeOut: 1
+  enableScaleFadeOut: 0
   scaleFadeOut: {x: 0.6, y: 1.4}
   enableCrossScaleFadeOut: 0
   crossScaleFadeOut: {x: 1, y: 1.5}
-  enableShakeFadeOut: 1
+  enableShakeFadeOut: 0
   shakeOffsetFadeOut: {x: 0, y: -1}
   shakeFrequencyFadeOut: 2
   enableLerp: 1
   lerpSettings:
-    speed: 5
-    minX: -0.4
-    maxX: 0.4
-    minY: 0.5
-    maxY: 1
+    speed: 1
+    minX: 2
+    maxX: 2
+    minY: 0
+    maxY: 0
     randomFlip: 0
   enableVelocity: 0
   velocitySettings:

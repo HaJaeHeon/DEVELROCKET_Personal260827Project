@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
     public static GameManager Instance => instance;
     [SerializeField] private GameObject gameClearPanel;
+    [SerializeField] private EarnEffectUI earnEffect;
 
     public PlayerMove move;
     public int diceNum;
@@ -130,8 +131,11 @@ public class GameManager : MonoBehaviour
             foreach (var item in myAccountList)
             {
                 if (item.currencyType == type)
+                {
                     item.Amount += amount;
-                //Debug.Log($"{item.currencyType} / {item.Amount}");
+                    earnEffect.SetCurrenciesTransform(type, amount);
+                    Debug.Log($"{item.currencyType} / {item.Amount}");
+                }
             }
         }
         OnRefreshUI?.Invoke();
