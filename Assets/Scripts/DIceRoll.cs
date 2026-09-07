@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public enum RollType
 {
@@ -20,6 +21,7 @@ public class DiceRoll : MonoBehaviour
     [SerializeField] private Transform initDiceTransform;
     [field:SerializeField] public bool isAutoRoll {  get; private set; }
     [field: SerializeField] public int finalDiceNum;
+    [SerializeField] private Button rollButton;
 
     private Coroutine currentRoutine;
 
@@ -36,6 +38,11 @@ public class DiceRoll : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         isRolling = false;
         isAutoRoll = false;
+    }
+
+    private void OnEnable()
+    {
+        rollButton.onClick.AddListener(OnClickRollButton);
     }
 
 
@@ -214,5 +221,10 @@ public class DiceRoll : MonoBehaviour
                 return;
             }
         }
+    }
+
+    public void OnClickRollButton()
+    {
+        GameManager.Instance.isGameStart = true;
     }
 }

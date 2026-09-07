@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance => instance;
     [SerializeField] private GameObject gameClearPanel;
     public EarnEffectUI earnEffect;
+    public bool isGameStart = false;
     public HFSMManager hfsmManager;
 
     //public PlayerMove move;
@@ -122,8 +123,9 @@ public class GameManager : MonoBehaviour
         diceUpgrade_1 = false;
         diceUpgrade_2 = false;
         gameClear = false;
-        myAccountList = new();
-        myUpgrades = new();
+        isGameStart = false;
+        //myAccountList = new();
+        //myUpgrades = new();
     }
 
     public void UpdateAccount(Dictionary<CurrencyType, BigInteger> receipt)
@@ -171,6 +173,7 @@ public class GameManager : MonoBehaviour
     public void GameClear()
     {
         hfsmManager.OnTriggerStopHfsm();
+        isGameStart = false;
         gameClearPanel.SetActive(true);
     }
 }

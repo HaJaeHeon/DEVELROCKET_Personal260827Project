@@ -338,19 +338,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 46358089}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1988013697}
-        m_TargetAssemblyTypeName: HFSMManager, Assembly-CSharp
-        m_MethodName: OnClickDiceRoll
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &46358089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3336,6 +3324,7 @@ MonoBehaviour:
     buildSpeedUpgrade: []
   gameClearPanel: {fileID: 1863911305}
   earnEffect: {fileID: 936368886}
+  isGameStart: 0
   hfsmManager: {fileID: 0}
   diceNum: 0
   tile: {fileID: 0}
@@ -23368,6 +23357,7 @@ MonoBehaviour:
   move: {fileID: 1836440141}
   tileEvent: {fileID: 1988013700}
   tileBuild: {fileID: 1988013699}
+  rollButton: {fileID: 46358088}
 --- !u!4 &1988013698
 Transform:
   m_ObjectHideFlags: 0
@@ -25484,6 +25474,7 @@ MonoBehaviour:
   initDiceTransform: {fileID: 517151741}
   <isAutoRoll>k__BackingField: 0
   finalDiceNum: 0
+  rollButton: {fileID: 46358088}
   diceFace: 060000000100000002000000050000000300000004000000
 --- !u!23 &4717470927819789666
 MeshRenderer:

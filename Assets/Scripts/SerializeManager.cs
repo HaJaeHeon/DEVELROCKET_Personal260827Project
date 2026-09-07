@@ -13,21 +13,10 @@ public class SerializeManager : MonoBehaviour
 
     private void Start()
     {
-        if (BoardManager.Instance.boardObject == null)
-        {
-            BoardManager.Instance.boardObject = mapObject;
-        }
-        if (GameManager.Instance.earnEffect == null)
-        { 
-            GameManager.Instance.earnEffect = earnEffectUI;
-        }
-        if (BoardManager.Instance.playerMove == null)
-        { 
-            BoardManager.Instance.playerMove = playerMove;
-        }
-        if(GameManager.Instance.hfsmManager == null)
-        {
-            GameManager.Instance.hfsmManager = hfsmManager;
-        }
+        BoardManager.Instance.boardObject = mapObject;
+        GameManager.Instance.earnEffect = earnEffectUI;
+        BoardManager.Instance.playerMove = playerMove;
+        GameManager.Instance.hfsmManager = hfsmManager;
+        BoardManager.Instance.InitNode();
     }
 }

@@ -21,6 +21,11 @@ public class PlayerMove : MonoBehaviour
     //    transform.position = initPosition + Vector3.up * heightOffset;
     //}
 
+    private void Awake()
+    {
+        isRunning = false;
+    }
+
     public void StartMove(int diceNum)
     {
         if (isRunning)

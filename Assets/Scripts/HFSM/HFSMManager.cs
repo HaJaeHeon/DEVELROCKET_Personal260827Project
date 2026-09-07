@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityHFSM;
 
 public class HFSMManager : MonoBehaviour
@@ -7,8 +8,14 @@ public class HFSMManager : MonoBehaviour
     [SerializeField] private PlayerMove move;
     [SerializeField] private TileEvents tileEvent;
     [SerializeField] private TileBuilds tileBuild;
+    [SerializeField] private Button rollButton;
     
     private StateMachine fsm;
+
+    private void OnEnable()
+    {
+        rollButton.onClick.AddListener(OnClickDiceRoll);
+    }
 
     private void Start()
     {
@@ -41,7 +48,7 @@ public class HFSMManager : MonoBehaviour
         diceFsm.AddTransition("Entry", "DiceAnimated", t => GameManager.Instance.currentDiceMode == DiceMode.Animated);
         diceFsm.AddTransition("Entry", "DiceAuto", t => GameManager.Instance.currentDiceMode == DiceMode.Auto);
 
-        fsm.AddTransition("diceFsm", "Move", t => roll.isRolling == false);
+        fsm.AddTransition("diceFsm", "Move", t => GameManager.Instance.isGameStart == true && roll.isRolling == false);
 
 
 

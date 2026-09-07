@@ -42,7 +42,7 @@ public class BoardManager : MonoBehaviour
     //     InItCalculateTileCount();
     // }
 
-    private void InitNode()
+    public void InitNode()
     {
         TileNode[] tiles = boardObject.GetComponentsInChildren<TileNode>();
 
