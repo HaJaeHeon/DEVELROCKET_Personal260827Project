@@ -35,8 +35,6 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private Dictionary<StatType, Action> statUpgradeAction;
 
-    private GameManager gameManager;
-
     // 컴포넌트 널 체크하기
     private void Awake()
     {
@@ -51,8 +49,6 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         if (manager == null)
             manager = transform.root.GetComponent<TechUpgradeTreeManager>();
-        if (gameManager == null)
-            gameManager = GameManager.Instance;
 
         InitStatUpgrade();
     }
@@ -107,7 +103,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (nodeData != null)
         {
             iconImage.sprite = nodeData.nodeIcon;
-            nameText.text = nodeData.nodeName;
+            nameText.text = string.Format(nodeData.nodeName, nodeData.baseStatValue);
         }
 
         // 업그레이드 해금 여부 판단하여 켜고 끄기
@@ -246,8 +242,13 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             case UnlockType.UnlockBuildCount2:
                 GameManager.Instance.buildingCountUpgrade_2 = true;
                 break;
+            case UnlockType.UnlockBuildCount3:
+                GameManager.Instance.buildingCountUpgrade_3 = true;
+                break;
 
-            case UnlockType.UnlockGlobalBuild:
+            case UnlockType.GameClear:
+                GameManager.Instance.gameClear = true;
+                GameManager.Instance.GameClear();
                 break;
             default:
                 break;
@@ -317,47 +318,58 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     
     private void ApplyLineFlat()
     {
-        ConfirmData(gameManager.myUpgrades.flat_lineValueUpgrade);
+        ConfirmData(GameManager.Instance.myUpgrades.flat_lineValueUpgrade);
     }
     private void ApplyLineMulti()
     {
-        ConfirmData(gameManager.myUpgrades.mult_lineValueUpgrade);
+        ConfirmData(GameManager.Instance.myUpgrades.mult_lineValueUpgrade);
     }
     private void ApplyTileFlat()
     {
-        ConfirmData(gameManager.myUpgrades.flat_tileValueUpgrade);
+        ConfirmData(GameManager.Instance.myUpgrades.flat_tileValueUpgrade);
     }
     private void ApplyTileMulti()
     {
-        ConfirmData(gameManager.myUpgrades.mult_tileValueUpgrade);
+        ConfirmData(GameManager.Instance.myUpgrades.mult_tileValueUpgrade);
     }
     private void ApplyBuildingFlat()
     {
-        ConfirmData(gameManager.myUpgrades.flat_buildingValueUpgrade);
+        ConfirmData(GameManager.Instance.myUpgrades.flat_buildingValueUpgrade);
     }
     private void ApplyBuildingMulti()
     {
-        ConfirmData(gameManager.myUpgrades.mult_buildingValueUpgrade);
+        ConfirmData(GameManager.Instance.myUpgrades.mult_buildingValueUpgrade);
     }
     private void ApplyIncomeFlat()
     {
-        ConfirmData(gameManager.myUpgrades.flat_IncomeValueUpgrade);
+        ConfirmData(GameManager.Instance.myUpgrades.flat_IncomeValueUpgrade);
     }
     private void ApplyIncomeMulti()
     {
-        ConfirmData(gameManager.myUpgrades.mult_IncomeValueUpgrade);
+        ConfirmData(GameManager.Instance.myUpgrades.mult_IncomeValueUpgrade);
     }
     private void ApplyDiceRollDurationReduction()
     {
-        ConfirmData(gameManager.myUpgrades.diceRollDurationUpgrade);
+        ConfirmData(GameManager.Instance.myUpgrades.diceRollDurationUpgrade);
     }
     private void ApplyPlayerJumpDurationReduction()
     {
-        ConfirmData(gameManager.myUpgrades.playerjumpDurationUpgrade);
+        if (GameManager.Instance == null)
+        {
+            Debug.LogError("gameManager가 null입니다! 인스펙터 연결을 확인하세요.");
+            return;
+        }
+
+        if (GameManager.Instance.myUpgrades == null)
+        {
+            Debug.LogError("gameManager.myUpgrades가 null입니다! GameManager 스크립트에서 myUpgrades를 new로 생성했는지 확인하세요.");
+            return;
+        }
+        ConfirmData(GameManager.Instance.myUpgrades.playerjumpDurationUpgrade);
     }
     private void ApplyBuildSpeedDurationReduction()
     {
-        ConfirmData(gameManager.myUpgrades.buildSpeedUpgrade);
+        ConfirmData(GameManager.Instance.myUpgrades.buildSpeedUpgrade);
     }
 
     //===========================================================

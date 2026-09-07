@@ -10,21 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 240bcb6b81aa39146a4b171132491c7a, type: 3}
-  m_Name: BuildingSpeedNode_1
+  m_Name: TIlesMulti_2
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeBranchSO
-  <nodeID>k__BackingField: 1117
-  <nodeName>k__BackingField: "\uAC74\uBB3C \uC81C\uC791 \uC18D\uB3C4 {0}% \uC99D\uAC00"
-  <description>k__BackingField: "\uAC74\uBB3C \uC81C\uC791 \uC18D\uB3C4 {0}% \uC99D\uAC00"
+  <nodeID>k__BackingField: 1131
+  <nodeName>k__BackingField: "\uBAA8\uB4E0 \uD0C0\uC77C Income {0}%\uB9CC\uD07C \uC99D\uAC00"
+  <description>k__BackingField: "Tile\uAC12  {0}% \uB9CC\uD07C \uC99D\uAC00 \n(\uB808\uBCA8\uB2F9
+    : {1}% \uC99D\uAC00)"
   <nodeIcon>k__BackingField: {fileID: 21300000, guid: 7f0ee1268d05b204cbba1da816c1547f, type: 3}
-  <maxLevel>k__BackingField: 5
+  <maxLevel>k__BackingField: 3
   <requiredCosts>k__BackingField:
   - currency: 0
-    baseCost: 2
-    costMultiplier: 0
+    baseCost: 1000
+    costMultiplier: 1
   - currency: 1
-    baseCost: 3
-    costMultiplier: 0
-  <targetStat>k__BackingField: 10
-  <baseStatValue>k__BackingField: 0
-  <statMultiplierPerLevel>k__BackingField: 2
+    baseCost: 300
+    costMultiplier: 1
+  - currency: 2
+    baseCost: 30
+    costMultiplier: 2
+  <targetStat>k__BackingField: 3
+  <baseStatValue>k__BackingField: 100
+  <statMultiplierPerLevel>k__BackingField: 1.5
   <targetUnlock>k__BackingField: 8

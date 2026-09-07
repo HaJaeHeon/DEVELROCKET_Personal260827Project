@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240bcb6b81aa39146a4b171132491c7a, type: 3}
   m_Name: BuildMultiNode_1
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeBranchSO
-  <nodeID>k__BackingField: 1114
-  <nodeName>k__BackingField: "4. \uB178\uB4DC"
-  <description>k__BackingField: "\uAC74\uBB3C \uBC30\uC728 1.5"
+  <nodeID>k__BackingField: 1118
+  <nodeName>k__BackingField: "\uBAA8\uB4E0 \uAC74\uBB3C Income {0} % \uB9CC\uD07C
+    \uC99D\uAC00"
+  <description>k__BackingField: "\uAC74\uBB3C Income\uAC12  {0} % \uB9CC\uD07C \uC99D\uAC00
+    \n(\uB808\uBCA8\uB2F9 : {1}% \uC99D\uAC00)"
   <nodeIcon>k__BackingField: {fileID: 21300000, guid: 7f0ee1268d05b204cbba1da816c1547f, type: 3}
   <maxLevel>k__BackingField: 5
   <requiredCosts>k__BackingField:

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240bcb6b81aa39146a4b171132491c7a, type: 3}
   m_Name: TilesFlat_1
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeBranchSO
-  <nodeID>k__BackingField: 1113
+  <nodeID>k__BackingField: 1127
   <nodeName>k__BackingField: "\uBAA8\uB4E0 \uD0C0\uC77C Income {0} \uB9CC\uD07C \uC99D\uAC00"
   <description>k__BackingField: "Tile\uAC12  {0} \uB9CC\uD07C \uC99D\uAC00 \n(\uB808\uBCA8\uB2F9
     : {1} \uC99D\uAC00)"

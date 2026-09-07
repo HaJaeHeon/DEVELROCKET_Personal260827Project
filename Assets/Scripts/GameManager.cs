@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
 
     private static GameManager instance;
     public static GameManager Instance => instance;
+    [SerializeField] private GameObject gameClearPanel;
 
     public PlayerMove move;
     public int diceNum;
@@ -113,6 +114,11 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Start()
+    {
+        gameClearPanel.SetActive(false);
+    }
+
     public void UpdateAccount(Dictionary<CurrencyType, BigInteger> receipt)
     {
         foreach (var bill in receipt)
@@ -150,5 +156,10 @@ public class GameManager : MonoBehaviour
                 Debug.Log("아직 안만듦");
                 return TileMode.Event;
         }
+    }
+    
+    public void GameClear()
+    {
+        gameClearPanel.SetActive(true);
     }
 }

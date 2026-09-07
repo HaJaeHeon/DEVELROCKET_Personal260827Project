@@ -10,21 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 240bcb6b81aa39146a4b171132491c7a, type: 3}
-  m_Name: BuildCountNode_2
+  m_Name: TilesFlat_3
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeBranchSO
-  <nodeID>k__BackingField: 1112
-  <nodeName>k__BackingField: MaxBuildCount +3
-  <description>k__BackingField: MaxBuildCount +3
+  <nodeID>k__BackingField: 1129
+  <nodeName>k__BackingField: "\uBAA8\uB4E0 \uD0C0\uC77C Income {0} \uB9CC\uD07C \uC99D\uAC00"
+  <description>k__BackingField: "Tile\uAC12  {0} \uB9CC\uD07C \uC99D\uAC00 \n(\uB808\uBCA8\uB2F9
+    : {1} \uC99D\uAC00)"
   <nodeIcon>k__BackingField: {fileID: 21300000, guid: 7f0ee1268d05b204cbba1da816c1547f, type: 3}
-  <maxLevel>k__BackingField: 1
+  <maxLevel>k__BackingField: 5
   <requiredCosts>k__BackingField:
   - currency: 0
-    baseCost: 2
+    baseCost: 4
     costMultiplier: 0
-  - currency: 1
-    baseCost: 3
+  - currency: 2
+    baseCost: 5
     costMultiplier: 0
-  <targetStat>k__BackingField: 11
-  <baseStatValue>k__BackingField: 0
-  <statMultiplierPerLevel>k__BackingField: 2
-  <targetUnlock>k__BackingField: 5
+  <targetStat>k__BackingField: 2
+  <baseStatValue>k__BackingField: 10000
+  <statMultiplierPerLevel>k__BackingField: 1.2
+  <targetUnlock>k__BackingField: 8
