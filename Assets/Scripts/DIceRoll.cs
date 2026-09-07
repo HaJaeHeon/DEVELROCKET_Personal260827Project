@@ -77,7 +77,7 @@ public class DiceRoll : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         // 주사위 속도와 회전 속도가 0에 근접할때까지 대기
-        yield return new WaitUntil(() => rb.linearVelocity.sqrMagnitude < 0.1f && rb.angularVelocity.sqrMagnitude < 0.1f);
+        yield return new WaitUntil(() => rb.linearVelocity.sqrMagnitude < 0.01f && rb.angularVelocity.sqrMagnitude < 0.01f);
 
         finalDiceNum = CalcDiceFace();
         Debug.Log($"주사위 결과값 : {finalDiceNum}");

@@ -20,8 +20,8 @@ MonoBehaviour:
   <requiredCosts>k__BackingField:
   - currency: 0
     baseCost: 1
-    costMultiplier: 0
+    costMultiplier: 2
   <targetStat>k__BackingField: 11
-  <baseStatValue>k__BackingField: 0
+  <baseStatValue>k__BackingField: 1
   <statMultiplierPerLevel>k__BackingField: 1.5
   <targetUnlock>k__BackingField: 1

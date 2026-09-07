@@ -51,6 +51,8 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             manager = transform.root.GetComponent<TechUpgradeTreeManager>();
 
         InitStatUpgrade();
+
+        GameManager.Instance.OnRefreshUI += RefreshUI;
     }
 
     //연결해야할 부분 초기화, ui refresh
@@ -249,6 +251,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             case UnlockType.GameClear:
                 GameManager.Instance.gameClear = true;
                 GameManager.Instance.GameClear();
+                Time.timeScale = 0;
                 break;
             default:
                 break;
