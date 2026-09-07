@@ -47,9 +47,9 @@ public class Upgrades
     public List<UpgradeInfo> mult_buildingValueUpgrade = new();
     public List<UpgradeInfo> flat_IncomeValueUpgrade = new();
     public List<UpgradeInfo> mult_IncomeValueUpgrade = new();
-    public List<UpgradeInfo> diceRollDurationUpgrade;
-    public List<UpgradeInfo> playerjumpDurationUpgrade;
-    public List<UpgradeInfo> buildSpeedUpgrade;
+    public List<UpgradeInfo> diceRollDurationUpgrade = new();
+    public List<UpgradeInfo> playerjumpDurationUpgrade = new();
+    public List<UpgradeInfo> buildSpeedUpgrade = new();
 }
 
 public class GameManager : MonoBehaviour

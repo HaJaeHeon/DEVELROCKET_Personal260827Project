@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240bcb6b81aa39146a4b171132491c7a, type: 3}
   m_Name: BuildingSpeedNode_1
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeBranchSO
-  <nodeID>k__BackingField: 1119
+  <nodeID>k__BackingField: 1120
   <nodeName>k__BackingField: "\uAC74\uBB3C \uC81C\uC791 \uC18D\uB3C4 \uC99D\uAC00"
   <description>k__BackingField: "\uAC74\uBB3C \uC81C\uC791 \uC18D\uB3C4 \uC99D\uAC00"
   <nodeIcon>k__BackingField: {fileID: 21300000, guid: 7f0ee1268d05b204cbba1da816c1547f, type: 3}
@@ -27,4 +27,4 @@ MonoBehaviour:
   <targetStat>k__BackingField: 10
   <baseStatValue>k__BackingField: 0
   <statMultiplierPerLevel>k__BackingField: 2
-  <targetUnlock>k__BackingField: 7
+  <targetUnlock>k__BackingField: 8

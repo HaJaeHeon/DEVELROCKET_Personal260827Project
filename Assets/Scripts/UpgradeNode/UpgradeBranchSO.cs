@@ -37,6 +37,7 @@ public enum UnlockType
     UnlockAutoBuild,         // 자동 건설 해금
     UnlockBuildCount1,      // 건물 제한 해금+
     UnlockBuildCount2,      // 건물 제한 해금++
+    UnlockBuildCount3,      // 건물 제한 해금+++
 
     // 최종 엔딩
     GameClear,                // 최종 노드 전용 (스토리 엔딩 트리거)
