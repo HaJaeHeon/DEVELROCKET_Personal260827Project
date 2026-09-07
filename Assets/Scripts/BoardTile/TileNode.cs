@@ -120,7 +120,7 @@ public class TileNode : MonoBehaviour
         yield return obj.transform.DOLocalMove(buildTransforms[buildingCount % buildTransforms.Length], GameManager.Instance.buildSpeed).SetEase(Ease.InOutCubic).OnComplete(() =>
         {
             buildingCount++;
-        }).WaitForCompletion();
+        }).SetLink(gameObject).WaitForCompletion();
     }
 
     public GameObject SelectBuilding()

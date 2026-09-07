@@ -61,6 +61,9 @@ public class HFSMManager : MonoBehaviour
         fsm.AddTransition("arrivedFsm", "Idle", t => tileEvent.isProcess == false && tileBuild.isProcess == false);
         
         fsm.AddTriggerTransition("Button_DiceRoll", "Idle", "diceFsm");
+        fsm.AddTriggerTransition("StopHfsm", "Move", "Idle");
+        fsm.AddTriggerTransition("StopHfsm", "diceFsm", "Idle");
+        fsm.AddTriggerTransition("StopHfsm", "arrivedFsm", "Idle");
 
         fsm.SetStartState("Idle");
         fsm.Init();
@@ -74,5 +77,10 @@ public class HFSMManager : MonoBehaviour
     public void OnClickDiceRoll()
     {
         fsm.Trigger("Button_DiceRoll");
+    }
+
+    public void OnTriggerStopHfsm()
+    {
+        fsm.Trigger("StopHfsm");
     }
 }

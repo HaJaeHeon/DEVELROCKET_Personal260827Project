@@ -66,6 +66,9 @@ public class LoadingUI : MonoBehaviour
                 yield return new WaitForSeconds(1f);
                 
                 op.allowSceneActivation = true;
+
+                diceImage.transform.DOKill();
+                break;
             }
         }
     }

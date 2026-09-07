@@ -50,7 +50,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (manager == null)
             manager = transform.root.GetComponent<TechUpgradeTreeManager>();
 
-        InitStatUpgrade();
+        
 
         GameManager.Instance.OnRefreshUI += RefreshUI;
     }
@@ -69,6 +69,8 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         RectTransform rect = gameObject.GetComponent<RectTransform>();
         uiPosition = rect.position;
         height = rect.rect.height * rect.lossyScale.y;
+
+        InitStatUpgrade();
 
         RefreshUI();
     }

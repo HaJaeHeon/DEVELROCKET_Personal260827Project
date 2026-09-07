@@ -8,7 +8,9 @@ public class BoardManager : MonoBehaviour
 
     [SerializeField] private List<TileNode> nodes = new List<TileNode>();
 
-    [SerializeField] private GameObject boardObject;
+    public GameObject boardObject;
+
+    public PlayerMove playerMove;
 
     // 줄 수(임의적으로 제작)
     //private int lineCount = 4;
@@ -27,7 +29,10 @@ public class BoardManager : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(gameObject);
+    }
 
+    private void Start()
+    {
         InitNode();
     }
 
@@ -51,6 +56,8 @@ public class BoardManager : MonoBehaviour
 
             nodes.Add(tiles[i]);
         }
+
+        playerMove.gameObject.transform.position = GetTile(0).transform.position + Vector3.up * playerMove.heightOffset;
     }
 
     // public void InItCalculateTileCount()

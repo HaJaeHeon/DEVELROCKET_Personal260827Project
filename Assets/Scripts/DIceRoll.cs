@@ -150,7 +150,7 @@ public class DiceRoll : MonoBehaviour
         yield return transform.DORotate(spinVector, GameManager.Instance.rollDuration, RotateMode.FastBeyond360).SetEase(Ease.Linear).OnComplete(() =>
         {
             DiceFacing(finalDiceNum);
-        }).WaitForCompletion();
+        }).SetLink(gameObject).WaitForCompletion();
 
         GameManager.Instance.diceNum = finalDiceNum;
 

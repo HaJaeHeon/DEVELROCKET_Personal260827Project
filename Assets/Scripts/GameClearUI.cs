@@ -19,6 +19,7 @@ public class GameClearUI : MonoBehaviour
 
     private void GameClear()
     {
+        Time.timeScale = 1f;
         LoadingManager.Instance.LoadSceneWithLoading("StartScene");
     }
 

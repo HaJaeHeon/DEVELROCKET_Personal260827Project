@@ -1,24 +1,25 @@
 using System.Collections;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UIElements.Experimental;
 public class PlayerMove : MonoBehaviour
 {
     [Header("이동 관련")]
     //[SerializeField] private float moveSpeed;
     [SerializeField] private float jumpHeight;
     //말 위치를 타일 면과 닿게
-    [SerializeField] private float heightOffset;
+    [field:SerializeField] public float heightOffset {  get; private set; }
 
     [Space]
     [SerializeField] private int currentNodeIndex;
     [field:SerializeField] public bool isRunning {  get; private set; }
 
     // gameManager나 여기서 init 으로 플레어이 위치 처음 타일로 초기화 필요
-    private void Start()
-    {
-        Vector3 initPosition = BoardManager.Instance.GetTile(0).transform.position;
-        transform.position = initPosition + Vector3.up * heightOffset;
-    }
+    //private void Start()
+    //{
+    //    Vector3 initPosition = BoardManager.Instance.GetTile(0).transform.position;
+    //    transform.position = initPosition + Vector3.up * heightOffset;
+    //}
 
     public void StartMove(int diceNum)
     {
@@ -40,7 +41,7 @@ public class PlayerMove : MonoBehaviour
             Vector3 endPosition = targetNode.transform.position + Vector3.up * heightOffset;
             //Debug.Log(endPosition);
 
-            yield return transform.DOJump(endPosition, jumpHeight, 1, gameManager.jumpDuration).WaitForCompletion();
+            yield return transform.DOJump(endPosition, jumpHeight, 1, gameManager.jumpDuration).SetLink(gameObject).WaitForCompletion();
 
             if(gameManager.waitForNextNode > 0)
             {
