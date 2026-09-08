@@ -109,7 +109,8 @@ public class TileNode : MonoBehaviour
             Debug.LogWarning($"{name}: buildTransforms 슬롯({buildTransforms.Length}개)을 초과하는 건설 요청입니다. maxBuildingCount 설정을 확인하세요.");
             yield break;
         }
-        
+
+        GameManager.Instance.CalculateBuildSpeed();
 
         GameObject obj = GameObject.Instantiate(SelectBuilding());
         obj.transform.SetParent(gameObject.transform);

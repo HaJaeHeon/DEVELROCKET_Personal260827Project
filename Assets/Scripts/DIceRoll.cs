@@ -142,6 +142,8 @@ public class DiceRoll : MonoBehaviour
         if (isRolling)
             yield break;
 
+        GameManager.Instance.CalculateDiceRollSpeed();
+
         isRolling = true;
         rb.useGravity = false;
         rb.isKinematic = true;

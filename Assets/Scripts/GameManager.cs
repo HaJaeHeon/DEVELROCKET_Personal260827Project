@@ -215,4 +215,16 @@ public class GameManager : MonoBehaviour
         jumpDuration = value.upgradeValue * Mathf.Pow(value.statMultiplierPerLevel, value.currentUpgradeCount));
         Debug.Log($"{jumpDuration} >> jumpDuration to calc");
     }
+    public void CalculateBuildSpeed()
+    {
+        myUpgrades.buildSpeedUpgrade.ForEach((value) =>
+        buildSpeed = value.upgradeValue * Mathf.Pow(value.statMultiplierPerLevel, value.currentUpgradeCount));
+        Debug.Log($"{buildSpeed} >> jumpDuration to calc");
+    }
+    public void CalculateDiceRollSpeed()
+    {
+        myUpgrades.diceRollDurationUpgrade.ForEach((value) =>
+        rollDuration = value.upgradeValue * Mathf.Pow(value.statMultiplierPerLevel, value.currentUpgradeCount));
+        Debug.Log($"{rollDuration} >> rollDuration to calc");
+    }
 }
