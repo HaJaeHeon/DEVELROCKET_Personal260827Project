@@ -53,88 +53,102 @@ public class Upgrades
     public List<UpgradeInfo> buildSpeedUpgrade = new();
 }
 
-public class GameManager : MonoBehaviour
+public class GameDatas
 {
     public List<Account> myAccountList = new();
     public Upgrades myUpgrades = new();
+    public bool isGameStart = false;
+    public bool diceUpgrade_1 = false;
+    public bool diceUpgrade_2 = false;
+    public bool gameClear = false;
+    public List<int> listMaxBuildCount = new List<int> { { 3 }, { 6 }, { 9 }, { 10 } };
+    public bool buildingCountUpgrade_1 = false;
+    public bool buildingCountUpgrade_2 = false;
+    public bool buildingCountUpgrade_3 = false;
 
+    public int diceNum = -1;
+    public float jumpDuration = 1f;
+    public float waitForNextNode = 1f;
+    public float rollDuration = 1f;
+    public float buildSpeed = 1f;
+}
+
+public class GameManager : MonoBehaviour
+{
     private static GameManager instance;
     public static GameManager Instance => instance;
 
     public GameObject gameClearPanel;
     public EarnEffectUI earnEffect;
-    public bool isGameStart = false;
+    
     public HFSMManager hfsmManager;
 
-    public int diceNum;
+    
     public TileNode tile;
 
     public event Action OnRefreshUI;
 
-    public bool diceUpgrade_1 = false;
-    public bool diceUpgrade_2 = false;
-    public bool gameClear = false;
+    public GameDatas gameDatas = new();
+    public GameDatas saveData = new();
+
 
     //점프 시간을 줄여서 animation속도 짧게하기
-    public float jumpDuration;
+    //public float jumpDuration { get => gameDatas.jumpDurationValue; private set => gameDatas.jumpDurationValue = value; }
     //말 이동 대기 시간 짧게
-    [field:SerializeField] public float waitForNextNode { get; private set; }
+    //public float waitForNextNode { get => gameDatas.waitForNextNodeValue; private set => gameDatas.waitForNextNodeValue = value; }
     // 주사위 돌아가는 시간
-    [field:SerializeField] public float rollDuration { get; private set; }
+    //public float rollDuration { get => gameDatas.rollDurationValue; private set => gameDatas.rollDurationValue = value; }
     // 건물 내려오는 속도
-    [field: SerializeField] public float buildSpeed { get; private set; }
+    //public float buildSpeed { get => gameDatas.buildSpeedValue; private set => gameDatas.buildSpeedValue = value; }
 
     public DiceMode currentDiceMode
     {
         get
         {
-            return !diceUpgrade_1 ? DiceMode.Physics : !diceUpgrade_2 ? DiceMode.Animated : DiceMode.Auto;
+            return !gameDatas.diceUpgrade_1 ? DiceMode.Physics : !gameDatas.diceUpgrade_2 ? DiceMode.Animated : DiceMode.Auto;
         }
     }
-    public List<int> listMaxBuildCount = new List<int>{ { 3 }, { 6 },{ 9 }, { 10 } };
-    public bool buildingCountUpgrade_1 = false;
-    public bool buildingCountUpgrade_2 = false;
-    public bool buildingCountUpgrade_3 = false;
+    
     public int maxBuildingCount {  get
         {
-            return !buildingCountUpgrade_1 ? listMaxBuildCount[0] : 
-                !buildingCountUpgrade_2 ? listMaxBuildCount[1] : 
-                !buildingCountUpgrade_3 ? listMaxBuildCount[2] : listMaxBuildCount[3];
+            return !gameDatas.buildingCountUpgrade_1 ? gameDatas.listMaxBuildCount[0] : 
+                !gameDatas.buildingCountUpgrade_2 ? gameDatas.listMaxBuildCount[1] : 
+                !gameDatas.buildingCountUpgrade_3 ? gameDatas.listMaxBuildCount[2] : gameDatas.listMaxBuildCount[3];
         }
     }
 
-    public void Init()
-    {
-        buildingCountUpgrade_1 = false;
-        buildingCountUpgrade_2 = false;
-        buildingCountUpgrade_3 = false;
-        diceUpgrade_1 = false;
-        diceUpgrade_2 = false;
-        gameClear = false;
-        isGameStart = false;
-        diceNum = -1;
-        jumpDuration = 0.6f;
-        rollDuration = 0.6f;
-        buildSpeed = 0.6f;
+    //public void Init()
+    //{
+    //    buildingCountUpgrade_1 = false;
+    //    buildingCountUpgrade_2 = false;
+    //    buildingCountUpgrade_3 = false;
+    //    diceUpgrade_1 = false;
+    //    diceUpgrade_2 = false;
+    //    gameClear = false;
+    //    isGameStart = false;
+    //    diceNum = -1;
+    //    jumpDuration = 0.6f;
+    //    rollDuration = 0.6f;
+    //    buildSpeed = 0.6f;
 
-        waitForNextNode = 0.1f;
+    //    waitForNextNode = 0.1f;
 
-        foreach (var account in myAccountList)
-        {
-            account.Amount = 0;
-        }
-        myUpgrades.flat_lineValueUpgrade.Clear();
-        myUpgrades.mult_lineValueUpgrade.Clear();
-        myUpgrades.flat_tileValueUpgrade.Clear();
-        myUpgrades.mult_tileValueUpgrade.Clear();
-        myUpgrades.flat_buildingValueUpgrade.Clear();
-        myUpgrades.mult_buildingValueUpgrade.Clear();
-        myUpgrades.flat_IncomeValueUpgrade.Clear();
-        myUpgrades.mult_IncomeValueUpgrade.Clear();
-        myUpgrades.diceRollDurationUpgrade.Clear();
-        myUpgrades.playerjumpDurationUpgrade.Clear();
-        myUpgrades.buildSpeedUpgrade.Clear();
-    }
+    //    foreach (var account in myAccountList)
+    //    {
+    //        account.Amount = 0;
+    //    }
+    //    myUpgrades.flat_lineValueUpgrade.Clear();
+    //    myUpgrades.mult_lineValueUpgrade.Clear();
+    //    myUpgrades.flat_tileValueUpgrade.Clear();
+    //    myUpgrades.mult_tileValueUpgrade.Clear();
+    //    myUpgrades.flat_buildingValueUpgrade.Clear();
+    //    myUpgrades.mult_buildingValueUpgrade.Clear();
+    //    myUpgrades.flat_IncomeValueUpgrade.Clear();
+    //    myUpgrades.mult_IncomeValueUpgrade.Clear();
+    //    myUpgrades.diceRollDurationUpgrade.Clear();
+    //    myUpgrades.playerjumpDurationUpgrade.Clear();
+    //    myUpgrades.buildSpeedUpgrade.Clear();
+    //}
 
 
 
@@ -154,10 +168,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         gameClearPanel.SetActive(false);
-        diceUpgrade_1 = false;
-        diceUpgrade_2 = false;
-        gameClear = false;
-        isGameStart = false;
+        gameDatas = DataManager.Instance.LoadGameData();
+        //diceUpgrade_1 = false;
+        //diceUpgrade_2 = false;
+        //gameClear = false;
+        //isGameStart = false;
     }
 
     public void UpdateAccount(Dictionary<CurrencyType, BigInteger> receipt)
@@ -168,7 +183,7 @@ public class GameManager : MonoBehaviour
             BigInteger amount = bill.Value;
             //Debug.Log($"{bill.Key} / {bill.Value}");
 
-            foreach (var item in myAccountList)
+            foreach (var item in gameDatas.myAccountList)
             {
                 if (item.currencyType == type)
                 {
@@ -205,26 +220,54 @@ public class GameManager : MonoBehaviour
     public void GameClear()
     {
         hfsmManager.OnTriggerStopHfsm();
-        isGameStart = false;
+        gameDatas.isGameStart = false;
         gameClearPanel.SetActive(true);
     }
 
     public void CalculateJumpDuration()
     {
-        myUpgrades.playerjumpDurationUpgrade.ForEach((value) =>
-        jumpDuration = value.upgradeValue * Mathf.Pow(value.statMultiplierPerLevel, value.currentUpgradeCount));
-        Debug.Log($"{jumpDuration} >> jumpDuration to calc");
+        gameDatas.myUpgrades.playerjumpDurationUpgrade.ForEach((value) =>
+        gameDatas.jumpDuration = value.upgradeValue * Mathf.Pow(value.statMultiplierPerLevel, value.currentUpgradeCount));
+        Debug.Log($"{gameDatas.jumpDuration} >> jumpDuration to calc");
     }
     public void CalculateBuildSpeed()
     {
-        myUpgrades.buildSpeedUpgrade.ForEach((value) =>
-        buildSpeed = value.upgradeValue * Mathf.Pow(value.statMultiplierPerLevel, value.currentUpgradeCount));
-        Debug.Log($"{buildSpeed} >> jumpDuration to calc");
+        gameDatas.myUpgrades.buildSpeedUpgrade.ForEach((value) =>
+        gameDatas.buildSpeed = value.upgradeValue * Mathf.Pow(value.statMultiplierPerLevel, value.currentUpgradeCount));
+        Debug.Log($"{gameDatas.buildSpeed} >> jumpDuration to calc");
     }
     public void CalculateDiceRollSpeed()
     {
-        myUpgrades.diceRollDurationUpgrade.ForEach((value) =>
-        rollDuration = value.upgradeValue * Mathf.Pow(value.statMultiplierPerLevel, value.currentUpgradeCount));
-        Debug.Log($"{rollDuration} >> rollDuration to calc");
+        gameDatas.myUpgrades.diceRollDurationUpgrade.ForEach((value) =>
+        gameDatas.rollDuration = value.upgradeValue * Mathf.Pow(value.statMultiplierPerLevel, value.currentUpgradeCount));
+        Debug.Log($"{gameDatas.rollDuration} >> rollDuration to calc");
+    }
+
+    public void ClickSaveButton()
+    {
+        DataManager.Instance.CreateNewSaveSafe(this.gameDatas);
+    }
+
+    public void ClickAccountZero()
+    {
+        Account newAccount = new Account();
+        newAccount.currencyType = CurrencyType.Food;
+        newAccount.Amount = 0;
+        gameDatas.myAccountList.Add(newAccount);
+        newAccount.currencyType = CurrencyType.Wood;
+        newAccount.Amount = 0;
+        gameDatas.myAccountList.Add(newAccount);
+        newAccount.currencyType = CurrencyType.Stone;
+        newAccount.Amount = 0;
+        gameDatas.myAccountList.Add(newAccount);
+        newAccount.currencyType = CurrencyType.Industry;
+        newAccount.Amount = 0;
+        gameDatas.myAccountList.Add(newAccount);
+
+        foreach (var account in gameDatas.myAccountList)
+        {
+            account.Amount = 0;
+            Debug.Log($"{account.currencyType} type / {account.Amount} amount");
+        }
     }
 }

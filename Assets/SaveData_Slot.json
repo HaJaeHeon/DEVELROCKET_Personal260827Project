@@ -1,0 +1,59 @@
+{
+    "myAccountList": [
+        {
+            "currencyType": 0,
+            "Amount": {
+                "stringValue": "0"
+            }
+        },
+        {
+            "currencyType": 1,
+            "Amount": {
+                "stringValue": "0"
+            }
+        },
+        {
+            "currencyType": 2,
+            "Amount": {
+                "stringValue": "0"
+            }
+        },
+        {
+            "currencyType": 3,
+            "Amount": {
+                "stringValue": "0"
+            }
+        }
+    ],
+    "myUpgrades": {
+        "flat_lineValueUpgrade": [],
+        "mult_lineValueUpgrade": [],
+        "flat_tileValueUpgrade": [],
+        "mult_tileValueUpgrade": [],
+        "flat_buildingValueUpgrade": [],
+        "mult_buildingValueUpgrade": [],
+        "flat_IncomeValueUpgrade": [],
+        "mult_IncomeValueUpgrade": [],
+        "diceRollDurationUpgrade": [],
+        "playerjumpDurationUpgrade": [],
+        "buildSpeedUpgrade": []
+    },
+    "isGameStart": false,
+    "diceUpgrade_1": false,
+    "diceUpgrade_2": false,
+    "gameClear": false,
+    "listMaxBuildCount": [
+        3,
+        6,
+        9,
+        10
+    ],
+    "buildingCountUpgrade_1": false,
+    "buildingCountUpgrade_2": false,
+    "buildingCountUpgrade_3": false,
+    "diceNum": -1,
+    "jumpDuration": 1.0,
+    "waitForNextNode": 0.1,
+    "rollDuration": 1.0,
+    "buildSpeed": 1.0
+}

@@ -56,12 +56,12 @@ public class TileNode : MonoBehaviour
 
         BigInteger flatValues = 0;
 
-        foreach (var value in GameManager.Instance.myUpgrades.flat_tileValueUpgrade)
+        foreach (var value in GameManager.Instance.gameDatas.myUpgrades.flat_tileValueUpgrade)
         {
             flatValues += (BigInteger)(value.upgradeValue * Mathf.Pow(value.statMultiplierPerLevel, value.currentUpgradeCount));
         }
         BigInteger multiValues = 1;
-        foreach(var upgrade in GameManager.Instance.myUpgrades.mult_tileValueUpgrade)
+        foreach(var upgrade in GameManager.Instance.gameDatas.myUpgrades.mult_tileValueUpgrade)
         {
             //multValues *= upgrade pow;// 업그레이드 수치에  Pow(레벨당 스탯업 수치, 업그레이드 갯수)
             multiValues *= (BigInteger)(upgrade.upgradeValue * Mathf.Pow(upgrade.statMultiplierPerLevel,upgrade.currentUpgradeCount));
@@ -74,10 +74,10 @@ public class TileNode : MonoBehaviour
     public BigInteger BuildingReward()
     {
         BigInteger baseBuildingReward = data.buildingReward * buildingCount;
-        BigInteger flatValues = (BigInteger)(GameManager.Instance.myUpgrades.flat_buildingValueUpgrade.Sum
+        BigInteger flatValues = (BigInteger)(GameManager.Instance.gameDatas.myUpgrades.flat_buildingValueUpgrade.Sum
                             (value => value.upgradeValue * Mathf.Pow(value.statMultiplierPerLevel, value.currentUpgradeCount)));
         BigInteger multiValues = 1;
-        foreach (var upgrade in GameManager.Instance.myUpgrades.mult_buildingValueUpgrade)
+        foreach (var upgrade in GameManager.Instance.gameDatas.myUpgrades.mult_buildingValueUpgrade)
         {
             multiValues *= (BigInteger)(upgrade.upgradeValue * Mathf.Pow(upgrade.statMultiplierPerLevel, upgrade.currentUpgradeCount));
         }
@@ -118,7 +118,7 @@ public class TileNode : MonoBehaviour
         obj.transform.localPosition = buildTransforms[buildingCount % buildTransforms.Length] + UnityEngine.Vector3.up;
         buildingList.Add(obj);
 
-        yield return obj.transform.DOLocalMove(buildTransforms[buildingCount % buildTransforms.Length], GameManager.Instance.buildSpeed).SetEase(Ease.InOutCubic).OnComplete(() =>
+        yield return obj.transform.DOLocalMove(buildTransforms[buildingCount % buildTransforms.Length], GameManager.Instance.gameDatas.buildSpeed).SetEase(Ease.InOutCubic).OnComplete(() =>
         {
             buildingCount++;
         }).SetLink(gameObject).WaitForCompletion();
@@ -128,9 +128,9 @@ public class TileNode : MonoBehaviour
     {
         GameObject currentBuilding = null;
 
-        currentBuilding = !(buildingCount >= GameManager.Instance.listMaxBuildCount[0]) ?
-            buildPrefab_1 : !(buildingCount >= GameManager.Instance.listMaxBuildCount[1]) ?
-            buildPrefab_2 : !(buildingCount >= GameManager.Instance.listMaxBuildCount[2]) ? 
+        currentBuilding = !(buildingCount >= GameManager.Instance.gameDatas.listMaxBuildCount[0]) ?
+            buildPrefab_1 : !(buildingCount >= GameManager.Instance.gameDatas.listMaxBuildCount[1]) ?
+            buildPrefab_2 : !(buildingCount >= GameManager.Instance.gameDatas.listMaxBuildCount[2]) ? 
             buildPrefab_3 : buildPrefab_4;
 
         if (currentBuilding == null)

@@ -4,6 +4,8 @@ using UnityHFSM;
 
 public class HFSMManager : MonoBehaviour
 {
+    private GameDatas gameDatas;
+
     [SerializeField] private DiceRoll roll;
     [SerializeField] private PlayerMove move;
     [SerializeField] private TileEvents tileEvent;
@@ -19,6 +21,8 @@ public class HFSMManager : MonoBehaviour
 
     private void Start()
     {
+        gameDatas = GameManager.Instance.gameDatas;
+
         fsm = new StateMachine();
 
 
@@ -48,7 +52,7 @@ public class HFSMManager : MonoBehaviour
         diceFsm.AddTransition("Entry", "DiceAnimated", t => GameManager.Instance.currentDiceMode == DiceMode.Animated);
         diceFsm.AddTransition("Entry", "DiceAuto", t => GameManager.Instance.currentDiceMode == DiceMode.Auto);
 
-        fsm.AddTransition("diceFsm", "Move", t => GameManager.Instance.isGameStart == true && roll.isRolling == false);
+        fsm.AddTransition("diceFsm", "Move", t => gameDatas.isGameStart == true && roll.isRolling == false);
 
 
 

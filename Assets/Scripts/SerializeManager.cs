@@ -22,7 +22,7 @@ public class SerializeManager : MonoBehaviour
         GameManager.Instance.earnEffect = earnEffectUI;
         GameManager.Instance.hfsmManager = hfsmManager;
         GameManager.Instance.gameClearPanel = clearPanel;
-        GameManager.Instance.Init();
+        //GameManager.Instance.Init();
     }
 
     private void InitBoardManager()

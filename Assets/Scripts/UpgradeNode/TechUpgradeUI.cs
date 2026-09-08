@@ -35,6 +35,8 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private Dictionary<StatType, Action> statUpgradeAction;
 
+    private GameDatas gameDatas;
+
     private void OnEnable()
     {
         GameManager.Instance.OnRefreshUI += RefreshUI;
@@ -64,6 +66,8 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     //연결해야할 부분 초기화, ui refresh
     private void Start()
     {
+        gameDatas = GameManager.Instance.gameDatas;
+
         iconImage.sprite = nodeData.nodeIcon;
         nameText.text = string.Format(nodeData.nodeName, (nodeData.baseStatValue * Mathf.Pow(nodeData.statMultiplierPerLevel, currentLevel)));
         levelText.text = currentLevel.ToString();
@@ -241,23 +245,23 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             case UnlockType.None:
                 break;
             case UnlockType.UnlockAnimatedRoll:
-                GameManager.Instance.diceUpgrade_1 = true;
+                gameDatas.diceUpgrade_1 = true;
                 break;
             case UnlockType.UnlockAutoRoll:
-                GameManager.Instance.diceUpgrade_2 = true;
+                gameDatas.diceUpgrade_2 = true;
                 break;
             case UnlockType.UnlockBuildCount1:
-                GameManager.Instance.buildingCountUpgrade_1 = true;
+                gameDatas.buildingCountUpgrade_1 = true;
                 break;
             case UnlockType.UnlockBuildCount2:
-                GameManager.Instance.buildingCountUpgrade_2 = true;
+                gameDatas.buildingCountUpgrade_2 = true;
                 break;
             case UnlockType.UnlockBuildCount3:
-                GameManager.Instance.buildingCountUpgrade_3 = true;
+                gameDatas.buildingCountUpgrade_3 = true;
                 break;
 
             case UnlockType.GameClear:
-                GameManager.Instance.gameClear = true;
+                gameDatas.gameClear = true;
                 GameManager.Instance.GameClear();
                 Time.timeScale = 0;
                 break;
@@ -272,7 +276,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             BigInteger currentPrice = (BigInteger)(costData.baseCost * BigInteger.Pow(costData.costMultiplier, currentLevel));
 
-            foreach (var item in GameManager.Instance.myAccountList)
+            foreach (var item in gameDatas.myAccountList)
             {
                 if (item.currencyType == costData.currency)
                 {
@@ -330,39 +334,39 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     
     private void ApplyLineFlat()
     {
-        ConfirmData(GameManager.Instance.myUpgrades.flat_lineValueUpgrade);
+        ConfirmData(gameDatas.myUpgrades.flat_lineValueUpgrade);
     }
     private void ApplyLineMulti()
     {
-        ConfirmData(GameManager.Instance.myUpgrades.mult_lineValueUpgrade);
+        ConfirmData(gameDatas.myUpgrades.mult_lineValueUpgrade);
     }
     private void ApplyTileFlat()
     {
-        ConfirmData(GameManager.Instance.myUpgrades.flat_tileValueUpgrade);
+        ConfirmData(gameDatas.myUpgrades.flat_tileValueUpgrade);
     }
     private void ApplyTileMulti()
     {
-        ConfirmData(GameManager.Instance.myUpgrades.mult_tileValueUpgrade);
+        ConfirmData(gameDatas.myUpgrades.mult_tileValueUpgrade);
     }
     private void ApplyBuildingFlat()
     {
-        ConfirmData(GameManager.Instance.myUpgrades.flat_buildingValueUpgrade);
+        ConfirmData(gameDatas.myUpgrades.flat_buildingValueUpgrade);
     }
     private void ApplyBuildingMulti()
     {
-        ConfirmData(GameManager.Instance.myUpgrades.mult_buildingValueUpgrade);
+        ConfirmData(gameDatas.myUpgrades.mult_buildingValueUpgrade);
     }
     private void ApplyIncomeFlat()
     {
-        ConfirmData(GameManager.Instance.myUpgrades.flat_IncomeValueUpgrade);
+        ConfirmData(gameDatas.myUpgrades.flat_IncomeValueUpgrade);
     }
     private void ApplyIncomeMulti()
     {
-        ConfirmData(GameManager.Instance.myUpgrades.mult_IncomeValueUpgrade);
+        ConfirmData(gameDatas.myUpgrades.mult_IncomeValueUpgrade);
     }
     private void ApplyDiceRollDurationReduction()
     {
-        ConfirmData(GameManager.Instance.myUpgrades.diceRollDurationUpgrade);
+        ConfirmData(gameDatas.myUpgrades.diceRollDurationUpgrade);
     }
     private void ApplyPlayerJumpDurationReduction()
     {
@@ -372,16 +376,16 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             return;
         }
 
-        if (GameManager.Instance.myUpgrades == null)
+        if (gameDatas.myUpgrades == null)
         {
             Debug.LogError("gameManager.myUpgrades가 null입니다! GameManager 스크립트에서 myUpgrades를 new로 생성했는지 확인하세요.");
             return;
         }
-        ConfirmData(GameManager.Instance.myUpgrades.playerjumpDurationUpgrade);
+        ConfirmData(gameDatas.myUpgrades.playerjumpDurationUpgrade);
     }
     private void ApplyBuildSpeedDurationReduction()
     {
-        ConfirmData(GameManager.Instance.myUpgrades.buildSpeedUpgrade);
+        ConfirmData(gameDatas.myUpgrades.buildSpeedUpgrade);
     }
 
     //===========================================================

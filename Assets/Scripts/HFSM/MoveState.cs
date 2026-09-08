@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityHFSM;
 
@@ -8,11 +9,12 @@ public class MoveState : StateBase
     {
         this.move = move;
     }
+
     // 이 상태에 진입시 실행
     public override void OnEnter()
     {
         //Debug.Log("MoveState / OnEnter");
-        move.StartMove(GameManager.Instance.diceNum);
+        move.StartMove(GameManager.Instance.gameDatas.diceNum);
     }
 
     // Update 역할

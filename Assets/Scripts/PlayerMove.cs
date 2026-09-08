@@ -14,6 +14,8 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private int currentNodeIndex;
     [field:SerializeField] public bool isRunning {  get; private set; }
 
+    private GameDatas gameDatas;
+
     // gameManager나 여기서 init 으로 플레어이 위치 처음 타일로 초기화 필요
     //private void Start()
     //{
@@ -24,6 +26,11 @@ public class PlayerMove : MonoBehaviour
     private void Awake()
     {
         isRunning = false;
+    }
+
+    private void Start()
+    {
+        gameDatas = GameManager.Instance.gameDatas;
     }
 
     public void StartMove(int diceNum)
@@ -48,11 +55,11 @@ public class PlayerMove : MonoBehaviour
 
             GameManager.Instance.CalculateJumpDuration();
 
-            yield return transform.DOJump(endPosition, jumpHeight, 1, gameManager.jumpDuration).SetLink(gameObject).WaitForCompletion();
+            yield return transform.DOJump(endPosition, jumpHeight, 1, gameDatas.jumpDuration).SetLink(gameObject).WaitForCompletion();
 
-            if(gameManager.waitForNextNode > 0)
+            if(gameDatas.waitForNextNode > 0)
             {
-                yield return new WaitForSeconds(gameManager.waitForNextNode);
+                yield return new WaitForSeconds(gameDatas.waitForNextNode);
             }
         }
 

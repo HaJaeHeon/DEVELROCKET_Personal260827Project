@@ -33,11 +33,18 @@ public class DiceRoll : MonoBehaviour
 
     private Coroutine autoRollRoutine;
 
+    private GameDatas gameDatas;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         isRolling = false;
         isAutoRoll = false;
+    }
+
+    private void Start()
+    {
+        gameDatas = GameManager.Instance.gameDatas;
     }
 
     private void OnEnable()
@@ -90,7 +97,7 @@ public class DiceRoll : MonoBehaviour
         Debug.Log($"주사위 결과값 : {finalDiceNum}");
 
         // GameManager에 보내기
-        GameManager.Instance.diceNum = finalDiceNum;
+        gameDatas.diceNum = finalDiceNum;
 
         isRolling = false;
     }
@@ -156,12 +163,12 @@ public class DiceRoll : MonoBehaviour
 
         Vector3 spinVector = Vector3.one * 1080f;
 
-        yield return transform.DORotate(spinVector, GameManager.Instance.rollDuration, RotateMode.FastBeyond360).SetEase(Ease.Linear).OnComplete(() =>
+        yield return transform.DORotate(spinVector, gameDatas.rollDuration, RotateMode.FastBeyond360).SetEase(Ease.Linear).OnComplete(() =>
         {
             DiceFacing(finalDiceNum);
         }).SetLink(gameObject).WaitForCompletion();
 
-        GameManager.Instance.diceNum = finalDiceNum;
+        gameDatas.diceNum = finalDiceNum;
 
         currentRoutine = null;
         autoRollRoutine = null;
@@ -227,6 +234,6 @@ public class DiceRoll : MonoBehaviour
 
     public void OnClickRollButton()
     {
-        GameManager.Instance.isGameStart = true;
+        gameDatas.isGameStart = true;
     }
 }

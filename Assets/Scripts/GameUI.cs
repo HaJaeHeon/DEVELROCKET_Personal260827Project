@@ -11,9 +11,12 @@ public class GameUI : MonoBehaviour
     [SerializeField] private TMP_Text StoneText;
     [SerializeField] private TMP_Text IndustryText;
 
+    private GameDatas gameDatas;
+
   
     private void Start()
     {
+        gameDatas = GameManager.Instance.gameDatas;
         UpdateUI();
     }
     private void OnEnable()
@@ -28,7 +31,7 @@ public class GameUI : MonoBehaviour
 
     public void UpdateUI()
     {
-        List<Account> account = GameManager.Instance.myAccountList;
+        List<Account> account = gameDatas.myAccountList;
 
         for(int i = 0; i < account.Count; i++)
         {
