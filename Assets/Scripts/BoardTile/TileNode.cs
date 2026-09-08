@@ -46,7 +46,7 @@ public class TileNode : MonoBehaviour
 
     // 각 줄에서의
     // [[n번째 타일의 가치(n번째이면 1.n) * 현재 줄의 기초 재화량]] = 현재 타일의 기초 재화량
-    //최종 획득량 = (기본값 + 고정수치 합) × (1 + 일반 업그레이드 퍼센트 합)
+    // 최종 획득량 = (기본값 + 고정수치 합) × (1 + 일반 업그레이드 퍼센트 합)
     //              × (특수 업그레이드 1 배율) × (특수 업그레이드 2 배율) ...
     public BigInteger TileReward()
     {
@@ -58,13 +58,13 @@ public class TileNode : MonoBehaviour
 
         foreach (var value in GameManager.Instance.myUpgrades.flat_tileValueUpgrade)
         {
-            flatValues += (BigInteger)value.upgradeValue * value.currentUpgradeCount;
+            flatValues += (BigInteger)(value.upgradeValue * Mathf.Pow(value.statMultiplierPerLevel, value.currentUpgradeCount));
         }
         BigInteger multiValues = 1;
         foreach(var upgrade in GameManager.Instance.myUpgrades.mult_tileValueUpgrade)
         {
-            //multValues *= upgrade pow;// 업그레이드 수치에  업그레이드 갯수만큼 pow 하기
-            multiValues *= BigInteger.Pow(upgrade.upgradeValue, upgrade.currentUpgradeCount);
+            //multValues *= upgrade pow;// 업그레이드 수치에  Pow(레벨당 스탯업 수치, 업그레이드 갯수)
+            multiValues *= (BigInteger)(upgrade.upgradeValue * Mathf.Pow(upgrade.statMultiplierPerLevel,upgrade.currentUpgradeCount));
         }
         //Debug.Log($"[보상 추적] 기본값: {baseTileReward} / 고정업글: {flatValues} / 배율업글: {multiValues}");
 
@@ -74,12 +74,12 @@ public class TileNode : MonoBehaviour
     public BigInteger BuildingReward()
     {
         BigInteger baseBuildingReward = data.buildingReward * buildingCount;
-        long flatValues = GameManager.Instance.myUpgrades.flat_buildingValueUpgrade.Sum
-                            (value => value.upgradeValue * value.currentUpgradeCount);
+        BigInteger flatValues = (BigInteger)(GameManager.Instance.myUpgrades.flat_buildingValueUpgrade.Sum
+                            (value => value.upgradeValue * Mathf.Pow(value.statMultiplierPerLevel, value.currentUpgradeCount)));
         BigInteger multiValues = 1;
         foreach (var upgrade in GameManager.Instance.myUpgrades.mult_buildingValueUpgrade)
         {
-            multiValues *= BigInteger.Pow(upgrade.upgradeValue, upgrade.currentUpgradeCount);
+            multiValues *= (BigInteger)(upgrade.upgradeValue * Mathf.Pow(upgrade.statMultiplierPerLevel, upgrade.currentUpgradeCount));
         }
 
         return (BigInteger)((baseBuildingReward + flatValues) * multiValues);

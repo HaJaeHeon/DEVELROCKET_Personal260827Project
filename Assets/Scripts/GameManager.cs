@@ -27,6 +27,7 @@ public class UpgradeInfo
 {
     public int nodeId;
     public long upgradeValue;
+    public float statMultiplierPerLevel;
     public int currentUpgradeCount;
 }
 
@@ -65,7 +66,6 @@ public class GameManager : MonoBehaviour
     public bool isGameStart = false;
     public HFSMManager hfsmManager;
 
-    //public PlayerMove move;
     public int diceNum;
     public TileNode tile;
 
@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
     public bool gameClear = false;
 
     //점프 시간을 줄여서 animation속도 짧게하기
-    [field:SerializeField] public float jumpDuration { get; private set;  }
+    public float jumpDuration;
     //말 이동 대기 시간 짧게
     [field:SerializeField] public float waitForNextNode { get; private set; }
     // 주사위 돌아가는 시간
@@ -113,10 +113,11 @@ public class GameManager : MonoBehaviour
         gameClear = false;
         isGameStart = false;
         diceNum = -1;
-        jumpDuration = 1f;
-        waitForNextNode = 1f;
-        rollDuration = 1f;
-        buildSpeed = 1f;
+        jumpDuration = 0.6f;
+        rollDuration = 0.6f;
+        buildSpeed = 0.6f;
+
+        waitForNextNode = 0.1f;
 
         foreach (var account in myAccountList)
         {
@@ -157,8 +158,6 @@ public class GameManager : MonoBehaviour
         diceUpgrade_2 = false;
         gameClear = false;
         isGameStart = false;
-        //myAccountList = new();
-        //myUpgrades = new();
     }
 
     public void UpdateAccount(Dictionary<CurrencyType, BigInteger> receipt)
@@ -208,5 +207,12 @@ public class GameManager : MonoBehaviour
         hfsmManager.OnTriggerStopHfsm();
         isGameStart = false;
         gameClearPanel.SetActive(true);
+    }
+
+    public void CalculateJumpDuration()
+    {
+        myUpgrades.playerjumpDurationUpgrade.ForEach((value) =>
+        jumpDuration = value.upgradeValue * Mathf.Pow(value.statMultiplierPerLevel, value.currentUpgradeCount));
+        Debug.Log($"{jumpDuration} >> jumpDuration to calc");
     }
 }

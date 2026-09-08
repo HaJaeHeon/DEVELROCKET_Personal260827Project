@@ -46,6 +46,8 @@ public class PlayerMove : MonoBehaviour
             Vector3 endPosition = targetNode.transform.position + Vector3.up * heightOffset;
             //Debug.Log(endPosition);
 
+            GameManager.Instance.CalculateJumpDuration();
+
             yield return transform.DOJump(endPosition, jumpHeight, 1, gameManager.jumpDuration).SetLink(gameObject).WaitForCompletion();
 
             if(gameManager.waitForNextNode > 0)

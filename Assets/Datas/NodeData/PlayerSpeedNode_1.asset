@@ -28,5 +28,5 @@ MonoBehaviour:
     costMultiplier: 2
   <targetStat>k__BackingField: 9
   <baseStatValue>k__BackingField: 1
-  <statMultiplierPerLevel>k__BackingField: 2
+  <statMultiplierPerLevel>k__BackingField: 0.8
   <targetUnlock>k__BackingField: 8

@@ -65,7 +65,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private void Start()
     {
         iconImage.sprite = nodeData.nodeIcon;
-        nameText.text = string.Format(nodeData.nodeName, nodeData.baseStatValue);
+        nameText.text = string.Format(nodeData.nodeName, (nodeData.baseStatValue * Mathf.Pow(nodeData.statMultiplierPerLevel, currentLevel)));
         levelText.text = currentLevel.ToString();
         //costText.text = nodeData.requiredCosts[currentLevel].ToString();
         descriptionText.text = string.Format(nodeData.description, nodeData.baseStatValue, nodeData.statMultiplierPerLevel);
@@ -306,6 +306,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             nodeId = nodeData.nodeID,
             upgradeValue = nodeData.baseStatValue,
+            statMultiplierPerLevel = nodeData.statMultiplierPerLevel,
             currentUpgradeCount = currentLevel
         };
         if (info.Count == 0)
