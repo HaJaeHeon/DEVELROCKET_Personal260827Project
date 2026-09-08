@@ -35,6 +35,16 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private Dictionary<StatType, Action> statUpgradeAction;
 
+    private void OnEnable()
+    {
+        GameManager.Instance.OnRefreshUI += RefreshUI;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.OnRefreshUI -= RefreshUI;
+    }
+
     // 컴포넌트 널 체크하기
     private void Awake()
     {
@@ -49,10 +59,6 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         if (manager == null)
             manager = transform.root.GetComponent<TechUpgradeTreeManager>();
-
-        
-
-        GameManager.Instance.OnRefreshUI += RefreshUI;
     }
 
     //연결해야할 부분 초기화, ui refresh

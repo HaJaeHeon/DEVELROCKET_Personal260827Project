@@ -11,14 +11,19 @@ public class GameUI : MonoBehaviour
     [SerializeField] private TMP_Text StoneText;
     [SerializeField] private TMP_Text IndustryText;
 
-    private void OnEnable()
-    {
-    }
-
+  
     private void Start()
     {
-        GameManager.Instance.OnRefreshUI += UpdateUI;
         UpdateUI();
+    }
+    private void OnEnable()
+    {
+        GameManager.Instance.OnRefreshUI += UpdateUI;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.OnRefreshUI -= UpdateUI;
     }
 
     public void UpdateUI()

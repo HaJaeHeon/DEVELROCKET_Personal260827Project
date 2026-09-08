@@ -59,7 +59,8 @@ public class GameManager : MonoBehaviour
 
     private static GameManager instance;
     public static GameManager Instance => instance;
-    [SerializeField] private GameObject gameClearPanel;
+
+    public GameObject gameClearPanel;
     public EarnEffectUI earnEffect;
     public bool isGameStart = false;
     public HFSMManager hfsmManager;
@@ -100,6 +101,38 @@ public class GameManager : MonoBehaviour
                 !buildingCountUpgrade_2 ? listMaxBuildCount[1] : 
                 !buildingCountUpgrade_3 ? listMaxBuildCount[2] : listMaxBuildCount[3];
         }
+    }
+
+    public void Init()
+    {
+        buildingCountUpgrade_1 = false;
+        buildingCountUpgrade_2 = false;
+        buildingCountUpgrade_3 = false;
+        diceUpgrade_1 = false;
+        diceUpgrade_2 = false;
+        gameClear = false;
+        isGameStart = false;
+        diceNum = -1;
+        jumpDuration = 1f;
+        waitForNextNode = 1f;
+        rollDuration = 1f;
+        buildSpeed = 1f;
+
+        foreach (var account in myAccountList)
+        {
+            account.Amount = 0;
+        }
+        myUpgrades.flat_lineValueUpgrade.Clear();
+        myUpgrades.mult_lineValueUpgrade.Clear();
+        myUpgrades.flat_tileValueUpgrade.Clear();
+        myUpgrades.mult_tileValueUpgrade.Clear();
+        myUpgrades.flat_buildingValueUpgrade.Clear();
+        myUpgrades.mult_buildingValueUpgrade.Clear();
+        myUpgrades.flat_IncomeValueUpgrade.Clear();
+        myUpgrades.mult_IncomeValueUpgrade.Clear();
+        myUpgrades.diceRollDurationUpgrade.Clear();
+        myUpgrades.playerjumpDurationUpgrade.Clear();
+        myUpgrades.buildSpeedUpgrade.Clear();
     }
 
 
