@@ -125,8 +125,16 @@ public class TileNode : MonoBehaviour
 
     public GameObject SelectBuilding()
     {
-        return !GameManager.Instance.buildingCountUpgrade_1 ? 
-            buildPrefab_1 : !GameManager.Instance.buildingCountUpgrade_2 ? 
-            buildPrefab_2 : !GameManager.Instance.buildingCountUpgrade_3 ? buildPrefab_3 : buildPrefab_4;
+        GameObject currentBuilding = null;
+
+        currentBuilding = !(buildingCount >= GameManager.Instance.listMaxBuildCount[0]) ?
+            buildPrefab_1 : !(buildingCount >= GameManager.Instance.listMaxBuildCount[1]) ?
+            buildPrefab_2 : !(buildingCount >= GameManager.Instance.listMaxBuildCount[2]) ? 
+            buildPrefab_3 : buildPrefab_4;
+
+        if (currentBuilding == null)
+            Debug.Log($"{currentBuilding} is null");
+
+        return currentBuilding;
     }
 }
