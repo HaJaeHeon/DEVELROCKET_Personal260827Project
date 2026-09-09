@@ -15,7 +15,7 @@ MonoBehaviour:
   <nodeID>k__BackingField: 1125
   <nodeName>k__BackingField: "\uAC8C\uC784 \uD074\uB9AC\uC5B4"
   <description>k__BackingField: GameClear
-  <nodeIcon>k__BackingField: {fileID: 21300000, guid: 7f0ee1268d05b204cbba1da816c1547f, type: 3}
+  <nodeIcon>k__BackingField: {fileID: 21300000, guid: 84e4b5c7de2f156418d1c04e0da3a0d4, type: 3}
   <maxLevel>k__BackingField: 1
   <requiredCosts>k__BackingField:
   - currency: 3
