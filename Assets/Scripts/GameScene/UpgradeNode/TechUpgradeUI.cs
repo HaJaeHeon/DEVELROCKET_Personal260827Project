@@ -99,7 +99,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
         else
         {
-            Debug.Log($"{info.nodeId} : not null");
+            //Debug.Log($"{info.nodeId} : not null");
             currentLevel = info.currentUpgradeCount;
             nameText.text = string.Format(nodeData.nodeName, (info.upgradeValue * Mathf.Pow(info.statMultiplierPerLevel, info.currentUpgradeCount)));
             descriptionText.text = string.Format(nodeData.description, info.upgradeValue, info.statMultiplierPerLevel);

@@ -5,6 +5,7 @@ public class DataManager : MonoBehaviour
 {
     public static DataManager Instance { get; private set; }
 
+    //파일 경로 프로젝트 폴더 안으로 변경해야함
     public string initDataFile = "InitSaveFile.json";
     public string saveFileName = "SaveDataFile.json";
     public GameDatas currentDatas;
@@ -54,12 +55,21 @@ public class DataManager : MonoBehaviour
             Debug.Log("[Load] 세이브 파일이 없습니다. 초기 데이터를 가져옵니다.");
 
             string newPath = Path.Combine(Application.persistentDataPath, initDataFile);
+            if(File.Exists(newPath))
+            {
+                string jsonText = File.ReadAllText(newPath);
 
-            string jsonText = File.ReadAllText(newPath);
+                GameDatas loadedData = JsonUtility.FromJson<GameDatas>(jsonText);
 
-            GameDatas loadedData = JsonUtility.FromJson<GameDatas>(jsonText);
-
-            return loadedData;
+                return loadedData;
+            }
+            else
+            {
+                GameDatas data = new GameDatas();
+                Debug.Log("초기 파일도 없어서 초기 파일 생성");
+                // 여기 진짜 초기 파일 생성하는거 만들어야함
+                return data;
+            }
         }
     }
     public GameDatas LoadInitData()
