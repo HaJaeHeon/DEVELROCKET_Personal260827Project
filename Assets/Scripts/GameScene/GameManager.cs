@@ -20,6 +20,12 @@ public class Account
 {
     public CurrencyType currencyType;
     public UBigInt Amount;
+
+    public Account(CurrencyType type)
+    {
+        currencyType = type;
+        Amount = 0;
+    }
 }
 
 [Serializable]
@@ -91,6 +97,17 @@ public class GameDatas
     public float rollDuration = 1f;
     public float buildSpeed = 1f;
     public int currentPlayerPositionTileNum = 0;
+
+    public GameDatas()
+    {
+        myAccountList = new List<Account>
+        {
+            new Account((CurrencyType)0),
+            new Account((CurrencyType)1),
+            new Account((CurrencyType)2),
+            new Account((CurrencyType)3),
+        };
+    }
 }
 
 public class GameManager : MonoBehaviour
@@ -269,26 +286,26 @@ public class GameManager : MonoBehaviour
         DataManager.Instance.LoadInitData();
     }
 
-    public void ClickAccountZero()
-    {
-        Account newAccount = new Account();
-        newAccount.currencyType = CurrencyType.Food;
-        newAccount.Amount = 0;
-        gameDatas.myAccountList.Add(newAccount);
-        newAccount.currencyType = CurrencyType.Wood;
-        newAccount.Amount = 0;
-        gameDatas.myAccountList.Add(newAccount);
-        newAccount.currencyType = CurrencyType.Stone;
-        newAccount.Amount = 0;
-        gameDatas.myAccountList.Add(newAccount);
-        newAccount.currencyType = CurrencyType.Industry;
-        newAccount.Amount = 0;
-        gameDatas.myAccountList.Add(newAccount);
+    //public void ClickAccountZero()
+    //{
+    //    Account newAccount = new Account();
+    //    newAccount.currencyType = CurrencyType.Food;
+    //    newAccount.Amount = 0;
+    //    gameDatas.myAccountList.Add(newAccount);
+    //    newAccount.currencyType = CurrencyType.Wood;
+    //    newAccount.Amount = 0;
+    //    gameDatas.myAccountList.Add(newAccount);
+    //    newAccount.currencyType = CurrencyType.Stone;
+    //    newAccount.Amount = 0;
+    //    gameDatas.myAccountList.Add(newAccount);
+    //    newAccount.currencyType = CurrencyType.Industry;
+    //    newAccount.Amount = 0;
+    //    gameDatas.myAccountList.Add(newAccount);
 
-        foreach (var account in gameDatas.myAccountList)
-        {
-            account.Amount = 0;
-            Debug.Log($"{account.currencyType} type / {account.Amount} amount");
-        }
-    }
+    //    foreach (var account in gameDatas.myAccountList)
+    //    {
+    //        account.Amount = 0;
+    //        Debug.Log($"{account.currencyType} type / {account.Amount} amount");
+    //    }
+    //}
 }
