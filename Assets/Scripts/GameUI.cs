@@ -2,14 +2,21 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.Numerics;
 using TMPro;
+using Unity.VectorGraphics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
+    [Header("Texts")]
     [SerializeField] private TMP_Text foodText;
     [SerializeField] private TMP_Text woodText;
     [SerializeField] private TMP_Text StoneText;
     [SerializeField] private TMP_Text IndustryText;
+
+    [Header("Buttons")]
+    [SerializeField] private Button saveButton;
+    [SerializeField] private Button menuButton;
 
     private GameDatas gameDatas;
 
@@ -22,11 +29,15 @@ public class GameUI : MonoBehaviour
     private void OnEnable()
     {
         GameManager.Instance.OnRefreshUI += UpdateUI;
+        menuButton.onClick.AddListener(TOStartScene);
+        saveButton.onClick.AddListener(GameManager.Instance.ClickSaveButton);
     }
 
     private void OnDisable()
     {
         GameManager.Instance.OnRefreshUI -= UpdateUI;
+        menuButton.onClick.RemoveListener(TOStartScene);
+        saveButton.onClick.RemoveListener(GameManager.Instance.ClickSaveButton);
     }
 
     public void UpdateUI()
@@ -73,5 +84,10 @@ public class GameUI : MonoBehaviour
         double finalValue = (double)newValue / 100d;
 
         return finalValue.ToString("0.00") + units[exp];
+    }
+
+    private void TOStartScene()
+    {
+        LoadingManager.Instance.LoadSceneWithLoading("StartScene");
     }
 }

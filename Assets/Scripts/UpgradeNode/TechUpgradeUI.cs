@@ -23,7 +23,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [Header("상태 저장")]
     [SerializeField] private int currentLevel = 0;
     [SerializeField] private int maxLevel;
-    [SerializeField] private bool isUnlocked = false;
+    public bool isUnlocked = false;
 
     [Header("스킬 트리 구조 (Inspector 직접 연결)")]
     [SerializeField] private Outline outLine;
@@ -40,6 +40,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private void OnEnable()
     {
         GameManager.Instance.OnRefreshUI += RefreshUI;
+        RefreshUI();
     }
 
     private void OnDisable()
@@ -68,21 +69,88 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         gameDatas = GameManager.Instance.gameDatas;
 
-        iconImage.sprite = nodeData.nodeIcon;
-        nameText.text = string.Format(nodeData.nodeName, (nodeData.baseStatValue * Mathf.Pow(nodeData.statMultiplierPerLevel, currentLevel)));
-        levelText.text = currentLevel.ToString();
-        //costText.text = nodeData.requiredCosts[currentLevel].ToString();
-        descriptionText.text = string.Format(nodeData.description, nodeData.baseStatValue, nodeData.statMultiplierPerLevel);
-        nodeButton.onClick.AddListener(() => OnClickNode());
-        maxLevel = nodeData.maxLevel;
-        
-        RectTransform rect = gameObject.GetComponent<RectTransform>();
-        uiPosition = rect.position;
-        height = rect.rect.height * rect.lossyScale.y;
+        InitSkillNode();
+
 
         InitStatUpgrade();
 
         RefreshUI();
+    }
+
+    public void InitSkillNode()
+    {       
+        //costText.text = nodeData.requiredCosts[currentLevel].ToString();
+        // 업그레이드 가능 레벨로 확인 가능한 노드들
+        levelText.text = currentLevel.ToString();
+        iconImage.sprite = nodeData.nodeIcon;
+        nodeButton.onClick.AddListener(() => OnClickNode());
+        maxLevel = nodeData.maxLevel;
+        RectTransform rect = gameObject.GetComponent<RectTransform>();
+        uiPosition = rect.position;
+        height = rect.rect.height * rect.lossyScale.y;
+
+        UpgradeInfo info = gameDatas.myUpgrades.FindUpgradeID(nodeData.nodeID);
+
+        if (info == null)
+        {
+            //Debug.Log("null");
+            nameText.text = string.Format(nodeData.nodeName, (nodeData.baseStatValue * Mathf.Pow(nodeData.statMultiplierPerLevel, currentLevel)));
+            descriptionText.text = string.Format(nodeData.description, nodeData.baseStatValue, nodeData.statMultiplierPerLevel);
+        }
+        else
+        {
+            Debug.Log($"{info.nodeId} : not null");
+            currentLevel = info.currentUpgradeCount;
+            nameText.text = string.Format(nodeData.nodeName, (info.upgradeValue * Mathf.Pow(info.statMultiplierPerLevel, info.currentUpgradeCount)));
+            descriptionText.text = string.Format(nodeData.description, info.upgradeValue, info.statMultiplierPerLevel);
+            if (currentLevel >= maxLevel)
+            {
+                manager.OnNodeMastered(this);
+                outLine.effectColor = Color.green;
+            }
+        }
+
+        //// bool 로 업그레이드 한 노드들
+        ///
+        switch(nodeData.targetUnlock)
+        {
+            case UnlockType.UnlockGlobalBuild:
+                break;
+            case UnlockType.UnlockAnimatedRoll:
+                CheckBooleans(GameManager.Instance.gameDatas.diceUpgrade_1);
+                break;
+            case UnlockType.UnlockAutoRoll:
+                CheckBooleans(GameManager.Instance.gameDatas.diceUpgrade_2);
+                break;
+            case UnlockType.UnlockAutoBuild:
+                break;
+            case UnlockType.UnlockBuildCount1:
+                CheckBooleans(GameManager.Instance.gameDatas.buildingCountUpgrade_1);
+                break;
+            case UnlockType.UnlockBuildCount2:
+                CheckBooleans(GameManager.Instance.gameDatas.buildingCountUpgrade_2);
+                break;
+            case UnlockType.UnlockBuildCount3:
+                CheckBooleans(GameManager.Instance.gameDatas.buildingCountUpgrade_3);
+                break;
+            case UnlockType.GameClear:
+                CheckBooleans(GameManager.Instance.gameDatas.gameClear);
+                break;
+            case UnlockType.None:
+                break;
+        }
+    }
+
+    public void CheckBooleans(bool data)
+    {
+        if (data == false)
+            return;
+        else
+        {
+            currentLevel = maxLevel;
+            manager.OnNodeMastered(this);
+            outLine.effectColor = Color.green;
+        }
     }
 
     /// <summary>
@@ -276,7 +344,7 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             BigInteger currentPrice = (BigInteger)(costData.baseCost * BigInteger.Pow(costData.costMultiplier, currentLevel));
 
-            foreach (var item in gameDatas.myAccountList)
+            foreach (var item in GameManager.Instance.gameDatas.myAccountList)
             {
                 if (item.currencyType == costData.currency)
                 {

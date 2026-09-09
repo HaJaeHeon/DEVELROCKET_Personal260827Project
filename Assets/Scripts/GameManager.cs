@@ -51,8 +51,27 @@ public class Upgrades
     public List<UpgradeInfo> diceRollDurationUpgrade = new();
     public List<UpgradeInfo> playerjumpDurationUpgrade = new();
     public List<UpgradeInfo> buildSpeedUpgrade = new();
-}
 
+    public UpgradeInfo FindUpgradeID(int targetId)
+    {
+        UpgradeInfo result = null;
+
+        result = flat_lineValueUpgrade.Find(x => x.nodeId == targetId) ??
+                    mult_lineValueUpgrade.Find(x => x.nodeId == targetId) ??
+                    flat_tileValueUpgrade.Find(x => x.nodeId == targetId) ??
+                    mult_tileValueUpgrade.Find(x => x.nodeId == targetId) ??
+                    flat_buildingValueUpgrade.Find(x => x.nodeId == targetId) ??
+                    mult_buildingValueUpgrade.Find(x => x.nodeId == targetId) ??
+                    flat_IncomeValueUpgrade.Find(x => x.nodeId == targetId) ??
+                    mult_IncomeValueUpgrade.Find(x => x.nodeId == targetId) ??
+                    diceRollDurationUpgrade.Find(x => x.nodeId == targetId) ??
+                    playerjumpDurationUpgrade.Find(x => x.nodeId == targetId) ??
+                    buildSpeedUpgrade.Find(x => x.nodeId == targetId);
+
+        return result;
+    }
+}
+[Serializable]
 public class GameDatas
 {
     public List<Account> myAccountList = new();
@@ -68,9 +87,10 @@ public class GameDatas
 
     public int diceNum = -1;
     public float jumpDuration = 1f;
-    public float waitForNextNode = 1f;
+    public float waitForNextNode = 0.1f;
     public float rollDuration = 1f;
     public float buildSpeed = 1f;
+    public int currentPlayerPositionTileNum = 0;
 }
 
 public class GameManager : MonoBehaviour
@@ -80,10 +100,10 @@ public class GameManager : MonoBehaviour
 
     public GameObject gameClearPanel;
     public EarnEffectUI earnEffect;
-    
+
     public HFSMManager hfsmManager;
 
-    
+
     public TileNode tile;
 
     public event Action OnRefreshUI;
@@ -108,11 +128,11 @@ public class GameManager : MonoBehaviour
             return !gameDatas.diceUpgrade_1 ? DiceMode.Physics : !gameDatas.diceUpgrade_2 ? DiceMode.Animated : DiceMode.Auto;
         }
     }
-    
-    public int maxBuildingCount {  get
+
+    public int maxBuildingCount { get
         {
-            return !gameDatas.buildingCountUpgrade_1 ? gameDatas.listMaxBuildCount[0] : 
-                !gameDatas.buildingCountUpgrade_2 ? gameDatas.listMaxBuildCount[1] : 
+            return !gameDatas.buildingCountUpgrade_1 ? gameDatas.listMaxBuildCount[0] :
+                !gameDatas.buildingCountUpgrade_2 ? gameDatas.listMaxBuildCount[1] :
                 !gameDatas.buildingCountUpgrade_3 ? gameDatas.listMaxBuildCount[2] : gameDatas.listMaxBuildCount[3];
         }
     }
@@ -168,12 +188,9 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         gameClearPanel.SetActive(false);
-        gameDatas = DataManager.Instance.LoadGameData();
-        //diceUpgrade_1 = false;
-        //diceUpgrade_2 = false;
-        //gameClear = false;
-        //isGameStart = false;
+        gameDatas = DataManager.Instance.currentDatas;
     }
+
 
     public void UpdateAccount(Dictionary<CurrencyType, BigInteger> receipt)
     {
@@ -189,7 +206,7 @@ public class GameManager : MonoBehaviour
                 {
                     item.Amount += amount;
                     earnEffect.SetCurrenciesTransform(type, amount);
-                    Debug.Log($"{item.currencyType} / {item.Amount}");
+                    //Debug.Log($"{item.currencyType} / {item.Amount}");
                 }
             }
         }
@@ -246,6 +263,10 @@ public class GameManager : MonoBehaviour
     public void ClickSaveButton()
     {
         DataManager.Instance.CreateNewSaveSafe(this.gameDatas);
+    }
+    public void ClickInitDataButton()
+    {
+        DataManager.Instance.LoadInitData();
     }
 
     public void ClickAccountZero()

@@ -19,7 +19,7 @@ public class TechUpgradeTreeManager : MonoBehaviour
 
         foreach (TechUpgradeUI nodeUI in allNodes)
         {
-            if (nodeUI.isRootNode)
+            if (nodeUI.isRootNode || nodeUI.isUnlocked)
             {
                 nodeUI.SetupNode(true);
             }
@@ -42,6 +42,7 @@ public class TechUpgradeTreeManager : MonoBehaviour
             ui.DrawLine();
 
             UnlockNode(masteredNode.nextNodes[i]);
+            Debug.Log($"{masteredNode.nextNodes[i]}");
         }
     }
 

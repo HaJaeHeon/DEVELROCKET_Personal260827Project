@@ -10,8 +10,6 @@ public class PlayerMove : MonoBehaviour
     //말 위치를 타일 면과 닿게
     [field:SerializeField] public float heightOffset {  get; private set; }
 
-    [Space]
-    [SerializeField] private int currentNodeIndex;
     [field:SerializeField] public bool isRunning {  get; private set; }
 
     private GameDatas gameDatas;
@@ -47,9 +45,9 @@ public class PlayerMove : MonoBehaviour
         isRunning = true;
         for (int i = 0; i < diceNum; i++)
         {
-            currentNodeIndex++;
+            GameManager.Instance.gameDatas.currentPlayerPositionTileNum++;
 
-            TileNode targetNode = BoardManager.Instance.GetTile(currentNodeIndex);
+            TileNode targetNode = BoardManager.Instance.GetTile(GameManager.Instance.gameDatas.currentPlayerPositionTileNum);
             Vector3 endPosition = targetNode.transform.position + Vector3.up * heightOffset;
             //Debug.Log(endPosition);
 
@@ -63,7 +61,7 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
-        TileNode finalTile = BoardManager.Instance.GetTile(currentNodeIndex);
+        TileNode finalTile = BoardManager.Instance.GetTile(GameManager.Instance.gameDatas.currentPlayerPositionTileNum);
         gameManager.tile = finalTile;
         //Debug.Log($"마지막 타일 {finalTile.tileIndex}");
         finalTile.SetReward();

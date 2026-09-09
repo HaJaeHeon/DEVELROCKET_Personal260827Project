@@ -57,7 +57,7 @@ public class BoardManager : MonoBehaviour
             nodes.Add(tiles[i]);
         }
 
-        playerMove.gameObject.transform.position = GetTile(0).transform.position + Vector3.up * playerMove.heightOffset;
+        playerMove.gameObject.transform.position = GetTile(GameManager.Instance.gameDatas.currentPlayerPositionTileNum).transform.position + Vector3.up * playerMove.heightOffset;
     }
 
     // public void InItCalculateTileCount()
