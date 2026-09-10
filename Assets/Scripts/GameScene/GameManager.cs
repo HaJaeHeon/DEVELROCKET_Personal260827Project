@@ -279,7 +279,7 @@ public class GameManager : MonoBehaviour
 
     public void ClickSaveButton()
     {
-        DataManager.Instance.CreateNewSaveSafe(this.gameDatas);
+        DataManager.Instance.CreateNewSave(this.gameDatas);
     }
     public void ClickInitDataButton()
     {

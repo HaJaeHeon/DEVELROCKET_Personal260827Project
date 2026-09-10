@@ -1,0 +1,9 @@
+| 항목 | 내용 |
+| :--- | :--- |
+| **이름** | 하재헌 |
+| **프로젝트명 / 게임명** | I_Marble |
+| **게임 한 줄 정의** | 아이들러 장르로 게임의 스킬 노드 중 엔딩 노드를 찍게 되면 게임 클리어 입니다 |
+| **적용한 심화 기술** | Singleton, SO, HFSM, Json, CSV, BigInteger |
+| **GitHub 저장소 링크** | https://github.com/HaJaeHeon/DEVELROCKET_Personal260827Project.git |
+| **조작 방법** | 마우스로 조작하여 플레이 |
+| **실행 환경** | Windows 10/11, 1920 * 1080 권장, 300MB 이상의 여유 공간 필요, 로컬 싱글 플레이 |
