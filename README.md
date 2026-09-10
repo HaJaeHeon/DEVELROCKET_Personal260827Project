@@ -60,16 +60,16 @@
 ```
 
 ## 5. 주요 기능 목록
-GameManager : 전반적인 게임 데이터 관리
-TechUpgradeTreeManager : 스킬 노드 시스템 관리
-UpgradeBranchSO : 스킬 노드의 ScriptableObject 데이터
-TechUpgradeUI : 스킬 노드 관련 UI 중심 로직
-BoardManager : 보드 타일 생성 및 관리
-TileDataSO : 각 타일의 ScriptableObject 데이터
-TileNode : 개별 타일의 중심 로직
-HFSMManager : 계층형 유한 상태 기계(HFSM) 관리
-DiceRoll : 주사위 굴림 및 결과 판정 중심 로직
-DataManager : Save Data 및 InitData 생성 관리
+- GameManager : 전반적인 게임 데이터 관리
+- TechUpgradeTreeManager : 스킬 노드 시스템 관리
+- UpgradeBranchSO : 스킬 노드의 ScriptableObject 데이터
+- TechUpgradeUI : 스킬 노드 관련 UI 중심 로직
+- BoardManager : 보드 타일 생성 및 관리
+- TileDataSO : 각 타일의 ScriptableObject 데이터
+- TileNode : 개별 타일의 중심 로직
+- HFSMManager : 계층형 유한 상태 기계(HFSM) 관리
+- DiceRoll : 주사위 굴림 및 결과 판정 중심 로직
+- DataManager : Save Data 및 InitData 생성 관리
 
 ## 6. 프로젝트 구조
 ```text
