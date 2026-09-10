@@ -5,7 +5,6 @@ public class DataManager : MonoBehaviour
 {
     public static DataManager Instance { get; private set; }
 
-    //파일 경로 프로젝트 폴더 안으로 변경해야함
     public string initDataFile = "InitSaveFile.json";
     public string saveFileName = "SaveDataFile.json";
     public GameDatas currentDatas;
@@ -15,7 +14,7 @@ public class DataManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // 씬이 넘어가도 매니저 유지
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -31,7 +30,6 @@ public class DataManager : MonoBehaviour
         File.WriteAllText(initPath, jsonText);
         Debug.Log($"새로운 inItFile 생성 / 생성 위치 : {initPath}");
     }
-    // 중복을 피해 비어있는 파일명을 알아서 찾아 저장합니다.
     public void CreateNewSave(GameDatas targetData)
     {
         string savePath = Path.Combine(Application.persistentDataPath, saveFileName);
@@ -59,7 +57,6 @@ public class DataManager : MonoBehaviour
         }
         else
         {
-            // 파일이 없다면 (처음 게임을 켰거나, 세이브 파일을 지웠을 때)
             Debug.Log("[Load] 세이브 파일이 없습니다. 초기 데이터를 가져옵니다.");
 
             string newPath = Path.Combine(Application.persistentDataPath, initDataFile);
@@ -73,11 +70,11 @@ public class DataManager : MonoBehaviour
             }
             else
             {
+                Debug.Log("초기 파일도 없어서 초기 파일 생성");
+
                 GameDatas data = new GameDatas();
                 CreateNewInit(data);
 
-                Debug.Log("초기 파일도 없어서 초기 파일 생성");
-                // 여기 진짜 초기 파일 생성하는거 만들어야함
                 return data;
             }
         }

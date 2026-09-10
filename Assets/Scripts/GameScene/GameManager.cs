@@ -78,7 +78,7 @@ public class Upgrades
     }
 }
 [Serializable]
-public class GameDatas
+public class    GameDatas
 {
     public List<Account> myAccountList = new();
     public Upgrades myUpgrades = new();
