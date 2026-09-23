@@ -25,6 +25,8 @@ public class DiceRoll : MonoBehaviour
 
     private Coroutine currentRoutine;
 
+    [SerializeField] private float rollTimeout = 7f;
+
     /// <summary>
     /// 주사위 모델 위치에 맞게 조절
     /// 위, 아래, 오른쪽 , 왼쪽 , 앞, 뒤 순서
@@ -50,6 +52,10 @@ public class DiceRoll : MonoBehaviour
     private void OnEnable()
     {
         rollButton.onClick.AddListener(OnClickRollButton);
+    }
+    private void OnDisable()
+    {
+        rollButton.onClick.RemoveListener(OnClickRollButton);
     }
 
 
@@ -90,8 +96,24 @@ public class DiceRoll : MonoBehaviour
         // 주사위가 돌자미자 멈췄다고 판단하는것을 방지
         yield return new WaitForSeconds(0.5f);
 
+        float elapsedTime = 0f;
+
         // 주사위 속도와 회전 속도가 0에 근접할때까지 대기
-        yield return new WaitUntil(() => rb.linearVelocity.sqrMagnitude < 0.01f && rb.angularVelocity.sqrMagnitude < 0.01f);
+        while(rb.linearVelocity.sqrMagnitude >= 0.01f && rb.angularVelocity.sqrMagnitude >= 0.01f)
+        {
+            elapsedTime += Time.deltaTime;
+
+            if(elapsedTime >= rollTimeout)
+            {
+                Debug.LogError($" 주사위가 {rollTimeout}초 동안 멈추지 않아 다시 굴리기");
+                isRolling = false;
+
+
+                ClassicRoll();
+                yield break;
+            }
+            yield return null;
+        }
 
         finalDiceNum = CalcDiceFace();
         Debug.Log($"주사위 결과값 : {finalDiceNum}");

@@ -15,3 +15,5 @@ MonoBehaviour:
   <tileType>k__BackingField: 6
   <tileReward>k__BackingField:
     stringValue: 100
+  <buildingReward>k__BackingField:
+    stringValue: 20

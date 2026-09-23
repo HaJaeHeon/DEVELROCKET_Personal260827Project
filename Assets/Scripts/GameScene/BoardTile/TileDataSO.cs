@@ -12,9 +12,14 @@ public struct UBigInt
     {
         get
         {
-            if (string.IsNullOrEmpty(stringValue)) return 0;
-            BigInteger.TryParse(stringValue, out BigInteger result);
-            return result;
+            if (string.IsNullOrWhiteSpace(stringValue))
+                return BigInteger.Zero;
+
+            if (BigInteger.TryParse(stringValue, out BigInteger result))
+                return result;
+
+            Debug.LogError($"not BigInteger : {stringValue}");
+            return BigInteger.Zero;
         }
         set
         {
@@ -50,5 +55,5 @@ public class TileDataSO : ScriptableObject
     // 각 줄의 가장 처음 타일에서 생산 될 타일의 재화량
     [field: SerializeField] public UBigInt tileReward { get; private set; }
     // 각 줄의 가장 처음 타일에서 생산 될 건물의 재화량
-    [field: SerializeField] public BigInteger buildingReward { get; private set; }
+    [field: SerializeField] public UBigInt buildingReward { get; private set; }
 }

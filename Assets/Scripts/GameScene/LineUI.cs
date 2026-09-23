@@ -5,8 +5,6 @@ public class LineUI : MonoBehaviour
 {
     [SerializeField] private RawImage lineImage;
     [SerializeField] private float lineSpeed;
-    //[SerializeField] private RectTransform nodeA;
-    //[SerializeField] private RectTransform nodeB;
 
     [Header("연결할 두 노드")]
     public RectTransform nodeA;

@@ -14,13 +14,6 @@ public class PlayerMove : MonoBehaviour
 
     private GameDatas gameDatas;
 
-    // gameManager나 여기서 init 으로 플레어이 위치 처음 타일로 초기화 필요
-    //private void Start()
-    //{
-    //    Vector3 initPosition = BoardManager.Instance.GetTile(0).transform.position;
-    //    transform.position = initPosition + Vector3.up * heightOffset;
-    //}
-
     private void Awake()
     {
         isRunning = false;

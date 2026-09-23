@@ -1,8 +1,6 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using System.Numerics;
 using TMPro;
-using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.UI;
 

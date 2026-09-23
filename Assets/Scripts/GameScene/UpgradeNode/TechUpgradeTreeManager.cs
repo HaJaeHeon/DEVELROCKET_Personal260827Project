@@ -9,9 +9,6 @@ public class TechUpgradeTreeManager : MonoBehaviour
     [SerializeField] private Transform lineFolder;
     [SerializeField] private GameObject linePrefab;
 
-    // 씬에 배치된 모든 노드 UI를 담아둘 딕셔너리 (SO를 키값으로 사용)
-    //private Dictionary<UpgradeBranchSO, TechUpgradeUI> nodeDictionary = new Dictionary<UpgradeBranchSO, TechUpgradeUI>();
-
     private void Start()
     {
         // 씬에 있는 모든 노드를 찾아서, 루트 노드인지 확인 후 켜고 끕니다.
