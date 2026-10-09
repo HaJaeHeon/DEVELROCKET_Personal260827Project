@@ -37,6 +37,7 @@ public class MultiplierCurveGraphic : MaskableGraphic
     // 실제 세로축 상한
     private float axisMax = 5f;
     // 재생이 끝나는 시간( 0 ~ 10 초)
+    // ************ 나중에 이벤트 시간을 줄여야 한다면 이 값을 바꾸는걸로*************
     private float duration = AxisSeconds;
     // 이번 재생에서 지금까지 진행된 시간 (duration에 도달하면 멈춤)
     private float elapsed;
