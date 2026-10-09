@@ -15,6 +15,13 @@ public enum TileMode
     Build
 }
 
+
+[Serializable]
+public class TileData
+{
+    public int tileIndex;
+    public int buildingCount;
+}
 [Serializable]
 public class Account
 {
@@ -108,6 +115,8 @@ public class    GameDatas
             new Account((CurrencyType)3),
         };
     }
+
+    public List<TileData> tileDataList = new();
 }
 
 public class GameManager : MonoBehaviour
@@ -128,16 +137,6 @@ public class GameManager : MonoBehaviour
     public GameDatas gameDatas = new();
     public GameDatas saveData = new();
 
-
-    //점프 시간을 줄여서 animation속도 짧게하기
-    //public float jumpDuration { get => gameDatas.jumpDurationValue; private set => gameDatas.jumpDurationValue = value; }
-    //말 이동 대기 시간 짧게
-    //public float waitForNextNode { get => gameDatas.waitForNextNodeValue; private set => gameDatas.waitForNextNodeValue = value; }
-    // 주사위 돌아가는 시간
-    //public float rollDuration { get => gameDatas.rollDurationValue; private set => gameDatas.rollDurationValue = value; }
-    // 건물 내려오는 속도
-    //public float buildSpeed { get => gameDatas.buildSpeedValue; private set => gameDatas.buildSpeedValue = value; }
-
     public DiceMode currentDiceMode
     {
         get
@@ -154,41 +153,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //public void Init()
-    //{
-    //    buildingCountUpgrade_1 = false;
-    //    buildingCountUpgrade_2 = false;
-    //    buildingCountUpgrade_3 = false;
-    //    diceUpgrade_1 = false;
-    //    diceUpgrade_2 = false;
-    //    gameClear = false;
-    //    isGameStart = false;
-    //    diceNum = -1;
-    //    jumpDuration = 0.6f;
-    //    rollDuration = 0.6f;
-    //    buildSpeed = 0.6f;
-
-    //    waitForNextNode = 0.1f;
-
-    //    foreach (var account in myAccountList)
-    //    {
-    //        account.Amount = 0;
-    //    }
-    //    myUpgrades.flat_lineValueUpgrade.Clear();
-    //    myUpgrades.mult_lineValueUpgrade.Clear();
-    //    myUpgrades.flat_tileValueUpgrade.Clear();
-    //    myUpgrades.mult_tileValueUpgrade.Clear();
-    //    myUpgrades.flat_buildingValueUpgrade.Clear();
-    //    myUpgrades.mult_buildingValueUpgrade.Clear();
-    //    myUpgrades.flat_IncomeValueUpgrade.Clear();
-    //    myUpgrades.mult_IncomeValueUpgrade.Clear();
-    //    myUpgrades.diceRollDurationUpgrade.Clear();
-    //    myUpgrades.playerjumpDurationUpgrade.Clear();
-    //    myUpgrades.buildSpeedUpgrade.Clear();
-    //}
-
-
-
     private void Awake()
     {
         if (instance != null)
@@ -200,12 +164,20 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         DontDestroyOnLoad(gameObject);
+
+        if (DataManager.Instance == null)
+        {
+            Debug.LogError("DataManager is null");
+            gameDatas = new GameDatas();
+            return;
+        }
+
+        gameDatas = DataManager.Instance.currentDatas ?? new GameDatas();
     }
 
     private void Start()
     {
         gameClearPanel.SetActive(false);
-        gameDatas = DataManager.Instance.currentDatas;
     }
 
 
@@ -279,33 +251,11 @@ public class GameManager : MonoBehaviour
 
     public void ClickSaveButton()
     {
+        BoardManager.Instance.SaveTileData(this.gameDatas);
         DataManager.Instance.CreateNewSave(this.gameDatas);
     }
     public void ClickInitDataButton()
     {
         DataManager.Instance.LoadInitData();
     }
-
-    //public void ClickAccountZero()
-    //{
-    //    Account newAccount = new Account();
-    //    newAccount.currencyType = CurrencyType.Food;
-    //    newAccount.Amount = 0;
-    //    gameDatas.myAccountList.Add(newAccount);
-    //    newAccount.currencyType = CurrencyType.Wood;
-    //    newAccount.Amount = 0;
-    //    gameDatas.myAccountList.Add(newAccount);
-    //    newAccount.currencyType = CurrencyType.Stone;
-    //    newAccount.Amount = 0;
-    //    gameDatas.myAccountList.Add(newAccount);
-    //    newAccount.currencyType = CurrencyType.Industry;
-    //    newAccount.Amount = 0;
-    //    gameDatas.myAccountList.Add(newAccount);
-
-    //    foreach (var account in gameDatas.myAccountList)
-    //    {
-    //        account.Amount = 0;
-    //        Debug.Log($"{account.currencyType} type / {account.Amount} amount");
-    //    }
-    //}
 }

@@ -22,12 +22,6 @@ public class TileNode : MonoBehaviour
     private UnityEngine.Vector3[] buildTransforms = { new UnityEngine.Vector3(0.75f, 1f, 0.75f), new UnityEngine.Vector3(0.75f, 1f, 0f), new UnityEngine.Vector3(0.75f, 1f, -0.75f) };
     private List<GameObject> buildingList = new();
 
-    private void Start()
-    {
-        buildingCount = 0;
-    }
-
-
     public void SetIndex(int num)
     {
         tileIndex = num;
@@ -37,7 +31,6 @@ public class TileNode : MonoBehaviour
     public void SetReward()
     {
         reward = TileReward() + BuildingReward();
-        //Debug.Log($"reward : {reward} / tileReward : {TileReward()} / buildingReward : {BuildingReward()}");
     }
 
     // 각 줄의 타일 위치에 따라 타일의 보상 값 다르게 함
@@ -73,7 +66,7 @@ public class TileNode : MonoBehaviour
 
     public BigInteger BuildingReward()
     {
-        BigInteger baseBuildingReward = data.buildingReward * buildingCount;
+        BigInteger baseBuildingReward = (BigInteger)data.buildingReward * buildingCount;
         BigInteger flatValues = (BigInteger)(GameManager.Instance.gameDatas.myUpgrades.flat_buildingValueUpgrade.Sum
                             (value => value.upgradeValue * Mathf.Pow(value.statMultiplierPerLevel, value.currentUpgradeCount)));
         BigInteger multiValues = 1;
@@ -137,5 +130,49 @@ public class TileNode : MonoBehaviour
             Debug.Log($"{currentBuilding} is null");
 
         return currentBuilding;
+    }
+
+    public void RestoreBuilding(int savedCount)
+    {
+
+        foreach (var building in buildingList)
+        {
+            Destroy(building);
+        }
+        buildingList.Clear();
+
+        buildingCount = Mathf.Clamp(savedCount, 0, GameManager.Instance.maxBuildingCount);
+
+
+        if(buildingCount == 0)
+        {
+            SetReward();
+            return;
+        }
+
+        int tierIndex = (buildingCount - 1) / 3;
+        int visibleCount = ((buildingCount - 1) % 3) + 1;
+
+        GameObject prefab = getBuildingPrefab(tierIndex);
+
+        for (int i = 0; i < visibleCount; i++)
+        {
+            GameObject building = Instantiate(prefab, transform);
+            building.transform.localPosition = buildTransforms[i];
+            buildingList.Add(building);
+        }
+
+        SetReward();
+    }
+
+    private GameObject getBuildingPrefab(int tierIndex)
+    {
+        return tierIndex switch
+        {
+            0 => buildPrefab_1,
+            1 => buildPrefab_2,
+            2 => buildPrefab_3,
+            _ => buildPrefab_4
+        };
     }
 }

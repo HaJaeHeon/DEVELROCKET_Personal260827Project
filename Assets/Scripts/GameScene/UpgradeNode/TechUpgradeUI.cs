@@ -39,13 +39,30 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private void OnEnable()
     {
+        if (GameManager.Instance == null)
+        {
+            Debug.LogError($"{name}: GameManager가 준비되지 않아 업그레이드 UI를 초기화할 수 없습니다.");
+            return;
+        }
+
+        gameDatas = GameManager.Instance.gameDatas;
+
+        if (gameDatas == null)
+        {
+            Debug.LogError($"{name}: GameDatas가 준비되지 않아 업그레이드 UI를 초기화할 수 없습니다.");
+            return;
+        }
+
         GameManager.Instance.OnRefreshUI += RefreshUI;
         RefreshUI();
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.OnRefreshUI -= RefreshUI;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnRefreshUI -= RefreshUI;
+        }
     }
 
     // 컴포넌트 널 체크하기
@@ -67,7 +84,19 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     //연결해야할 부분 초기화, ui refresh
     private void Start()
     {
-        gameDatas = GameManager.Instance.gameDatas;
+        // 장면 초기화 순서상 OnEnable 시점에 GameManager가 아직 준비되지 않았던 경우를 보완합니다.
+        if (gameDatas == null)
+        {
+            if (GameManager.Instance == null || GameManager.Instance.gameDatas == null)
+            {
+                Debug.LogError($"{name}: GameDatas가 없어 업그레이드 노드를 초기화할 수 없습니다.");
+                return;
+            }
+
+            gameDatas = GameManager.Instance.gameDatas;
+            GameManager.Instance.OnRefreshUI -= RefreshUI;
+            GameManager.Instance.OnRefreshUI += RefreshUI;
+        }
 
         InitSkillNode();
 
@@ -237,23 +266,12 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
     }
 
-    // 다음 레벨업 비용을 계산하는 로직
-    private BigInteger CalculateNextCost()
-    {
-        if (nodeData.requiredCosts.Count == 0)
-            return 0;
-
-        CostData data = nodeData.requiredCosts[0];
-        // 반올림 ( 기본비용 * (배율 ^ 현재레벨))
-        return (BigInteger)(data.baseCost * Mathf.Pow(data.costMultiplier, currentLevel));
-    }
-
     // 버튼을 클릭했을 때 (인스펙터의 OnClick에 연결할 함수)
     public void OnClickNode()
     {
         if (currentLevel >= nodeData.maxLevel) return;
 
-        BigInteger requiredCost = CalculateNextCost();
+        //BigInteger requiredCost = CalculateNextCost();
 
         // 재화가 충분한지 확인
         if (!BoolEnoughCurrency())
@@ -267,7 +285,6 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         RefreshUI();
 
         // Manager에게 능력치 적용하라고 지시 (예: 주사위 속도 증가 등)
-        // SkillTreeManager.Instance.ApplyStat(nodeData.targetStat, nodeData.baseStatValue);
         SetStats(nodeData.targetStat);
         SetUnlocks(nodeData.targetUnlock);
 
@@ -340,18 +357,21 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private bool BoolEnoughCurrency()
     {
+        if (gameDatas?.myAccountList == null)
+        {
+            Debug.LogError($"{name}: 재화 계정 목록이 없어 구매 가능 여부를 확인할 수 없습니다.");
+            return false;
+        }
+
         foreach (CostData costData in nodeData.requiredCosts)
         {
-            BigInteger currentPrice = (BigInteger)(costData.baseCost * BigInteger.Pow(costData.costMultiplier, currentLevel));
+            BigInteger currentPrice = BigIntCalculator.GetCost(costData, currentLevel);
 
-            foreach (var item in GameManager.Instance.gameDatas.myAccountList)
-            {
-                if (item.currencyType == costData.currency)
-                {
-                    if (item.Amount < currentPrice)
-                        return false;
-                }
-            }
+            Account account = gameDatas.myAccountList.Find(value => value.currencyType == costData.currency);
+
+            // 특정 account가 없다면
+            if (account == null || account.Amount < currentPrice)
+                return false;
         }
         return true;
     }
@@ -363,9 +383,16 @@ public class TechUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         foreach (CostData costData in nodeData.requiredCosts)
         {
-            BigInteger currentPrice = (BigInteger)(costData.baseCost * BigInteger.Pow(costData.costMultiplier, currentLevel));
+            BigInteger currentPrice = BigIntCalculator.GetCost(costData, currentLevel);
 
-            receipt.Add(costData.currency, -currentPrice);
+            if(receipt.ContainsKey(costData.currency))
+            {
+                receipt[costData.currency] -= currentPrice;
+            }
+            else
+            {
+                receipt.Add(costData.currency, -currentPrice);
+            }
         }
         GameManager.Instance.UpdateAccount(receipt);
     }

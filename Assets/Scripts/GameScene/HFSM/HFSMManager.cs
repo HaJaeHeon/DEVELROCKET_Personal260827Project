@@ -18,6 +18,10 @@ public class HFSMManager : MonoBehaviour
     {
         rollButton.onClick.AddListener(OnClickDiceRoll);
     }
+    private void OnDisable()
+    {
+        rollButton.onClick.RemoveListener(OnClickDiceRoll);
+    }
 
     private void Start()
     {

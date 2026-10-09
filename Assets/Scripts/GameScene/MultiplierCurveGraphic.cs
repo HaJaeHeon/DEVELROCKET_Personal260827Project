@@ -5,52 +5,59 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CanvasRenderer))]
 public class MultiplierCurveGraphic : MaskableGraphic
 {
-    private const float AxisSeconds = 10f;
+    private const float MaxPlaySeconds = 10f;
 
     [Header("UI")]
     [SerializeField] private TMP_Text multiplierText;
     [SerializeField] private RectTransform head;
 
     [Header("Line")]
-    // ¼±À» ±×¸± ¶§ ÇÊ¿äÇÑ Á¤Á¡ÀÇ °¹¼ö
+    // ì„ ì„ ê·¸ë¦´ ë•Œ í•„ìš”í•œ ì •ì ì˜ ê°¯ìˆ˜
     [SerializeField, Range(8, 256)] private int segments = 80;
-    // ¼± µÎ²²
+    // ì„  ë‘ê»˜
     [SerializeField, Min(0.1f)] private float thickness = 5f;
-    // ±×·¡ÇÁ ¿µ¿ªÀÇ Å×µÎ¸®¿Í ½ÇÁ¦ °î¼± »çÀÌ¿¡ µÎ´Â ¿©¹éÀÔ´Ï´Ù. »óÇÏÁÂ¿ì¿¡ µ¿ÀÏÇÏ°Ô Àû¿ëÇÕ´Ï´Ù.
+    // ê·¸ë˜í”„ ì˜ì—­ì˜ í…Œë‘ë¦¬ì™€ ì‹¤ì œ ê³¡ì„  ì‚¬ì´ì— ë‘ëŠ” ì—¬ë°±ì…ë‹ˆë‹¤. ìƒí•˜ì¢Œìš°ì— ë™ì¼í•˜ê²Œ ì ìš©í•©ë‹ˆë‹¤.
     [SerializeField, Min(0f)] private float padding = 24f;
 
-    [Header("Vertical Axis")]
-    // ³·Àº °á°úµµ Ç×»ó È­¸é ¸Ç À§±îÁö ¿Ã¶ó°¡´Â °ÍÀ» ¹æÁö.
-    [SerializeField, Min(1.01f)] private float minimumAxisMax = 5f;
-
-    // ÃÖÁ¾Á¡ À§ÂÊ¿¡ ³²°ÜµÑ ¿©À¯.
+    [Header("Vertical Layout")]
+    // ìµœì¢…ì  ìœ„ìª½ì— ë‚¨ê²¨ë‘˜ ì—¬ìœ . ìµœì¢… ë°°ìœ¨ê³¼ ê´€ê³„ì—†ì´ ê°™ì€ ë¹„ìœ¨ì„ ì‚¬ìš©í•©ë‹ˆë‹¤.
     [SerializeField, Range(0f, 0.5f)] private float topMargin = 0.15f;
 
+    [Header("Multiplier Range")]
+    // ê·¸ë˜í”„ì˜ ë§¨ ëì´ ë‚˜íƒ€ë‚´ëŠ” ìµœëŒ€ ë°°ìœ¨ì…ë‹ˆë‹¤.
+    [SerializeField, Min(1.01f)] private float graphMaxMultiplier = 10f;
+
     [Header("Head")]
-    // ÀÚ½Ä ÀÌ¹ÌÁö È¸Àü ¿©ºÎ
+    // ìì‹ ì´ë¯¸ì§€ íšŒì „ ì—¬ë¶€
     [SerializeField] private bool rotateHead = true;
-    // ÀÌ¹ÌÁö°¡ ¹Ù¶óº¸´Â ¹æÇâ°ú °î¼±ÀÇ ¹æÇâ Â÷ÀÌ º¸Á¤
+    // ì´ë¯¸ì§€ê°€ ë°”ë¼ë³´ëŠ” ë°©í–¥ê³¼ ê³¡ì„ ì˜ ë°©í–¥ ì°¨ì´ ë³´ì •
     [SerializeField] private float angleOffset;
 
-    // ¹èÀ² °á°ú°ª
+    // ë°°ìœ¨ ê²°ê³¼ê°’
     private float finalMultiplier = 1f;
-    // ½ÇÁ¦ ¼¼·ÎÃà »óÇÑ
-    private float axisMax = 5f;
-    // Àç»ıÀÌ ³¡³ª´Â ½Ã°£( 0 ~ 10 ÃÊ)
-    // ************ ³ªÁß¿¡ ÀÌº¥Æ® ½Ã°£À» ÁÙ¿©¾ß ÇÑ´Ù¸é ÀÌ °ªÀ» ¹Ù²Ù´Â°É·Î*************
-    private float duration = AxisSeconds;
-    // ÀÌ¹ø Àç»ı¿¡¼­ Áö±İ±îÁö ÁøÇàµÈ ½Ã°£ (duration¿¡ µµ´ŞÇÏ¸é ¸ØÃã)
+
+    // í™•ì •ëœ ë°°ìœ¨ì— í•´ë‹¹í•˜ëŠ” ê·¸ë˜í”„ìƒì˜ ì •ì§€ ìœ„ì¹˜
+    private float targetProgress;
+    // ì¬ìƒì´ ëë‚˜ëŠ” ì‹œê°„( 0 ~ 10 ì´ˆ)
+    private float duration = MaxPlaySeconds;
+    // ì´ë²ˆ ì¬ìƒì—ì„œ ì§€ê¸ˆê¹Œì§€ ì§„í–‰ëœ ì‹œê°„ (durationì— ë„ë‹¬í•˜ë©´ ë©ˆì¶¤)
     private float elapsed;
-    // ÇöÀç Àç»ıÁßÀÎÁö / true ÀÏ¶§ ½Ã°£ Áõ°¡
+    // í˜„ì¬ ì¬ìƒì¤‘ì¸ì§€ / true ì¼ë•Œ ì‹œê°„ ì¦ê°€
     private bool playing;
 
     public bool IsPlaying => playing;
-    public float CurrentMultiplier => EvaluateMultiplier(elapsed);
+    private float PlaybackProgress => duration > 0f
+        ? Mathf.Clamp01(elapsed / duration)
+        : 1f;
+    private float GraphProgress => targetProgress * PlaybackProgress;
+    public float CurrentMultiplier => !playing && elapsed >= duration
+        ? finalMultiplier
+        : EvaluateGraphMultiplier(GraphProgress);
 
     public float multiNum;
     public float durationTime;
 
-    [ContextMenu("±×·¡ÇÁ ½ÃÀÛ(multiNum, durationTime")]
+    [ContextMenu("ê·¸ë˜í”„ ì‹œì‘(multiNum, durationTime")]
     public void PlayInInspector()
     {
         Play(multiNum, durationTime);
@@ -64,36 +71,36 @@ public class MultiplierCurveGraphic : MaskableGraphic
         Refresh();
     }
 
-    // Àç»ı Àü¿¡ È®Á¤µÈ °á°ú¸¦ Àü´ŞÇÕ´Ï´Ù.
-    // playSeconds´Â 0ÃÊ ÃÊ°ú, ÃÖ´ë 10ÃÊÀÔ´Ï´Ù.
-    public void Play(float resultMultiplier, float playSeconds = 10f)
+    // ì¬ìƒ ì „ì— í™•ì •ëœ ê²°ê³¼ë¥¼ ì „ë‹¬í•©ë‹ˆë‹¤.
+    // playSecondsëŠ” 0ì´ˆ ì´ˆê³¼, ìµœëŒ€ 10ì´ˆì…ë‹ˆë‹¤.
+    public void Play(float resultMultiplier, float playSeconds = MaxPlaySeconds)
     {
         if (float.IsNaN(resultMultiplier)
             || float.IsInfinity(resultMultiplier)
             || float.IsNaN(playSeconds)
             || float.IsInfinity(playSeconds))
         {
-            Debug.LogError("¹èÀ²°ú Àç»ı ½Ã°£Àº À¯È¿ÇÑ ¼ıÀÚ¿©¾ß ÇÕ´Ï´Ù.", this);
+            Debug.LogError("ë°°ìœ¨ê³¼ ì¬ìƒ ì‹œê°„ì€ ìœ íš¨í•œ ìˆ«ìì—¬ì•¼ í•©ë‹ˆë‹¤.", this);
             return;
         }
 
-        if (resultMultiplier < 1f
+        if (graphMaxMultiplier <= 1f
+            || resultMultiplier < 1f
+            || resultMultiplier > graphMaxMultiplier
             || playSeconds <= 0f
-            || playSeconds > AxisSeconds)
+            || playSeconds > MaxPlaySeconds)
         {
-            Debug.LogError("¹èÀ²Àº 1 ÀÌ»ó, ½Ã°£Àº 0ÃÊ ÃÊ°ú 10ÃÊ ÀÌÇÏ¿©¾ß ÇÕ´Ï´Ù.", this);
+            Debug.LogError(
+                $"ë°°ìœ¨ì€ 1 ì´ìƒ {graphMaxMultiplier} ì´í•˜, " +
+                $"ì‹œê°„ì€ 0ì´ˆ ì´ˆê³¼ {MaxPlaySeconds}ì´ˆ ì´í•˜ì—¬ì•¼ í•©ë‹ˆë‹¤.",
+                this
+            );
             return;
         }
 
         finalMultiplier = resultMultiplier;
         duration = playSeconds;
-
-        // Àç»ı ½ÃÀÛ ½Ã ÇÑ ¹ø¸¸ °áÁ¤ÇÕ´Ï´Ù.
-        // Àç»ı Áß¿¡´Â ¼¼·ÎÃàÀ» º¯°æÇÏÁö ¾Ê½À´Ï´Ù.
-        axisMax = Mathf.Max(
-            Mathf.Max(1.01f, minimumAxisMax),
-            1f + (finalMultiplier - 1f) * (1f + topMargin)
-        );
+        targetProgress = CalculateTargetProgress(finalMultiplier);
 
         elapsed = 0f;
         playing = true;
@@ -101,13 +108,13 @@ public class MultiplierCurveGraphic : MaskableGraphic
         Refresh();
     }
 
-    [ContextMenu("±×·¡ÇÁ ¸®¼Â")]
+    [ContextMenu("ê·¸ë˜í”„ ë¦¬ì…‹")]
     public void ResetGraph()
     {
         playing = false;
         elapsed = 0f;
         finalMultiplier = 1f;
-        axisMax = Mathf.Max(1.01f, minimumAxisMax);
+        targetProgress = 0f;
 
         Refresh();
     }
@@ -117,7 +124,7 @@ public class MultiplierCurveGraphic : MaskableGraphic
         if (!playing)
             return;
 
-        // °ÔÀÓ ÀÏ½ÃÁ¤Áö(Time.timeScale = 0) ½Ã ÇÔ²² Á¤ÁöÇÕ´Ï´Ù.
+        // ê²Œì„ ì¼ì‹œì •ì§€(Time.timeScale = 0) ì‹œ í•¨ê»˜ ì •ì§€í•©ë‹ˆë‹¤.
         elapsed = Mathf.Min(elapsed + Time.deltaTime, duration);
 
         if (elapsed >= duration)
@@ -126,16 +133,33 @@ public class MultiplierCurveGraphic : MaskableGraphic
         Refresh();
     }
 
-    private float EvaluateMultiplier(float seconds)
+    private float CalculateTargetProgress(float multiplier)
     {
-        float progress = Mathf.Clamp01(seconds / duration);
+        float targetCurveValue = Mathf.InverseLerp(
+            1f,
+            graphMaxMultiplier,
+            multiplier
+        );
 
-        // ½ÃÀÛÀº ¿Ï¸¸ÇÏ°í µÚ·Î °¥¼ö·Ï °¡ÆÄ¸£°Ô »ó½Â.
+        // í˜„ì¬ ê³¡ì„ ì´ progressÂ²ì´ë¯€ë¡œ ì œê³±ê·¼ìœ¼ë¡œ ì •ì§€ ìœ„ì¹˜ë¥¼ ì—­ì‚°í•©ë‹ˆë‹¤.
+        return Mathf.Sqrt(targetCurveValue);
+    }
+
+    private float EvaluateGraphMultiplier(float graphProgress)
+    {
         return Mathf.Lerp(
             1f,
-            finalMultiplier,
-            progress * progress
+            graphMaxMultiplier,
+            EvaluateCurve(graphProgress)
         );
+    }
+
+    private float EvaluateCurve(float progress)
+    {
+        progress = Mathf.Clamp01(progress);
+
+        // ìµœì¢… ë°°ìœ¨ê³¼ ê´€ê³„ì—†ì´ í•­ìƒ ê°™ì€ ê³¡ì„  ëª¨ì–‘ì„ ì‚¬ìš©í•©ë‹ˆë‹¤.
+        return progress * progress;
     }
 
     private Rect GetPlotRect()
@@ -156,35 +180,28 @@ public class MultiplierCurveGraphic : MaskableGraphic
         );
     }
 
-    private Vector2 GetPoint(float seconds)
+    private Vector2 GetPoint(float progress)
     {
         Rect r = GetPlotRect();
+        progress = Mathf.Clamp01(progress);
 
-        float xRatio = Mathf.Clamp01(seconds / AxisSeconds);
-
-        float yRatio =
-            (EvaluateMultiplier(seconds) - 1f) / (axisMax - 1f);
+        float yRatio = EvaluateCurve(progress) / (1f + topMargin);
 
         return new Vector2(
-            r.xMin + r.width * xRatio,
+            r.xMin + r.width * progress,
             r.yMin + r.height * yRatio
         );
     }
 
-    private Vector2 GetTangent(float seconds)
+    private Vector2 GetTangent(float progress)
     {
-        Rect r = GetPlotRect();
-        float progress = Mathf.Clamp01(seconds / duration);
+        const float sampleDistance = 0.001f;
 
-        float dx = r.width / AxisSeconds;
+        float previousProgress = Mathf.Max(0f, progress - sampleDistance);
+        float nextProgress = Mathf.Min(1f, progress + sampleDistance);
 
-        float dy =
-            r.height
-            * (finalMultiplier - 1f)
-            * 2f * progress
-            / (duration * (axisMax - 1f));
-
-        Vector2 tangent = new Vector2(dx, dy);
+        Vector2 tangent =
+            GetPoint(nextProgress) - GetPoint(previousProgress);
 
         return tangent.sqrMagnitude > 0f
             ? tangent.normalized
@@ -194,7 +211,7 @@ public class MultiplierCurveGraphic : MaskableGraphic
     private void Refresh()
     {
         if (multiplierText != null)
-            multiplierText.text = $"{CurrentMultiplier:F2}¹è";
+            multiplierText.text = $"{CurrentMultiplier:F2}ë°°";
 
         UpdateHead();
         SetVerticesDirty();
@@ -205,14 +222,14 @@ public class MultiplierCurveGraphic : MaskableGraphic
         if (head == null)
             return;
 
-        // Head´Â GraphAreaÀÇ Á÷Á¢ ÀÚ½ÄÀÌ¾î¾ß ÇÕ´Ï´Ù.
+        // HeadëŠ” GraphAreaì˜ ì§ì ‘ ìì‹ì´ì–´ì•¼ í•©ë‹ˆë‹¤.
         head.anchorMin = rectTransform.pivot;
         head.anchorMax = rectTransform.pivot;
-        head.anchoredPosition = GetPoint(elapsed);
+        head.anchoredPosition = GetPoint(GraphProgress);
 
         if (rotateHead)
         {
-            Vector2 tangent = GetTangent(elapsed);
+            Vector2 tangent = GetTangent(GraphProgress);
 
             float angle =
                 Mathf.Atan2(tangent.y, tangent.x)
@@ -237,8 +254,9 @@ public class MultiplierCurveGraphic : MaskableGraphic
         vh.Clear();
 
         Rect plot = GetPlotRect();
+        float currentProgress = GraphProgress;
 
-        if (elapsed <= 0f || plot.width <= 0f || plot.height <= 0f)
+        if (currentProgress <= 0f || plot.width <= 0f || plot.height <= 0f)
             return;
 
         int count = Mathf.Clamp(segments, 8, 256);
@@ -246,10 +264,10 @@ public class MultiplierCurveGraphic : MaskableGraphic
 
         for (int i = 0; i <= count; i++)
         {
-            float seconds = elapsed * i / count;
+            float progress = currentProgress * i / count;
 
-            Vector2 point = GetPoint(seconds);
-            Vector2 tangent = GetTangent(seconds);
+            Vector2 point = GetPoint(progress);
+            Vector2 tangent = GetTangent(progress);
 
             Vector2 normal =
                 new Vector2(-tangent.y, tangent.x) * halfWidth;
